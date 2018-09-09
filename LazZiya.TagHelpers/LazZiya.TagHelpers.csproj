@@ -7,6 +7,10 @@
     <Company>Ziyad.info</Company>
     <Description>Pagination, email and phone number tag helpers for ASP.NET Core 2.1 Razor projects.</Description>
     <Copyright>Ziya.info</Copyright>
+    <PackageProjectUrl>https://github.com/LazZiya/TagHelpers</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/LazZiya/TagHelpers/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://github.com/LazZiya/TagHelpers/blob/master/LazZiya.TagHelpers/Ziya-128.ico</PackageIconUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
