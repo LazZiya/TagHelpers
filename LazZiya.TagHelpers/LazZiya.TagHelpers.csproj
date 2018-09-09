@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <ApplicationIcon>Ziya-128.ico</ApplicationIcon>
+    <Authors>Ziya Mollamahmut</Authors>
+    <Company>Ziyad.info</Company>
+    <Description>Pagination, email and phone number tag helpers for ASP.NET Core 2.1 Razor projects.</Description>
+    <Copyright>Ziya.info</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.2" />
+  </ItemGroup>
+
+</Project>
