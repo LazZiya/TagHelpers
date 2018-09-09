@@ -5,12 +5,18 @@
     <ApplicationIcon>Ziya-128.ico</ApplicationIcon>
     <Authors>Ziya Mollamahmut</Authors>
     <Company>Ziyad.info</Company>
-    <Description>Pagination, email and phone number tag helpers for ASP.NET Core 2.1 Razor projects.</Description>
+    <Description>Simple to use fully customizable pagination, email and phone number TagHelpers for ASP.NET Core 2.1 Razor projects.</Description>
     <Copyright>Ziya.info</Copyright>
     <PackageProjectUrl>https://github.com/LazZiya/TagHelpers</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/LazZiya/TagHelpers/blob/master/LICENSE</PackageLicenseUrl>
     <PackageIconUrl>https://github.com/LazZiya/TagHelpers/blob/master/LazZiya.TagHelpers/Ziya-128.ico</PackageIconUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageTags>asp.net-core, razor, taghelpers, pagination, email, phonenumber</PackageTags>
+    <PackageReleaseNotes>Pagination TagHelper :
+- minimum setup requirements
+- fully customizable
+- bootstrap 4.1 support
+- support for large chuncks of pages and records</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
