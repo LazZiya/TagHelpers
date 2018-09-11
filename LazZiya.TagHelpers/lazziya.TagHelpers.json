@@ -1,0 +1,60 @@
+{
+  "version": "1.0.1",
+  "paging": {
+    "default": {
+      "settings": {
+        "PageNo": 1,
+        "PageSize": 10,
+        "TotalRecords": 0,
+        "MaxDisplayedPages": 10,
+        "GapSize": 3
+      },
+      "query-string": {
+        "QuertStringKeyPageNo": "p",
+        "QuertStringKeyPageSize": "s",
+        "UrlPath": ""
+      },
+      "render": {
+        "ShowPageSizeNav": false,
+        "ShowFirstLast": false,
+        "ShowPrevNext": false,
+        "ShowTotalPages": false,
+        "ShowTotalRecords": false,
+        "ShowLastNumberedPage": false,
+        "ShowFirstNumberedPage": false
+      },
+      "page-size-nav": {
+        "PageSizeNavFormMethod": "get",
+        "PageSizeNavBlockSize": 10,
+        "PageSizeNavMaxItems": 3,
+        "PageSizeNavOnChange": "this.form.submit()"
+      },
+      "text": {
+        "TextPageSize": "Items per page",
+        "TextFirst": "First",
+        "TextLast": "Last",
+        "TextPrevious": "Previous",
+        "TextNext": "Next",
+        "TextTotalPages": "pages",
+        "TextTotalRecords": "records"
+      },
+      "screen-reader": {
+        "SrTextFirst": "First",
+        "SrTextLast": "Last",
+        "SrTextPrevious": "Previous",
+        "SrTextNext": "Next"
+      },
+      "styling": {
+        "Class": "row",
+        "ClassPagingControlDiv": "col",
+        "ClassInfoDiv": "col",
+        "ClassPageSizeDiv": "col",
+        "ClassPagingControl": "pagination",
+        "ClassActivePage": "active",
+        "ClassDisabledJumpingButton": "disabled",
+        "ClassTotalRecords": "badge badge-secondary",
+        "ClassTotalPages": "badge badge-info"
+      }
+    }
+  }
+}
