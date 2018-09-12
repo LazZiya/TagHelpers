@@ -7,6 +7,8 @@
  * *****************************************************/
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 
@@ -14,6 +16,16 @@ namespace LazZiya.TagHelpers
 {
     public class PagingTagHelper : TagHelper
     {
+        private IConfiguration Configuration { get; }
+        private ILogger _logger;
+
+        public PagingTagHelper(IConfiguration configuration, ILogger<PagingTagHelper> logger)
+        {
+            Configuration = configuration;
+            _logger = logger;
+            SetDefaults();
+        }
+
         #region Settings
 
         /// <summary>
@@ -21,32 +33,38 @@ namespace LazZiya.TagHelpers
         /// <para>default: 1</para>
         /// <para>example: p=1</para>
         /// </summary>
-        public int PageNo { get; set; } = 1;
+        public int PageNo { get; set; }
 
         /// <summary>
         /// how many items to get from db per page per request
         /// <para>default: 25</para>
         /// <para>example: pageSize=25</para>
         /// </summary>
-        public int PageSize { get; set; } = 2;
+        public int PageSize { get; set; }
 
         /// <summary>
         /// Total count of records in the db
         /// <para>default: 0</para>
         /// </summary>
-        public int TotalRecords { get; set; } = 0;
+        public int TotalRecords { get; set; }
 
         /// <summary>
         /// if count of pages is too much, restrict shown pages count to specific number
         /// <para>default: 10</para>
         /// </summary>
-        public int MaxDisplayedPages { get; set; } = 10;
+        public int MaxDisplayedPages { get; set; }
 
         /// <summary>
         /// Gap size to start show first/last numbered page
         /// <para>default: 5</para>
         /// </summary>
-        public int GapSize { get; set; } = 3;
+        public int GapSize { get; set; }
+
+        /// <summary>
+        /// name of the settings section in appSettings.json
+        /// <param>default: "default"</param>
+        /// </summary>
+        public string SettingsJson { get; set; }
 
         #endregion
 
@@ -56,25 +74,25 @@ namespace LazZiya.TagHelpers
         /// <para>default: get</param>
         /// <para>options: get, post</para>
         /// </summary>
-        public string PageSizeNavFormMethod { get; set; } = "get";
+        public string PageSizeNavFormMethod { get; set; }
 
         /// <summary>
         /// The minimum block size to populate all possible page sizes for dropdown list
         /// <para>default: 25</para>
         /// </summary>
-        public int PageSizeNavBlockSize { get; set; } = 10;
+        public int PageSizeNavBlockSize { get; set; }
 
         /// <summary>
         /// maximum nmber of items to show in the page size navigation menu
         /// <para>default: 5</para>
         /// </summary>
-        public int PageSizeNavMaxItems { get; set; } = 5;
+        public int PageSizeNavMaxItems { get; set; }
 
         /// <summary>
         /// action to take when page size dropdown changes
         /// <para>default: this.form.submit();</para>
         /// </summary>
-        public string PageSizeNavOnChange { get; set; } = "this.form.submit();";
+        public string PageSizeNavOnChange { get; set; }
 
         #endregion
 
@@ -85,22 +103,22 @@ namespace LazZiya.TagHelpers
         /// <para>default: p</para>
         /// <para>exmaple: p=1</para>
         /// </summary>
-        public string QuertStringKeyPageNo { get; set; } = "p";
+        public string QueryStringKeyPageNo { get; set; }
 
         /// <summary>
         /// Query string parameter name for page size
         /// <para>default: s</para>
         /// <para>example: s=25</para>
         /// </summary>
-        public string QueryStringKeyPageSize { get; set; } = "s";
+        public string QueryStringKeyPageSize { get; set; }
 
         /// <summary>
-        /// Url path section starting from the ? including all next query string parameters 
+        /// Query string value starting from the ? including all next query string parameters 
         /// to consider for next pages links.
         /// <para>default: string.Empty</para>
         /// <para>example: ?p=1&s=20&filter=xyz</para>
         /// </summary>
-        public string UrlPath { get; set; } = string.Empty;
+        public string QueryStringValue { get; set; }
 
         #endregion
 
@@ -111,43 +129,43 @@ namespace LazZiya.TagHelpers
         /// <para>default: false</para>
         /// <para>options: true, false</para>
         /// </summary>
-        public bool ShowPageSizeNav { get; set; } = false;
+        public bool ShowPageSizeNav { get; set; }
 
         /// <summary>
         /// Show/hide First-Last buttons
         /// <para>default: false, but will auto show if total pages > max displayed pages</para>
         /// </summary>
-        public bool ShowFirstLast { get; set; } = false;
+        public bool ShowFirstLast { get; set; }
 
         /// <summary>
         /// Show/hide Previous-Next buttons
         /// <para>default: false</para>
         /// </summary>
-        public bool ShowPrevNext { get; set; } = false;
+        public bool ShowPrevNext { get; set; }
 
         /// <summary>
         /// Show or hide total pages count
         /// <para>default: false</para>
         /// </summary>
-        public bool ShowTotalPages { get; set; } = false;
+        public bool ShowTotalPages { get; set; }
 
         /// <summary>
         /// Show or hide total records count
         /// <para>default: false</para>
         /// </summary>
-        public bool ShowTotalRecords { get; set; } = false;
+        public bool ShowTotalRecords { get; set; }
 
         /// <summary>
         /// Show last numbered page when total pages count is larger than max displayed pages
         /// <para>default: false</para>
         /// </summary>
-        public bool ShowLastNumberedPage { get; set; } = false;
+        public bool ShowLastNumberedPage { get; set; }
 
         /// <summary>
         /// Show first numbered page when total pages count is larger than max displayed pages
         /// <para>default: false</para>
         /// </summary>
-        public bool ShowFirstNumberedPage { get; set; } = false;
+        public bool ShowFirstNumberedPage { get; set; }
 
         #endregion
 
@@ -156,66 +174,66 @@ namespace LazZiya.TagHelpers
         /// The text to display at page size dropdown list label
         /// <para>default: Show </para>
         /// </summary>
-        public string TextPageSize { get; set; } = "Show ";
+        public string TextPageSize { get; set; }
 
 
         /// <summary>
         /// Text to show on the "Go To First" Page button
         /// <para>default: &laquo;</para>
         /// </summary>
-        public string TextFirst { get; set; } = "&laquo;";
+        public string TextFirst { get; set; }
 
         /// <summary>
         /// Text to show on "Go to last page" button
         /// <para>default: &raquo;</para>
         /// </summary>
-        public string TextLast { get; set; } = "&raquo;";
+        public string TextLast { get; set; }
 
         /// <summary>
         /// Next button text
         /// <para>default: &rsaquo;</para>
         /// </summary>
-        public string TextNext { get; set; } = "&rsaquo;";
+        public string TextNext { get; set; }
 
         /// <summary>
         /// previous button text
         /// <para>default: &lsaquo;</para>
         /// </summary>
-        public string TextPrevious { get; set; } = "&lsaquo;";
+        public string TextPrevious { get; set; }
 
         /// <summary>
         /// Display text for total pages label
         /// <para>default: page</para>
         /// </summary>
-        public string TextTotalPages { get; set; } = "page";
+        public string TextTotalPages { get; set; }
 
         /// <summary>
         /// Display text for total records label
         /// <para>default: records</para>
         /// </summary>
-        public string TextTotalRecords { get; set; } = "record";
+        public string TextTotalRecords { get; set; }
         #endregion
 
         #region Screen Reader
         /// <summary>
         /// Text for screen readers only
         /// </summary>
-        public string SrTextFirst { get; set; } = "First";
+        public string SrTextFirst { get; set; }
 
         /// <summary>
         /// text for screen readers only
         /// </summary>
-        public string SrTextLast { get; set; } = "Last";
+        public string SrTextLast { get; set; }
 
         /// <summary>
         /// text for screenreaders only
         /// </summary>
-        public string SrTextNext { get; set; } = "Next";
+        public string SrTextNext { get; set; }
 
         /// <summary>
         /// text for screen readers only
         /// </summary>
-        public string SrTextPrevious { get; set; } = "Previous";
+        public string SrTextPrevious { get; set; }
 
         #endregion
 
@@ -224,35 +242,35 @@ namespace LazZiya.TagHelpers
         /// <summary>
         /// add custom class to content div
         /// </summary>
-        public string Class { get; set; } = "row";
+        public string Class { get; set; }
 
         /// <summary>
         /// css class for pagination div
         /// </summary>
-        public string ClassPagingControlDiv { get; set; } = "col";
+        public string ClassPagingControlDiv { get; set; }
 
         /// <summary>
         /// css class for page count/record count div
         /// </summary>
-        public string ClassInfoDiv { get; set; } = "col";
+        public string ClassInfoDiv { get; set; }
 
         /// <summary>
         /// styling class for page size div
         /// </summary>
-        public string ClassPageSizeDiv { get; set; } = "col";
+        public string ClassPageSizeDiv { get; set; }
 
         /// <summary>
         /// pagination control class
         /// <para>default: pagination</para>
         /// </summary>
-        public string ClassPagingControl { get; set; } = "pagination";
+        public string ClassPagingControl { get; set; }
 
         /// <summary>
         /// class name for the active page
         /// <para>default: active</para>
         /// <para>examples: disabled, active, ...</para>
         /// </summary>
-        public string ClassActivePage { get; set; } = "active";
+        public string ClassActivePage { get; set; }
 
         /// <summary>
         /// name of the class when jumping button is disabled.
@@ -260,19 +278,19 @@ namespace LazZiya.TagHelpers
         /// <param>default: disabled</param>
         /// <para>example: disabled, d-hidden</para>
         /// </summary>
-        public string ClassDisabledJumpingButton { get; set; } = "disabled";
+        public string ClassDisabledJumpingButton { get; set; }
 
         /// <summary>
         /// css class for total records info
         /// <para>default: badge badge-light</para>
         /// </summary>
-        public string ClassTotalRecords { get; set; } = "badge badge-light";
+        public string ClassTotalRecords { get; set; }
 
         /// <summary>
         /// css class for total pages info
         /// <para>default: badge badge-light</para>
         /// </summary>
-        public string ClassTotalPages { get; set; } = "badge badge-light";
+        public string ClassTotalPages { get; set; }
 
         #endregion
 
@@ -290,7 +308,6 @@ namespace LazZiya.TagHelpers
                 if (!ShowFirstLast && TotalPages > MaxDisplayedPages)
                 {
                     ShowFirstLast = true;
-                    ClassDisabledJumpingButton = ClassDisabledJumpingButton ?? "d-none";
                 }
 
                 if (ShowFirstLast)
@@ -324,7 +341,6 @@ namespace LazZiya.TagHelpers
                     gap.InnerHtml.AppendHtml("&nbsp;...&nbsp;");
                     pagingControl.InnerHtml.AppendHtml(gap);
                 }
-
 
                 for (int i = start; i <= end; i++)
                 {
@@ -399,6 +415,59 @@ namespace LazZiya.TagHelpers
             }
         }
 
+        private void SetDefaults()
+        {
+            var _settingsJson = SettingsJson ?? "default";
+
+            _logger.LogInformation($"----> PagingTagHelper SettingsJson: {SettingsJson} - {_settingsJson}");
+
+            PageNo = int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:pageNo"], out int _pn) ? _pn : 1;
+            PageSize = int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:pageSize"], out int _ps) ? _ps : 10;
+            TotalRecords = int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:totalRecords"], out int _tr) ? _tr : 0;
+            MaxDisplayedPages = int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:maxDisplayedPages"], out int _dp) ? _dp : 10;
+
+            GapSize = int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:gapSize"], out int _gap) ? _gap : 3;
+            PageSizeNavFormMethod = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:pageSizeNavFormMethod"] ?? "get";
+            PageSizeNavBlockSize = int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:pageSizeNavBlockSize"], out int _bs) ? _bs : 10;
+            PageSizeNavMaxItems = int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:pageSizeNavMaxItems"], out int _mi) ? _mi : 3;
+            PageSizeNavOnChange = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:pageSizeNavOnChange"] ?? "this.form.submit();";
+
+            QueryStringKeyPageNo = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:queryStringsKeyPageNo"] ?? "p";
+            QueryStringKeyPageSize = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:queryStringKeyPageSize"] ?? "s";
+            QueryStringValue = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:qsValue"] ?? "";
+
+            ShowFirstLast = bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showFirstLast"], out bool _sfl) ? _sfl : false;
+            ShowPrevNext = bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showPrevNext"], out bool _sprn) ? _sprn : false;
+            ShowPageSizeNav = bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showPageSizeNav"], out bool _spsn) ? _spsn : false;
+            ShowTotalPages = bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showTotalPages"], out bool _stp) ? _stp : false;
+            ShowTotalRecords = bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showTotalRecords"], out bool _str) ? _str : false;
+            ShowFirstNumberedPage = bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showFirstNumberedPage"], out bool _sfp) ? _sfp : false;
+            ShowLastNumberedPage = bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showLastNumberedPage"], out bool _slp) ? _slp : false;
+
+            TextPageSize = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textPageSize"] ?? "Items per page";
+            TextFirst = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textFirst"] ?? "&laquo;";
+            TextLast = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textLast"] ?? "&raquo;";
+            TextPrevious = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textPrevious"] ?? "&lsaquo;";
+            TextNext = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textNext"] ?? "&rsaquo;";
+            TextTotalPages = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textTotalPages"] ?? "pages";
+            TextTotalRecords = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textTotalRecords"] ?? "records";
+
+            SrTextFirst = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:srTextFirst"] ?? "First";
+            SrTextLast = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:srTextLast"] ?? "Last";
+            SrTextPrevious = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:srTextPrevious"] ?? "Previous";
+            SrTextNext = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:srTextNext"] ?? "Next";
+
+            Class = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class"] ?? "row";
+            ClassActivePage = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classActivePage"] ?? "active";
+            ClassDisabledJumpingButton = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classDisabledJumpingButton"] ?? "disabled";
+            ClassInfoDiv = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classInfoDiv"] ?? "col";
+            ClassPageSizeDiv = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classPageSizeDiv"] ?? "col";
+            ClassPagingControlDiv = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classPagingControlDiv"] ?? "col";
+            ClassPagingControl = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classPagingControl"] ?? "pagination";
+            ClassTotalPages = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classTotalPages"] ?? "badge badge-secondary";
+            ClassTotalRecords = Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classTotalRecords"] ?? "badge badge-info";
+        }
+
         private TagBuilder AddDisplayInfo(int count, string itemName, string cssClassName)
         {
             var span = new TagBuilder("span");
@@ -448,7 +517,7 @@ namespace LazZiya.TagHelpers
 
             var aTag = new TagBuilder("a");
             aTag.AddCssClass("page-link");
-            aTag.Attributes.Add("href", CreateUrlTemplate(targetPageNo, PageSize, UrlPath));
+            aTag.Attributes.Add("href", CreateUrlTemplate(targetPageNo, PageSize, QueryStringValue));
 
             if (string.IsNullOrWhiteSpace(textSr))
             {
@@ -521,7 +590,7 @@ namespace LazZiya.TagHelpers
         /// <returns></returns>
         private string CreateUrlTemplate(int pageNo, int pageSize, string urlPath)
         {
-            string p = $"{QuertStringKeyPageNo}={pageNo}"; // CurrentPageNo query string parameter, default: p
+            string p = $"{QueryStringKeyPageNo}={pageNo}"; // CurrentPageNo query string parameter, default: p
             string s = $"{QueryStringKeyPageSize}={pageSize}"; // PageSize query string parameter, default: s
 
             var urlTemplate = urlPath.TrimStart('?').Split('&').ToList();
@@ -530,7 +599,7 @@ namespace LazZiya.TagHelpers
             {
                 var q = urlTemplate[i];
                 urlTemplate[i] =
-                    q.StartsWith($"{QuertStringKeyPageNo}=") ? p :
+                    q.StartsWith($"{QueryStringKeyPageNo}=") ? p :
                     q.StartsWith($"{QueryStringKeyPageSize}=") ? s :
                     q;
             }

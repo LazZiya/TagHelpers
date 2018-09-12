@@ -17,10 +17,11 @@
 - fully customizable
 - bootstrap 4.1 support
 - support for large chuncks of pages and records</PackageReleaseNotes>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.0" />
   </ItemGroup>
 
 </Project>
