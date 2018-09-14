@@ -7,7 +7,7 @@
     <Company>Ziyad.info</Company>
     <Description>Simple to use fully customizable pagination, email and phone number TagHelpers for ASP.NET Core 2.1 Razor projects.</Description>
     <Copyright>Ziya.info</Copyright>
-    <PackageProjectUrl>https://github.com/LazZiya/TagHelpers</PackageProjectUrl>
+    <PackageProjectUrl>http://www.ziyad.info/en/articles/21-Paging_TagHelper</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/LazZiya/TagHelpers/blob/master/LICENSE</PackageLicenseUrl>
     <PackageIconUrl>https://github.com/LazZiya/TagHelpers/blob/master/LazZiya.TagHelpers/Ziya-128.ico</PackageIconUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
