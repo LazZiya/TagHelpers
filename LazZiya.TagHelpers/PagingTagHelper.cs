@@ -429,90 +429,92 @@ namespace LazZiya.TagHelpers
             _logger.LogInformation($"----> PagingTagHelper SettingsJson: {SettingsJson} - {_settingsJson}");
 
             PageNo = PageNo > 1 ? PageNo :
-                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:pageNo"], out int _pn) ? _pn : 1;
+                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-no"], out int _pn) ? _pn : 1;
+
+            _logger.LogInformation($"----> PagingTagHelper {PageSize} -before set");
 
             PageSize = PageSize > 0 ? PageSize :
-                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:pageSize"], out int _ps) ? _ps : 10;
+                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size"], out int _ps) ? _ps : 10;
 
             TotalRecords = TotalRecords > 0 ? TotalRecords :
-                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:totalRecords"], out int _tr) ? _tr : 0;
+                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:total-records"], out int _tr) ? _tr : 0;
 
             MaxDisplayedPages = MaxDisplayedPages > 0 ? MaxDisplayedPages :
-                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:maxDisplayedPages"], out int _dp) ? _dp : 10;
+                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:max-displayed-pages"], out int _dp) ? _dp : 10;
 
             GapSize = GapSize > 0 ? GapSize :
-                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:gapSize"], out int _gap) ? _gap : 3;
+                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:gap-size"], out int _gap) ? _gap : 3;
 
-            PageSizeNavFormMethod = PageSizeNavFormMethod ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:pageSizeNavFormMethod"] ?? "get";
+            PageSizeNavFormMethod = PageSizeNavFormMethod ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-navform-method"] ?? "get";
 
             PageSizeNavBlockSize = PageSizeNavBlockSize>0? PageSizeNavBlockSize :
-                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:pageSizeNavBlockSize"], out int _bs) ? _bs : 10;
+                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-nav-block-size"], out int _bs) ? _bs : 10;
 
             PageSizeNavMaxItems = PageSizeNavMaxItems >0?PageSizeNavMaxItems :
-                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:pageSizeNavMaxItems"], out int _mi) ? _mi : 3;
+                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-nav-max-items"], out int _mi) ? _mi : 3;
 
-            PageSizeNavOnChange = PageSizeNavOnChange ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:pageSizeNavOnChange"] ?? "this.form.submit();";
+            PageSizeNavOnChange = PageSizeNavOnChange ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-sizenav-on-change"] ?? "this.form.submit();";
 
-            QueryStringKeyPageNo = QueryStringKeyPageNo ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:queryStringsKeyPageNo"] ?? "p";
+            QueryStringKeyPageNo = QueryStringKeyPageNo ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:query-string-key-page-no"] ?? "p";
 
-            QueryStringKeyPageSize = QueryStringKeyPageSize ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:queryStringKeyPageSize"] ?? "s";
+            QueryStringKeyPageSize = QueryStringKeyPageSize ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:query-string-key-page-size"] ?? "s";
 
-            QueryStringValue = QueryStringValue ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:qsValue"] ?? "";
+            QueryStringValue = QueryStringValue ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:query-string-value"] ?? "";
 
             ShowFirstLast = ShowFirstLast == null ? 
-                bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showFirstLast"], out bool _sfl) ? _sfl : false : ShowFirstLast;
+                bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-first-last"], out bool _sfl) ? _sfl : false : ShowFirstLast;
 
-            ShowPrevNext = ShowPrevNext == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showPrevNext"], out bool _sprn) ? _sprn : false : ShowPrevNext;
+            ShowPrevNext = ShowPrevNext == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-prev-next"], out bool _sprn) ? _sprn : false : ShowPrevNext;
 
-            ShowPageSizeNav = ShowPageSizeNav == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showPageSizeNav"], out bool _spsn) ? _spsn : false : ShowPageSizeNav;
+            ShowPageSizeNav = ShowPageSizeNav == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-page-size-nav"], out bool _spsn) ? _spsn : false : ShowPageSizeNav;
 
-            ShowTotalPages = ShowTotalPages == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showTotalPages"], out bool _stp) ? _stp : false : ShowTotalPages;
+            ShowTotalPages = ShowTotalPages == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-total-pages"], out bool _stp) ? _stp : false : ShowTotalPages;
 
-            ShowTotalRecords = ShowTotalRecords == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showTotalRecords"], out bool _str) ? _str : false : ShowTotalRecords;
+            ShowTotalRecords = ShowTotalRecords == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-total-records"], out bool _str) ? _str : false : ShowTotalRecords;
 
-            ShowFirstNumberedPage = ShowFirstNumberedPage == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showFirstNumberedPage"], out bool _sfp) ? _sfp : false : ShowFirstNumberedPage;
+            ShowFirstNumberedPage = ShowFirstNumberedPage == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-first-numbered-page"], out bool _sfp) ? _sfp : false : ShowFirstNumberedPage;
 
-            ShowLastNumberedPage = ShowLastNumberedPage == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:showLastNumberedPage"], out bool _slp) ? _slp : false : ShowLastNumberedPage;
+            ShowLastNumberedPage = ShowLastNumberedPage == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-last-numbered-page"], out bool _slp) ? _slp : false : ShowLastNumberedPage;
 
-            TextPageSize = TextPageSize ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textPageSize"] ?? "Items per page";
+            TextPageSize = TextPageSize ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-page-size"] ?? "Items per page";
 
-            TextFirst = TextFirst ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textFirst"] ?? "&laquo;";
+            TextFirst = TextFirst ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-first"] ?? "&laquo;";
 
-            TextLast = TextLast ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textLast"] ?? "&raquo;";
+            TextLast = TextLast ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-last"] ?? "&raquo;";
 
-            TextPrevious = TextPrevious ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textPrevious"] ?? "&lsaquo;";
+            TextPrevious = TextPrevious ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-previous"] ?? "&lsaquo;";
 
-            TextNext = TextNext ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textNext"] ?? "&rsaquo;";
+            TextNext = TextNext ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-next"] ?? "&rsaquo;";
 
-            TextTotalPages = TextTotalPages ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textTotalPages"] ?? "pages";
+            TextTotalPages = TextTotalPages ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-total-pages"] ?? "pages";
 
-            TextTotalRecords = TextTotalRecords ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:textTotalRecords"] ?? "records";
+            TextTotalRecords = TextTotalRecords ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-total-records"] ?? "records";
 
-            SrTextFirst = SrTextFirst ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:srTextFirst"] ?? "First";
+            SrTextFirst = SrTextFirst ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:sr-text-first"] ?? "First";
 
-            SrTextLast = SrTextLast ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:srTextLast"] ?? "Last";
+            SrTextLast = SrTextLast ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:sr-text-last"] ?? "Last";
 
-            SrTextPrevious = SrTextPrevious ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:srTextPrevious"] ?? "Previous";
+            SrTextPrevious = SrTextPrevious ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:sr-text-previous"] ?? "Previous";
 
-            SrTextNext = SrTextNext ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:srTextNext"] ?? "Next";
+            SrTextNext = SrTextNext ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:sr-text-next"] ?? "Next";
 
             Class = Class ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class"] ?? "row";
 
-            ClassActivePage = ClassActivePage ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classActivePage"] ?? "active";
+            ClassActivePage = ClassActivePage ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-active-page"] ?? "active";
 
-            ClassDisabledJumpingButton = ClassDisabledJumpingButton ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classDisabledJumpingButton"] ?? "disabled";
+            ClassDisabledJumpingButton = ClassDisabledJumpingButton ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-disabled-jumping-button"] ?? "disabled";
 
-            ClassInfoDiv = ClassInfoDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classInfoDiv"] ?? "col";
+            ClassInfoDiv = ClassInfoDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-info-div"] ?? "col";
 
-            ClassPageSizeDiv = ClassPageSizeDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classPageSizeDiv"] ?? "col";
+            ClassPageSizeDiv = ClassPageSizeDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-page-size-div"] ?? "col";
 
-            ClassPagingControlDiv = ClassPagingControlDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classPagingControlDiv"] ?? "col";
+            ClassPagingControlDiv = ClassPagingControlDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-paging-control-div"] ?? "col";
 
-            ClassPagingControl = ClassPagingControl ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classPagingControl"] ?? "pagination";
+            ClassPagingControl = ClassPagingControl ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-paging-control"] ?? "pagination";
 
-            ClassTotalPages = ClassTotalPages ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classTotalPages"] ?? "badge badge-secondary";
+            ClassTotalPages = ClassTotalPages ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-total-pages"] ?? "badge badge-secondary";
 
-            ClassTotalRecords = ClassTotalRecords ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:classTotalRecords"] ?? "badge badge-info";
+            ClassTotalRecords = ClassTotalRecords ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-total-records"] ?? "badge badge-info";
         }
 
         private TagBuilder AddDisplayInfo(int count, string itemName, string cssClassName)
