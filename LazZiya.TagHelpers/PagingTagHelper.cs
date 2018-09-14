@@ -36,10 +36,10 @@ namespace LazZiya.TagHelpers
 
         /// <summary>
         /// how many items to get from db per page per request
-        /// <para>default: 25</para>
-        /// <para>example: pageSize=25</para>
+        /// <para>default: 10</para>
+        /// <para>example: pageSize=10</para>
         /// </summary>
-        public int PageSize { get; set; } = 2;
+        public int PageSize { get; set; } = 10;
 
         /// <summary>
         /// Query string parameter name for page size
