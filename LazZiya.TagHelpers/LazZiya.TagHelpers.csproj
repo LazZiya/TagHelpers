@@ -1,15 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ApplicationIcon>Ziya-128.ico</ApplicationIcon>
     <Authors>Ziya Mollamahmut</Authors>
     <Company>Ziyad.info</Company>
-    <Title>LazZiya.TagHelpers</Title>
-    <Summary>Simple to use fully customizable pagination tag helper for ASP.NET Core 2.1 Razor projects.</Summary>
-    <Description>Simple to use fully customizable pagination tag helper for ASP.NET Core 2.1 Razor projects.</Description>
-    <Copyright>http://Ziya.info</Copyright>
-    <PackageProjectUrl>https://github.com/LazZiya/TagHelpers</PackageProjectUrl>
+    <Description>Simple to use fully customizable pagination, email and phone number TagHelpers for ASP.NET Core 2.1 Razor projects.</Description>
+    <Copyright>Ziya.info</Copyright>
+    <PackageProjectUrl>http://www.ziyad.info/en/articles/21-Paging_TagHelper</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/LazZiya/TagHelpers/blob/master/LICENSE</PackageLicenseUrl>
     <PackageIconUrl>https://github.com/LazZiya/TagHelpers/blob/master/LazZiya.TagHelpers/Ziya-128.ico</PackageIconUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -19,12 +17,11 @@
 - fully customizable
 - bootstrap 4.1 support
 - support for large chuncks of pages and records</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.0" />
   </ItemGroup>
 
 </Project>
