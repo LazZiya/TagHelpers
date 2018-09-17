@@ -1,5 +1,7 @@
-# TagHelpers
-Pagination, email and phone number tag helpers for ASP.NET Core 2.1 Razor projects
+# LazZiya.TagHelpers
+Pagination, email and phone number tag helpers for ASP.NET Core 2.1 Razor projects.
+
+The projects main part is PagingTagHelper, email and phone number tag helpers are simply used to show validated email/phone number. 
 
 ### Installation:
 
