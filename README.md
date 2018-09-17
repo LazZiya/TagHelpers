@@ -71,7 +71,7 @@ or maximize the power of your pagination control with more options:
 
 
 ### Json Friendly
-Keep your html code clear by moving all optional settings to appSettings.json, and create different instances for different use cases:
+Keep your html code clean by moving all optional settings to appSettings.json, and create different instances for different use cases:
 
 appSettings.json:
 ````
