@@ -7,8 +7,8 @@
     <authors>Ziyad.info</authors>
     <owners>Ziya Mollamahmut</owners>
     <license type="file">license.txt</license>
-    <projectUrl>http://www.ziyad.info/en/articles/21-Paging_TagHelper</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/Ziya-TagHelpers.ico</iconUrl>
+    <projectUrl>http://www.ziyad.info/en/articles/27-LazZiya_TagHelpers</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Simple to use fully customizable pagination, select enum TagHelpers for ASP.NET Core 2.1 Razor projects.</description>
     <releaseNotes>v1.0.3: SelectEnumTagHelper to create select list drop down from Enum, SelectEnumTagHelper with localization support</releaseNotes>
@@ -20,7 +20,8 @@
     <summary> Simple to use fully customizable pagination, select enum TagHelpers for ASP.NET Core 2.1 Razor projects. </summary>
   </metadata>
   <files>
-    <file src="license.txt" />
-    <file src="Ziya-TagHelpers.ico" />
+    <file src="files\license.txt" />
+    <file src="files\icon.png" />
+    <file src="files\icon.ico" />
   </files>
 </package>
