@@ -5,21 +5,36 @@
     <ApplicationIcon>Ziya-128.ico</ApplicationIcon>
     <Authors>Ziya Mollamahmut</Authors>
     <Company>Ziyad.info</Company>
-    <Description>Simple to use fully customizable pagination, email and phone number TagHelpers for ASP.NET Core 2.1 Razor projects.</Description>
+    <Description>Simple to use fully customizable pagination, select enum TagHelpers for ASP.NET Core 2.1 Razor projects.</Description>
     <Copyright>Ziyad.info</Copyright>
+    
+    <files>
+      <file src="License\license.text" target=""></file>
+    </files>
     <PackageProjectUrl>http://www.ziyad.info/en/articles/21-Paging_TagHelper</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/LazZiya/TagHelpers/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicense>License.txt</PackageLicense>
     <PackageIconUrl>https://github.com/LazZiya/TagHelpers/blob/master/LazZiya.TagHelpers/Ziya-128.ico</PackageIconUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net-core, razor, taghelpers, pagination, email, phonenumber</PackageTags>
-    <PackageReleaseNotes>pagination settings can be saved in json</PackageReleaseNotes>
-    <Version>1.0.2</Version>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
+    <PackageReleaseNotes>1.0.3: 
+ - SelectEnumTagHelper to create select list drop down from Enum
+-  SelectEnumTagHelper with localization support
+1.0.2: pagination settings can be saved in json</PackageReleaseNotes>
+    <Version>1.0.3</Version>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>License.txt</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="license.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

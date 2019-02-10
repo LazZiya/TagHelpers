@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package>
+  <metadata>
+    <id>LazZiya.TagHelpers</id>
+    <version>1.0.3</version>
+    <title>LazZiya.TagHelpers</title>
+    <authors>Ziyad.info</authors>
+    <owners>Ziya Mollamahmut</owners>
+    <license type="file">license.txt</license>
+    <projectUrl>http://www.ziyad.info/en/articles/21-Paging_TagHelper</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/Ziya-TagHelpers.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Simple to use fully customizable pagination, select enum TagHelpers for ASP.NET Core 2.1 Razor projects.</description>
+    <releaseNotes>v1.0.3: SelectEnumTagHelper to create select list drop down from Enum, SelectEnumTagHelper with localization support</releaseNotes>
+    <copyright>Copyright 2019 Ziyad.info</copyright>
+    <tags>asp.net-core, razor, taghelpers, pagination, email, phonenumber, enum, select, localization, select-enum</tags>
+    <dependencies>
+      <dependency id="Microsoft.AspNetCore.Mvc.TagHelpers" version="2.1"></dependency>
+    </dependencies>
+    <summary> Simple to use fully customizable pagination, select enum TagHelpers for ASP.NET Core 2.1 Razor projects. </summary>
+  </metadata>
+  <files>
+    <file src="license.txt" />
+    <file src="Ziya-TagHelpers.ico" />
+  </files>
+</package>
