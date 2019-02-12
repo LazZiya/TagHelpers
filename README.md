@@ -25,19 +25,6 @@ add tag helper to _ViewImports.cshtml:
 @addTagHelper *, LazZiya.TagHelpers
 ````
 
-## Versin History 
-
-### Versioşn 1.0.3
-SelectEnumTagHelper :
-- Documentation: http://ziyad.info/en/articles/28-Select_Enum_TagHelper
-- Live demo : coming soon...
-
-
-### Version 1.0.2
-PagingTagHelper :
-- Documentation: http://www.ziyad.info/en/articles/21-Paging_TagHelper_for_ASP_NET_Core
-- Live demos: http://demo.ziyad.info/en/paging
-
 
 ### How to create a select list dropdown from enum
 ````
