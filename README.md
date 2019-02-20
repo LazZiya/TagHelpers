@@ -50,9 +50,12 @@ Only few parameters are required to fireup the agination control
 ````
 <paging total-records="Model.TotalRecords"
             page-no="Model.PageNo"
+            query-string-value="@(Request.QueryString.Value)"
             show-prev-next="true">
 </paging>
 ````
+
+it is important to add `query-string-value` if there is multiple filtering parameters in the url.
 
 see more in WiKi pages or project site.
 
