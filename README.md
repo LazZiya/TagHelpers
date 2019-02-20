@@ -29,6 +29,13 @@ add tag helper to _ViewImports.cshtml:
 
 
 ### How to create a select list dropdown from enum
+
+Sample enum :
+````
+public enum WeekDays { MON, TUE, WED, THU, FRI, SAT, SUN }
+````
+
+create the related select list dropdown in razor page :
 ````
 <select-enum 
         enum-type="typeof(WeekDays)" 
