@@ -1,6 +1,6 @@
 ﻿/*******************************************************
  * Copyright © 2018  Ziya Mollamahmut
- * http://www.ziya.info/en/21-Pagination_TagHelper_ASP_NET_Core_21
+ * http://www.ziya.info/en/21-Pagination_TagHelper_ASP_NET_Core_2
  * 
  * License: no restriction, just keep the credits note in place :)
  * 
@@ -16,6 +16,15 @@ namespace LazZiya.TagHelpers
 {
     public class PagingTagHelper : TagHelper
     {
+
+#if NETCOREAPP1_0 || NETCOREAPP1_1
+        private ILogger _logger;
+
+        public PagingTagHelper(ILogger<PagingTagHelper> logger)
+        {
+            _logger = logger;
+        }
+#else
         private IConfiguration Configuration { get; }
         private ILogger _logger;
 
@@ -24,6 +33,7 @@ namespace LazZiya.TagHelpers
             Configuration = configuration;
             _logger = logger;
         }
+#endif
 
         #region Settings
 
@@ -295,6 +305,12 @@ namespace LazZiya.TagHelpers
 
         private int TotalPages => (int)Math.Ceiling(TotalRecords / (double)PageSize);
 
+        private class Boundaries
+        {
+            public int Start { get; set; }
+            public int End { get; set; }
+        }
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             SetDefaults();
@@ -324,13 +340,10 @@ namespace LazZiya.TagHelpers
                     pagingControl.InnerHtml.AppendHtml(prev);
                 }
 
-                int start = 1;
-                int end = MaxDisplayedPages;
-
-                (start, end) = CalculateBoundaries(PageNo, TotalPages, MaxDisplayedPages);
+                var boundaries = CalculateBoundaries(PageNo, TotalPages, MaxDisplayedPages);
 
                 if (ShowFirstNumberedPage == true
-                    && start > GapSize
+                    && boundaries.Start > GapSize
                     && TotalPages > MaxDisplayedPages
                     && PageNo >= MaxDisplayedPages)
                 {
@@ -343,14 +356,14 @@ namespace LazZiya.TagHelpers
                     pagingControl.InnerHtml.AppendHtml(gap);
                 }
 
-                for (int i = start; i <= end; i++)
+                for (int i = boundaries.Start; i <= boundaries.End; i++)
                 {
                     var numTag = CreatePagingLink(i, null, null, ClassActivePage);
                     pagingControl.InnerHtml.AppendHtml(numTag);
                 }
 
                 if (ShowLastNumberedPage == true
-                    && TotalPages - end >= GapSize
+                    && TotalPages - boundaries.End >= GapSize
                     && PageNo - GapSize <= TotalPages - MaxDisplayedPages)
                 {
                     var gap = new TagBuilder("li");
@@ -424,6 +437,85 @@ namespace LazZiya.TagHelpers
         /// </summary>
         private void SetDefaults()
         {
+#if NETCOREAPP1_0 || NETCOREAPP1_1
+            PageNo = PageNo > 1 ? PageNo : 1;
+
+            PageSize = PageSize > 0 ? PageSize : 10;
+
+            TotalRecords = TotalRecords > 0 ? TotalRecords : 0;
+
+            MaxDisplayedPages = MaxDisplayedPages > 0 ? MaxDisplayedPages : 10;
+
+            GapSize = GapSize > 0 ? GapSize : 3;
+
+            PageSizeNavFormMethod = PageSizeNavFormMethod ?? "get";
+
+            PageSizeNavBlockSize = PageSizeNavBlockSize > 0 ? PageSizeNavBlockSize : 10;
+
+            PageSizeNavMaxItems = PageSizeNavMaxItems > 0 ? PageSizeNavMaxItems : 3;
+
+            PageSizeNavOnChange = PageSizeNavOnChange ?? "this.form.submit();";
+
+            QueryStringKeyPageNo = QueryStringKeyPageNo ?? "p";
+
+            QueryStringKeyPageSize = QueryStringKeyPageSize ?? "s";
+
+            QueryStringValue = QueryStringValue ?? "";
+
+            ShowFirstLast = ShowFirstLast == null ? true : ShowFirstLast;
+
+            ShowPrevNext = ShowPrevNext == null ? true : ShowPrevNext;
+
+            ShowPageSizeNav = ShowPageSizeNav == null ? false : ShowPageSizeNav;
+
+            ShowTotalPages = ShowTotalPages == null ? false : ShowTotalPages;
+
+            ShowTotalRecords = ShowTotalRecords == null ? false : ShowTotalRecords;
+
+            ShowFirstNumberedPage = ShowFirstNumberedPage == null ? false : ShowFirstNumberedPage;
+
+            ShowLastNumberedPage = ShowLastNumberedPage == null ? false : ShowLastNumberedPage;
+
+            TextPageSize = TextPageSize ?? "Items per page";
+
+            TextFirst = TextFirst ?? "&laquo;";
+
+            TextLast = TextLast ?? "&raquo;";
+
+            TextPrevious = TextPrevious ?? "&lsaquo;";
+
+            TextNext = TextNext ?? "&rsaquo;";
+
+            TextTotalPages = TextTotalPages ?? "pages";
+
+            TextTotalRecords = TextTotalRecords ?? "records";
+
+            SrTextFirst = SrTextFirst ?? "First";
+
+            SrTextLast = SrTextLast ?? "Last";
+
+            SrTextPrevious = SrTextPrevious ?? "Previous";
+
+            SrTextNext = SrTextNext ?? "Next";
+
+            Class = Class ?? "row";
+
+            ClassActivePage = ClassActivePage ?? "active";
+
+            ClassDisabledJumpingButton = ClassDisabledJumpingButton ?? "disabled";
+
+            ClassInfoDiv = ClassInfoDiv ?? "col";
+
+            ClassPageSizeDiv = ClassPageSizeDiv ?? "col";
+
+            ClassPagingControlDiv = ClassPagingControlDiv ?? "col";
+
+            ClassPagingControl = ClassPagingControl ?? "pagination";
+
+            ClassTotalPages = ClassTotalPages ?? "badge badge-secondary";
+
+            ClassTotalRecords = ClassTotalRecords ?? "badge badge-info";
+#else
             var _settingsJson = SettingsJson ?? "default";
 
             _logger.LogInformation($"----> PagingTagHelper SettingsJson: {SettingsJson} - {_settingsJson}");
@@ -513,7 +605,7 @@ namespace LazZiya.TagHelpers
             ClassTotalPages = ClassTotalPages ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-total-pages"] ?? "badge badge-secondary";
 
             ClassTotalRecords = ClassTotalRecords ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-total-records"] ?? "badge badge-info";
-
+#endif
             _logger.LogInformation($"----> PagingTagHelper - " +
                 $"{nameof(PageNo)}: {PageNo}, " +
                 $"{nameof(PageSize)}: {PageSize}, " +
@@ -534,7 +626,7 @@ namespace LazZiya.TagHelpers
             return span;
         }
 
-        private (int start, int end) CalculateBoundaries(int currentPageNo, int totalPages, int maxDisplayedPages)
+        private Boundaries CalculateBoundaries(int currentPageNo, int totalPages, int maxDisplayedPages)
         {
             var _start = 1;
             var _end = maxDisplayedPages;
@@ -564,7 +656,7 @@ namespace LazZiya.TagHelpers
                 _end = _start + maxDisplayedPages;
             }
 
-            return (_start, _end);
+            return new Boundaries { Start = _start, End = _end };
         }
 
         private TagBuilder CreatePagingLink(int targetPageNo, string text, string textSr, string pClass)
@@ -647,6 +739,8 @@ namespace LazZiya.TagHelpers
         /// <returns></returns>
         private string CreateUrlTemplate(int pageNo, int pageSize, string urlPath)
         {
+            _logger.LogDebug($"----> Page No '{pageNo}', Page Size '{pageSize}', URL Path '{urlPath}'");
+
             string p = $"{QueryStringKeyPageNo}={pageNo}"; // CurrentPageNo query string parameter, default: p
             string s = $"{QueryStringKeyPageSize}={pageSize}"; // PageSize query string parameter, default: s
 
@@ -667,7 +761,7 @@ namespace LazZiya.TagHelpers
             if (!urlTemplate.Any(x => x == s))
                 urlTemplate.Add(s);
 
-            return "?" + string.Join('&', urlTemplate);
+            return "?" + string.Join("&", urlTemplate);
         }
     }
 }

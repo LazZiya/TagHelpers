@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFrameworks>netcoreapp1.0;netcoreapp1.1;netcoreapp2.0;netcoreapp2.1;netcoreapp2.2</TargetFrameworks>
     <ApplicationIcon>files\icon.ico</ApplicationIcon>
     <Authors>Ziya Mollamahmut</Authors>
     <Company>Ziyad.info</Company>
-    <Description>Simple to use fully customizable pagination, select enum TagHelpers for ASP.NET Core 2.1 Razor projects.</Description>
+    <Description>Simple to use fully customizable pagination, select enum TagHelpers for ASP.NET Core 1.x and 2.x Razor projects.</Description>
     <Copyright>Ziyad.info</Copyright>
     
     <files>
@@ -16,25 +16,42 @@
     <PackageIcon>files\icon.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net-core, razor, taghelpers, pagination, email, phonenumber</PackageTags>
-    <PackageReleaseNotes>1.0.3: 
- - SelectEnumTagHelper to create select list drop down from Enum
--  SelectEnumTagHelper with localization support
-1.0.2: pagination settings can be saved in json</PackageReleaseNotes>
-    <Version>1.0.3</Version>
-    <AssemblyVersion>1.0.3.0</AssemblyVersion>
-    <FileVersion>1.0.3.0</FileVersion>
+    <PackageReleaseNotes>Now supports DotNetCore 1.x and 2.x</PackageReleaseNotes>
+    <Version>2.0.5</Version>
+    <AssemblyVersion>2.0.0.2</AssemblyVersion>
+    <FileVersion>2.0.0.2</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>License.txt</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="LazZiya.TagHelpers.2.0.0.nupkg" />
     <None Remove="LazZiya.TagHelpers.1.0.3.nupkg" />
     <None Remove="LazZiya.TagHelpers.nuspec" />
+    <None Remove="_LazZiya.TagHelpers.nuspec.old" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.0.0" Exclude="Build,Analyzers" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.0" />
+  <!-- 
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp1.0' OR '$(TargetFramework)' == 'netcoreapp1.1'">
+    <PackageReference Include="System.ComponentModel.Primitives" Version="4.1.0" Exclude="Build,Analyzers" />
   </ItemGroup>
+ 
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1'">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.1.0" Exclude="Build,Analyzers" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0" Exclude="Build,Analyzers" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1'">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.0" Exclude="Build,Analyzers" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.2'">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" Exclude="Build,Analyzers" />
+  </ItemGroup>-->
 
   <ItemGroup>
     <None Update="files\icon.ico">

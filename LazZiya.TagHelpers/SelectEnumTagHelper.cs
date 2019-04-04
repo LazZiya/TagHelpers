@@ -4,6 +4,10 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
+#if NETCOREAPP1_0 || NETCOREAPP1_1
+using System.Reflection;
+#endif
+
 namespace LazZiya.TagHelpers
 {
     public class SelectEnumTagHelper : TagHelper
@@ -50,8 +54,8 @@ namespace LazZiya.TagHelpers
         private string GetEnumFieldDisplayName(int value)
         {
             // get enum field name
-            var fieldName = EnumType.GetEnumName(value);
-
+            var fieldName = Enum.GetName(EnumType, value);
+     
             //get Display(Name = "Field name")
             var displayName = EnumType.GetField(fieldName).GetCustomAttributes(false).OfType<DisplayAttribute>().SingleOrDefault()?.Name;
 
