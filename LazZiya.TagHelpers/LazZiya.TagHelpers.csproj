@@ -5,23 +5,26 @@
     <ApplicationIcon>files\icon.ico</ApplicationIcon>
     <Authors>Ziya Mollamahmut</Authors>
     <Company>Ziyad.info</Company>
-    <Description>Simple to use fully customizable pagination, select enum TagHelpers for ASP.NET Core 1.x and 2.x Razor projects.</Description>
+    <Description>Pagination and SelectEnum and LanguageNav dropdown tag helpers for ASP.NET Core MVC and Razor Pages</Description>
     <Copyright>Ziyad.info</Copyright>
-    
-    <files>
-      <file src="License\license.text" target=""></file>
-    </files>
     <PackageProjectUrl>http://www.ziyad.info/en/articles/27-LazZiya_TagHelpers</PackageProjectUrl>
-    <PackageLicense>License.txt</PackageLicense>
+    <PackageLicenseFile>license.txt</PackageLicenseFile>
     <PackageIcon>files\icon.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageTags>asp.net-core, razor, taghelpers, pagination, email, phonenumber</PackageTags>
-    <PackageReleaseNotes>Now supports DotNetCore 1.x and 2.x</PackageReleaseNotes>
-    <Version>2.0.5</Version>
-    <AssemblyVersion>2.0.0.2</AssemblyVersion>
-    <FileVersion>2.0.0.2</FileVersion>
+    <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
+    <PackageReleaseNotes>- Backward compatibility with DotNetCore 1.0 to 2.2
+- New: LanguageNav tag helper</PackageReleaseNotes>
+    <Version>2.0.0-beta-a5</Version>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>License.txt</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/LazZiya/TagHelpers</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp1.0|AnyCPU'">
+    <DocumentationFile>D:\MyWorks\WebDev\LazZiya\TagHelpers\LazZiya.TagHelpers\LazZiya.TagHelpers.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,16 +32,18 @@
     <None Remove="LazZiya.TagHelpers.1.0.3.nupkg" />
     <None Remove="LazZiya.TagHelpers.nuspec" />
     <None Remove="_LazZiya.TagHelpers.nuspec.old" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.0.0" Exclude="Build,Analyzers" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.0.6" Exclude="analyzers" />
+    <PackageReference Include="Microsoft.AspNetCore.Localization" Version="1.0.0" Exclude="analyzers" />
   </ItemGroup>
 
   <!-- 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp1.0' OR '$(TargetFramework)' == 'netcoreapp1.1'">
-    <PackageReference Include="System.ComponentModel.Primitives" Version="4.1.0" Exclude="Build,Analyzers" />
+    <dependency id="Microsoft.NETCore.App" version="1.0.5" exclude="Build,Analyzers" />
   </ItemGroup>
  
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1'">
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.1.0" Exclude="Build,Analyzers" />
+    <dependency id="Microsoft.NETCore.App" version="1.1.2" exclude="Build,Analyzers" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
@@ -48,10 +53,10 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1'">
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.0" Exclude="Build,Analyzers" />
   </ItemGroup>
-
+-->
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.2'">
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" Exclude="Build,Analyzers" />
-  </ItemGroup>-->
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.2.0" Exclude="Build,Analyzers" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="files\icon.ico">
@@ -60,9 +65,9 @@
     <None Update="files\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="files\license.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="files\license.txt" Pack="true" PackagePath="" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties BuildVersion_BuildVersioningStyle="None.None.Increment.DeltaBaseYearDayOfYear" BuildVersion_UpdateFileVersion="True" BuildVersion_StartDate="2000/1/1" BuildVersion_UseUniversalClock="True" BuildVersion_UpdateAssemblyVersion="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

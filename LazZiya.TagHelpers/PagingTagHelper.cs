@@ -14,12 +14,19 @@ using System.Linq;
 
 namespace LazZiya.TagHelpers
 {
+    /// <summary>
+    /// Creates a pagination control
+    /// </summary>
     public class PagingTagHelper : TagHelper
     {
 
 #if NETCOREAPP1_0 || NETCOREAPP1_1
         private ILogger _logger;
 
+        /// <summary>
+        /// creates a pagination control
+        /// </summary>
+        /// <param name="logger">default logger</param>
         public PagingTagHelper(ILogger<PagingTagHelper> logger)
         {
             _logger = logger;
@@ -80,7 +87,7 @@ namespace LazZiya.TagHelpers
         #region Page size navigation
         /// <summary>
         /// Form submit method when selecting different page size option
-        /// <para>default: get</param>
+        /// <para>default: get</para>
         /// <para>options: get, post</para>
         /// </summary>
         public string PageSizeNavFormMethod { get; set; }
@@ -125,7 +132,11 @@ namespace LazZiya.TagHelpers
         /// Query string value starting from the ? including all next query string parameters 
         /// to consider for next pages links.
         /// <para>default: string.Empty</para>
-        /// <para>example: ?p=1&s=20&filter=xyz</para>
+        /// <example>
+        /// <code>
+        /// @(Request.QueryString.Value)
+        /// </code>
+        /// </example>
         /// </summary>
         public string QueryStringValue { get; set; }
 
@@ -188,25 +199,29 @@ namespace LazZiya.TagHelpers
 
         /// <summary>
         /// Text to show on the "Go To First" Page button
-        /// <para>default: &laquo;</para>
+        /// <para>
+        /// <![CDATA[default: &laquo;]]></para>
         /// </summary>
         public string TextFirst { get; set; }
 
         /// <summary>
         /// Text to show on "Go to last page" button
-        /// <para>default: &raquo;</para>
+        /// <para>
+        /// <![CDATA[default: &raquo;]]></para>
         /// </summary>
         public string TextLast { get; set; }
 
         /// <summary>
         /// Next button text
-        /// <para>default: &rsaquo;</para>
+        /// <para>
+        /// <![CDATA[default: &rsaquo;]]></para>
         /// </summary>
         public string TextNext { get; set; }
 
         /// <summary>
         /// previous button text
-        /// <para>default: &lsaquo;</para>
+        /// <para>
+        /// <![CDATA[default: &lsaquo;]]></para>
         /// </summary>
         public string TextPrevious { get; set; }
 
@@ -311,6 +326,11 @@ namespace LazZiya.TagHelpers
             public int End { get; set; }
         }
 
+        /// <summary>
+        /// process creating paging tag helper
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="output"></param>
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             SetDefaults();

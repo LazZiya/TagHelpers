@@ -3,10 +3,22 @@ using System.Threading.Tasks;
 
 namespace LazZiya.TagHelpers
 {
+    /// <summary>
+    /// creates a display for phone number
+    /// </summary>
     public class PhoneNumberTagHelper : TagHelper
     {
+        /// <summary>
+        /// boolean value to indicate if the phone number has been confirmed
+        /// </summary>
         public bool PhoneNumberConfirmed { get; set; }
 
+        /// <summary>
+        /// process creating phone number tag helper
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="output"></param>
+        /// <returns></returns>
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "span";

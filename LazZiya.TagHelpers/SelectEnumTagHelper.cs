@@ -10,6 +10,9 @@ using System.Reflection;
 
 namespace LazZiya.TagHelpers
 {
+    /// <summary>
+    /// creates a dropdown list from custom enum with supports for localization
+    /// </summary>
     public class SelectEnumTagHelper : TagHelper
     {
         /// <summary>
@@ -28,6 +31,11 @@ namespace LazZiya.TagHelpers
         /// </summary>
         public Func<string, string> TextLocalizerDelegate { get; set; }
 
+        /// <summary>
+        /// start creating select-enum tag helper
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="output"></param>
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "select";

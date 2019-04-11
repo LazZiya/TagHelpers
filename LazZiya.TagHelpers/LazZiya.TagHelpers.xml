@@ -1,0 +1,485 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LazZiya.TagHelpers</name>
+    </assembly>
+    <members>
+        <member name="T:LazZiya.TagHelpers.EmailTagHelper">
+            <summary>
+            creates email link with mark if email is confirmed
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.EmailTagHelper.EmailConfirmed">
+            <summary>
+            boolean value to indicate if the email is confirmed or not
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.EmailTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            process in creating email tag helper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LazZiya.TagHelpers.LanguageLabel">
+            <summary>
+            The label to display for language dropdown list on language names
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageLabel.Name">
+            <summary>
+            Culture name
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageLabel.DisplayName">
+            <summary>
+            Culture display name
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageLabel.EnglishName">
+            <summary>
+            Culture English name
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageLabel.NativeName">
+            <summary>
+            Culture native name
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageLabel.TwoLetterISOLanguageName">
+            <summary>
+            Two letter ISO language name
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.RedirectTo">
+            <summary>
+            Defines where to redirect when language is changes
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RedirectTo.HomePage">
+            <summary>
+            redirects to home page in the project root
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RedirectTo.SamePage">
+            <summary>
+            redirects to the same page and keep all filter like search
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RedirectTo.SamePageNoQueryString">
+            <summary>
+            redirect to the same page and clear all filters (QueryString) values
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.LanguageNavTagHelper">
+            <summary>
+            creates a language navigation menu, depends on supported cultures
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.CultureKeyName">
+            <summary>
+            optional: route data key name for culture, default "culture"
+            default: cultute
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.SupportedCultures">
+            <summary>
+            optional: manually specify list of supported cultures
+            <example>
+            en-US,tr, ar
+            </example>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.LanguageLabel">
+            <summary>
+            optional: what to display as label for language dropdown
+            default: LanguageLabel.EnglishName
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.RedirectTo">
+            <summary>
+            optional: specify where to redirect when the language is changed
+            <para>default value: RedirectTo.SamePage</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.HomePageName">
+            <summary>
+            optinal: name of the home page to redirect to when RedirectTo is HomePage
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.ViewContext">
+            <summary>
+            current view context to access RouteData.Values and Request.Query collection
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageNavTagHelper._routeData">
+            <summary>
+            route values and query string values will be collected in one dictionary,
+            then we will replace culture parameter with the appropriate culture name value while creating the dropdown list.
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageNavTagHelper._ops">
+            <summary>
+            required for listing supported cultures
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.LanguageNavTagHelper},Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions})">
+            <summary>
+            creates a language navigation menu, depends on supported cultures
+            </summary>
+            <param name="logger"></param>
+            <param name="ops"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            start creating the language navigation dropdown
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.GetSupportedCultures">
+            <summary>
+            private list of supported CultureInfo,
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.PagingTagHelper">
+            <summary>
+            Creates a pagination control
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.#ctor(Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.PagingTagHelper})">
+            <summary>
+            creates a pagination control
+            </summary>
+            <param name="logger">default logger</param>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageNo">
+            <summary>
+            current page number.
+            <para>default: 1</para>
+            <para>example: p=1</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSize">
+            <summary>
+            how many items to get from db per page per request
+            <para>default: 25</para>
+            <para>example: pageSize=25</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TotalRecords">
+            <summary>
+            Total count of records in the db
+            <para>default: 0</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.MaxDisplayedPages">
+            <summary>
+            if count of pages is too much, restrict shown pages count to specific number
+            <para>default: 10</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.GapSize">
+            <summary>
+            Gap size to start show first/last numbered page
+            <para>default: 5</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.SettingsJson">
+            <summary>
+            name of the settings section in appSettings.json
+            <param>default: "default"</param>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavFormMethod">
+            <summary>
+            Form submit method when selecting different page size option
+            <para>default: get</para>
+            <para>options: get, post</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavBlockSize">
+            <summary>
+            The minimum block size to populate all possible page sizes for dropdown list
+            <para>default: 25</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavMaxItems">
+            <summary>
+            maximum nmber of items to show in the page size navigation menu
+            <para>default: 5</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavOnChange">
+            <summary>
+            action to take when page size dropdown changes
+            <para>default: this.form.submit();</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.QueryStringKeyPageNo">
+            <summary>
+            Query string paramter name for current page.
+            <para>default: p</para>
+            <para>exmaple: p=1</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.QueryStringKeyPageSize">
+            <summary>
+            Query string parameter name for page size
+            <para>default: s</para>
+            <para>example: s=25</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.QueryStringValue">
+            <summary>
+            Query string value starting from the ? including all next query string parameters 
+            to consider for next pages links.
+            <para>default: string.Empty</para>
+            <example>
+            <code>
+            @(Request.QueryString.Value)
+            </code>
+            </example>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowPageSizeNav">
+            <summary>
+            Show drop down list for different page size options
+            <para>default: false</para>
+            <para>options: true, false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowFirstLast">
+            <summary>
+            Show/hide First-Last buttons
+            <para>default: false, but will auto show if total pages > max displayed pages</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowPrevNext">
+            <summary>
+            Show/hide Previous-Next buttons
+            <para>default: false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowTotalPages">
+            <summary>
+            Show or hide total pages count
+            <para>default: false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowTotalRecords">
+            <summary>
+            Show or hide total records count
+            <para>default: false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowLastNumberedPage">
+            <summary>
+            Show last numbered page when total pages count is larger than max displayed pages
+            <para>default: false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowFirstNumberedPage">
+            <summary>
+            Show first numbered page when total pages count is larger than max displayed pages
+            <para>default: false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextPageSize">
+            <summary>
+            The text to display at page size dropdown list label
+            <para>default: Show </para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextFirst">
+            <summary>
+            Text to show on the "Go To First" Page button
+            <para>
+            <![CDATA[default: &laquo;]]></para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextLast">
+            <summary>
+            Text to show on "Go to last page" button
+            <para>
+            <![CDATA[default: &raquo;]]></para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextNext">
+            <summary>
+            Next button text
+            <para>
+            <![CDATA[default: &rsaquo;]]></para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextPrevious">
+            <summary>
+            previous button text
+            <para>
+            <![CDATA[default: &lsaquo;]]></para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextTotalPages">
+            <summary>
+            Display text for total pages label
+            <para>default: page</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextTotalRecords">
+            <summary>
+            Display text for total records label
+            <para>default: records</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.SrTextFirst">
+            <summary>
+            Text for screen readers only
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.SrTextLast">
+            <summary>
+            text for screen readers only
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.SrTextNext">
+            <summary>
+            text for screenreaders only
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.SrTextPrevious">
+            <summary>
+            text for screen readers only
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.Class">
+            <summary>
+            add custom class to content div
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassPagingControlDiv">
+            <summary>
+            css class for pagination div
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassInfoDiv">
+            <summary>
+            css class for page count/record count div
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassPageSizeDiv">
+            <summary>
+            styling class for page size div
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassPagingControl">
+            <summary>
+            pagination control class
+            <para>default: pagination</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassActivePage">
+            <summary>
+            class name for the active page
+            <para>default: active</para>
+            <para>examples: disabled, active, ...</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassDisabledJumpingButton">
+            <summary>
+            name of the class when jumping button is disabled.
+            jumping buttons are prev-next and first-last buttons
+            <param>default: disabled</param>
+            <para>example: disabled, d-hidden</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassTotalRecords">
+            <summary>
+            css class for total records info
+            <para>default: badge badge-light</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassTotalPages">
+            <summary>
+            css class for total pages info
+            <para>default: badge badge-light</para>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            process creating paging tag helper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.SetDefaults">
+            <summary>
+            This method will assign the values by checking three places
+            1- Property value if set from HTML code
+            2- Default values in appSettings.json
+            3- Hard coded default value in code
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.CreatePageSizeControl">
+            <summary>
+            dropdown list for changing page size (items per page)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.CreateUrlTemplate(System.Int32,System.Int32,System.String)">
+            <summary>
+            edit the url for each page, so it navigates to its target page number
+            </summary>
+            <param name="pageNo"></param>
+            <param name="pageSize"></param>
+            <param name="urlPath"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LazZiya.TagHelpers.PhoneNumberTagHelper">
+            <summary>
+            creates a display for phone number
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PhoneNumberTagHelper.PhoneNumberConfirmed">
+            <summary>
+            boolean value to indicate if the phone number has been confirmed
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PhoneNumberTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            process creating phone number tag helper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LazZiya.TagHelpers.SelectEnumTagHelper">
+            <summary>
+            creates a dropdown list from custom enum with supports for localization
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.SelectEnumTagHelper.SelectedValue">
+            <summary>
+            (int)MyEnum.ValueName
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.SelectEnumTagHelper.EnumType">
+            <summary>
+            typeof(MyEnum)
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.SelectEnumTagHelper.TextLocalizerDelegate">
+            <summary>
+            localization method as delegate
+            e.g. delegate(string s) { return _localizaer["My value"]; }
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.SelectEnumTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            start creating select-enum tag helper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+    </members>
+</doc>
