@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
@@ -14,57 +15,6 @@ using Microsoft.AspNetCore.Routing;
 
 namespace LazZiya.TagHelpers
 {
-    /// <summary>
-    /// The label to display for language dropdown list on language names
-    /// </summary>
-    public enum LanguageLabel
-    {
-        /// <summary>
-        /// Culture name
-        /// </summary>
-        Name,
-
-        /// <summary>
-        /// Culture display name
-        /// </summary>
-        DisplayName,
-
-        /// <summary>
-        /// Culture English name
-        /// </summary>
-        EnglishName,
-
-        /// <summary>
-        /// Culture native name
-        /// </summary>
-        NativeName,
-
-        /// <summary>
-        /// Two letter ISO language name
-        /// </summary>
-        TwoLetterISOLanguageName
-    }
-
-    /// <summary>
-    /// Defines where to redirect when language is changes
-    /// </summary>
-    public enum RedirectTo
-    {
-        /// <summary>
-        /// redirects to home page in the project root
-        /// </summary>
-        HomePage,
-
-        /// <summary>
-        /// redirects to the same page and keep all filter like search
-        /// </summary>
-        SamePage,
-
-        /// <summary>
-        /// redirect to the same page and clear all filters (QueryString) values
-        /// </summary>
-        SamePageNoQueryString
-    }
     /// <summary>
     /// creates a language navigation menu, depends on supported cultures
     /// </summary>
@@ -107,10 +57,9 @@ namespace LazZiya.TagHelpers
         public ViewContext ViewContext { get; set; }
 
         /// <summary>
-        /// route values and query string values will be collected in one dictionary,
-        /// then we will replace culture parameter with the appropriate culture name value while creating the dropdown list.
+        /// Choose render mode: classis for regular dropdown list, Bootstrap4 for HTML5 div with Bootstrap4 style.
         /// </summary>
-        private IDictionary<string, object> _routeData;
+        public RenderMode RenderMode { get; set; } = RenderMode.Bootstrap;
 
         /// <summary>
         /// required for listing supported cultures
@@ -131,7 +80,6 @@ namespace LazZiya.TagHelpers
             _logger = logger;
             _ops = ops;
             _lg = lg;
-            _routeData = new Dictionary<string, object>();
         }
 #else
         /// <summary>
@@ -143,7 +91,6 @@ namespace LazZiya.TagHelpers
         {
             _logger = logger;
             _ops = ops;
-            _routeData = new Dictionary<string, object>();
         }
 #endif
         /// <summary>
@@ -153,61 +100,98 @@ namespace LazZiya.TagHelpers
         /// <param name="output"></param>
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var toggle = CreateToggle();
-            var list = CreateLanguagesDropdownList();
+            var langDictionary = CreateNavDictionary();
 
-            output.TagName = "div";
-            output.Attributes.Add("class", "dropdown");
-
-            output.Content.AppendHtml(toggle);
-            output.Content.AppendHtml(list);
+            if (RenderMode == RenderMode.Bootstrap)
+            {
+                CreateBootstrapItems(ref output, langDictionary);
+            }
+            else
+            {
+                CreateClassicItems(ref output, langDictionary);
+            }
         }
 
-        private void CreateRouteDataDictionary()
+        /// <summary>
+        /// create classic list items list
+        /// <example><![CDATA[<option value="/en-US/Index">English</option>]]></example>
+        /// </summary>
+        /// <param name="langDictionary">language name-URL dictionary</param>
+        /// <param name="output">reference to TagHelperOuput</param>
+        /// <returns></returns>
+        private void CreateClassicItems(ref TagHelperOutput output, List<LanguageItem> langDictionary)
         {
-            //redirect to same page or same page without query string
-            foreach (var r in ViewContext.RouteData.Values)
+            output.TagName = "select";
+            foreach (var lang in langDictionary.OrderBy(x=>x.DisplayText))
             {
-                _routeData.Add(r.Key, r.Value.ToString());
-            }
+                var option = new TagBuilder("option");
+                option.Attributes.Add("value", lang.Url);
+                option.InnerHtml.AppendHtml(lang.DisplayText);
 
-            if (RedirectTo == RedirectTo.SamePage)
-            {
-                foreach (var q in ViewContext.HttpContext.Request.Query)
-                {
-                    _routeData.Add(q.Key, q.Value);
-                }
+                if (CultureInfo.CurrentCulture.Name == lang.Name)
+                    option.Attributes.Add("selected", "selected");
+
+                output.Content.AppendHtml(option);
             }
         }
 
-        private TagBuilder CreateLanguagesDropdownList()
+        /// <summary>
+        /// create classic list items list
+        /// <example><![CDATA[<a href="/en-US/Index" class="itemxyz">English</a>]]></example>
+        /// </summary>
+        /// <param name="langDictionary">language name-URL dictionary</param>
+        /// <param name="output">reference to TagHelperOuput</param>
+        /// <returns></returns>
+        private void CreateBootstrapItems(ref TagHelperOutput output, List<LanguageItem> langDictionary)
         {
             var div = new TagBuilder("div");
             div.AddCssClass("dropdown-menu dropdown-menu-right");
             div.Attributes.Add("aria-labeledby", "dropdownlang");
 
-            if (RedirectTo != RedirectTo.HomePage)
-                CreateRouteDataDictionary();
-            else //we dont need route values, just culture info to redirect to home page at root level
+            foreach (var lang in langDictionary.Where(x => x.Name != CultureInfo.CurrentCulture.Name).OrderBy(x=>x.DisplayText))
             {
-                _routeData.Clear();
-                _routeData.Add(CultureKeyName, CultureInfo.CurrentCulture.Name);
+                var a = new TagBuilder("a");
+                a.AddCssClass("dropdown-item small");
+                a.Attributes.Add("href", lang.Url);
+                a.InnerHtml.Append(lang.DisplayText);
 
+                div.InnerHtml.AppendHtml(a);
+            }
+
+            output.TagName = "div";
+            output.Attributes.Add("class", "dropdown");
+
+            var toggle = CreateToggle();
+            output.Content.AppendHtml(toggle);
+
+            output.Content.AppendHtml(div);
+        }
+
+        /// <summary>
+        /// create dictonary for all supported cultures
+        /// <para>Key: Language display name for label</para>
+        /// <para>Value: Navigation URL</para>
+        /// </summary>
+        /// <returns></returns>
+        private List<LanguageItem> CreateNavDictionary()
+        {
+            var _routeData = CreateRouteDataDictionary();
+
+            // if we are redirecting to the home page, then we need
+            // only culture paramter and home page name in route values
+            if (RedirectTo == RedirectTo.HomePage)
+            {
                 ViewContext.RouteData.Values.Clear();
                 ViewContext.RouteData.Values.Add(CultureKeyName, CultureInfo.CurrentCulture.Name);
                 ViewContext.RouteData.Values.Add("page", $"/{HomePageName}");
             }
 
+            var dic = new List<LanguageItem>();
             var urlHelper = new UrlHelper(ViewContext);
-
             var cultures = GetSupportedCultures();
 
             foreach (var cul in cultures.Where(x => x.Name != CultureInfo.CurrentCulture.Name))
             {
-                var a = new TagBuilder("a");
-
-                a.AddCssClass("dropdown-item small");
-
                 //replace culture value with the relevant one for dropdown list
                 _routeData[CultureKeyName] = cul.Name;
 
@@ -218,16 +202,41 @@ namespace LazZiya.TagHelpers
 #else
                 var url = urlHelper.RouteUrl(urlRoute);
 #endif
-
-                a.Attributes.Add("href", url);
-
                 var label = GetLanguageLabel(cul);
-                a.InnerHtml.Append(label);
-
-                div.InnerHtml.AppendHtml(a);
+                dic.Add(new LanguageItem { Name = cul.Name, DisplayText = label, Url = url });
             }
 
-            return div;
+            return dic;
+        }
+
+        /// <summary>
+        /// Get route data values for the current route,
+        /// then save all values to _routeData dictionary
+        /// </summary>
+        private Dictionary<string, object> CreateRouteDataDictionary()
+        {
+            var _routeData = new Dictionary<string, object>();
+
+            if (RedirectTo == RedirectTo.HomePage)
+                _routeData.Add(CultureKeyName, CultureInfo.CurrentCulture.Name);
+            else
+            {
+                //redirect to same page or same page without query string
+                foreach (var r in ViewContext.RouteData.Values)
+                {
+                    _routeData.Add(r.Key, r.Value);
+                }
+
+                if (RedirectTo == RedirectTo.SamePage)
+                {
+                    foreach (var q in ViewContext.HttpContext.Request.Query)
+                    {
+                        _routeData.Add(q.Key, q.Value);
+                    }
+                }
+            }
+
+            return _routeData;
         }
 
         /// <summary>

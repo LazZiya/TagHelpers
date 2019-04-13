@@ -72,6 +72,23 @@
             redirect to the same page and clear all filters (QueryString) values
             </summary>
         </member>
+        <member name="T:LazZiya.TagHelpers.RenderMode">
+            <summary>
+            choose render mode style,
+            <para>classic: regular dropdown select list</para>
+            <para>Bootstrap4: HTML5 div with Bootstrap4 support</para>
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.Classic">
+            <summary>
+            regular dropdown list
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.Bootstrap">
+            <summary>
+            HTML5 div with Bootstrap 4 support
+            </summary>
+        </member>
         <member name="T:LazZiya.TagHelpers.LanguageNavTagHelper">
             <summary>
             creates a language navigation menu, depends on supported cultures
@@ -113,10 +130,9 @@
             current view context to access RouteData.Values and Request.Query collection
             </summary>
         </member>
-        <member name="F:LazZiya.TagHelpers.LanguageNavTagHelper._routeData">
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.RenderMode">
             <summary>
-            route values and query string values will be collected in one dictionary,
-            then we will replace culture parameter with the appropriate culture name value while creating the dropdown list.
+            Choose render mode: classis for regular dropdown list, Bootstrap4 for HTML5 div with Bootstrap4 style.
             </summary>
         </member>
         <member name="F:LazZiya.TagHelpers.LanguageNavTagHelper._ops">
@@ -137,6 +153,38 @@
             </summary>
             <param name="context"></param>
             <param name="output"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateClassicItems(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput@,System.Collections.Generic.List{LazZiya.TagHelpers.LanguageItem})">
+            <summary>
+            create classic list items list
+            <example><![CDATA[<option value="/en-US/Index">English</option>]]></example>
+            </summary>
+            <param name="langDictionary">language name-URL dictionary</param>
+            <param name="output">reference to TagHelperOuput</param>
+            <returns></returns>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateBootstrapItems(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput@,System.Collections.Generic.List{LazZiya.TagHelpers.LanguageItem})">
+            <summary>
+            create classic list items list
+            <example><![CDATA[<a href="/en-US/Index" class="itemxyz">English</a>]]></example>
+            </summary>
+            <param name="langDictionary">language name-URL dictionary</param>
+            <param name="output">reference to TagHelperOuput</param>
+            <returns></returns>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateNavDictionary">
+            <summary>
+            create dictonary for all supported cultures
+            <para>Key: Language display name for label</para>
+            <para>Value: Navigation URL</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateRouteDataDictionary">
+            <summary>
+            Get route data values for the current route,
+            then save all values to _routeData dictionary
+            </summary>
         </member>
         <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.GetSupportedCultures">
             <summary>

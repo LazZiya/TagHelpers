@@ -14,7 +14,7 @@
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>- Backward compatibility with DotNetCore 1.0 to 2.2
 - New: LanguageNav tag helper</PackageReleaseNotes>
-    <Version>2.0.0-beta-a5</Version>
+    <Version>2.0.0-rc1</Version>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
