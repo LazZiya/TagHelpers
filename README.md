@@ -23,13 +23,20 @@ Install-Package LazZiya.TagHelpers -Version 1.0.3
 
 add tag helper to _ViewImports.cshtml:
 
-````
+````razor
 @addTagHelper *, LazZiya.TagHelpers
 ````
 
 
 ### How to create a select list dropdown from enum
+
+Sample enum :
+````cs
+public enum WeekDays { MON, TUE, WED, THU, FRI, SAT, SUN }
 ````
+
+create the related select list dropdown in razor page :
+````razor
 <select-enum 
         enum-type="typeof(WeekDays)" 
         name="weekDay">
@@ -40,12 +47,15 @@ add tag helper to _ViewImports.cshtml:
 
 Only few parameters are required to fireup the agination control
 
-````
+````razor
 <paging total-records="Model.TotalRecords"
-            page-no="Model.PageNo"
-            show-prev-next="true">
+        page-no="Model.PageNo"
+        query-string-value="@(Request.QueryString.Value)"
+        show-prev-next="true">
 </paging>
 ````
+
+it is important to add `query-string-value` if there is multiple filtering parameters in the url.
 
 see more in WiKi pages or project site.
 
