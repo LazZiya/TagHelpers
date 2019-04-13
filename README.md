@@ -1,7 +1,8 @@
 # LazZiya.TagHelpers
 
-Helpful TagHelpers for any ASP.NET Core project. Latest version 1.0.3 contains the below TagHelpers :
+Collection of helpful TagHelpers for any ASP.NET Core project. Latest version 2.0.0 contains the below TagHelpers :
 
+- LanguageNavTagHelper
 - PagingTagHelper
 - SelectEnumTagHelper
 - EmailTagHelper
@@ -10,15 +11,15 @@ Helpful TagHelpers for any ASP.NET Core project. Latest version 1.0.3 contains t
 ## Project site:
 http://ziyad.info/en/articles/27-LazZiya_TagHelpers
 
-## Live Demo :
-http://demo.ziyad.info/en/SelectEnum
+## Live Demos :
+http://demo.ziyad.info/en/
 
 ## Installation:
 
 Install via nuget :
 
 ````
-Install-Package LazZiya.TagHelpers -Version 1.0.3
+Install-Package LazZiya.TagHelpers -Version 2.0.0
 ````
 
 add tag helper to _ViewImports.cshtml:
@@ -26,6 +27,12 @@ add tag helper to _ViewImports.cshtml:
 ````razor
 @addTagHelper *, LazZiya.TagHelpers
 ````
+
+### How to create a langauge navigation dropdown list
+````cshtml
+<language-nav view-context="ViewContext"></language-nav>
+````
+For more details visit http://www.ziyad.info/en/articles/32-Language_Navigation_TagHelper 
 
 
 ### How to create a select list dropdown from enum
@@ -42,6 +49,8 @@ create the related select list dropdown in razor page :
         name="weekDay">
 </select-enum>
 ````
+For more details visit http://www.ziyad.info/en/articles/28-Select_Enum_TagHelper
+
 
 ### How to create a pagination control
 
@@ -56,6 +65,8 @@ Only few parameters are required to fireup the agination control
 ````
 
 it is important to add `query-string-value` if there is multiple filtering parameters in the url.
+
+For more details visit http://www.ziyad.info/en/articles/21-Paging_TagHelper_for_ASP_NET_Core
 
 see more in WiKi pages or project site.
 
