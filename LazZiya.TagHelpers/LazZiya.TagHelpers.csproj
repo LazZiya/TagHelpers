@@ -5,7 +5,7 @@
     <ApplicationIcon>files\icon.ico</ApplicationIcon>
     <Authors>Ziya Mollamahmut</Authors>
     <Company>Ziyad.info</Company>
-    <Description>Pagination and SelectEnum and LanguageNav dropdown tag helpers for ASP.NET Core MVC and Razor Pages</Description>
+    <Description>Collection of tag helpers for ASP.NET Core web applications, like Paging, SelectEnum and LanguageNav dropdown tag helpers for MVC and Razor Pages.</Description>
     <Copyright>Ziyad.info</Copyright>
     <PackageProjectUrl>http://www.ziyad.info/en/articles/27-LazZiya_TagHelpers</PackageProjectUrl>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
@@ -14,7 +14,7 @@
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>- Backward compatibility with DotNetCore 1.0 to 2.2
 - New: LanguageNav tag helper</PackageReleaseNotes>
-    <Version>2.0.0-rc1</Version>
+    <Version>2.0.0</Version>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

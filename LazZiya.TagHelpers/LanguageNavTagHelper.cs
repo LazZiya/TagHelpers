@@ -190,7 +190,7 @@ namespace LazZiya.TagHelpers
             var urlHelper = new UrlHelper(ViewContext);
             var cultures = GetSupportedCultures();
 
-            foreach (var cul in cultures.Where(x => x.Name != CultureInfo.CurrentCulture.Name))
+            foreach (var cul in cultures)
             {
                 //replace culture value with the relevant one for dropdown list
                 _routeData[CultureKeyName] = cul.Name;
