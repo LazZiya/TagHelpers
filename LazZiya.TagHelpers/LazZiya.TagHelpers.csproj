@@ -36,11 +36,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Localization" Version="1.0.0" Exclude="analyzers" />
   </ItemGroup>
 
-  <!-- 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp1.0' OR '$(TargetFramework)' == 'netcoreapp1.1'">
-    <dependency id="Microsoft.NETCore.App" version="1.0.5" exclude="Build,Analyzers" />
-  </ItemGroup>
- 
+ <!--
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1'">
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.1.0" Exclude="Build,Analyzers" />
     <dependency id="Microsoft.NETCore.App" version="1.1.2" exclude="Build,Analyzers" />
@@ -54,6 +50,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.0" Exclude="Build,Analyzers" />
   </ItemGroup>
 -->
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2'">
+    <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.1.0" Exclude="Build,Analyzers" />
+  </ItemGroup>
+  
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.2'">
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.2.0" Exclude="Build,Analyzers" />
   </ItemGroup>
