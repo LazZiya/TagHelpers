@@ -14,9 +14,9 @@
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>- Backward compatibility with DotNetCore 1.0 to 2.2
 - New: LanguageNav tag helper</PackageReleaseNotes>
-    <Version>2.0.0</Version>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.1.0</Version>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <FileVersion>2.1.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</PackageIconUrl>
@@ -28,11 +28,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="LazZiya.TagHelpers.2.0.0.nupkg" />
-    <None Remove="LazZiya.TagHelpers.1.0.3.nupkg" />
     <None Remove="LazZiya.TagHelpers.nuspec" />
+    <None Remove="Templates\ExpressLocalizationValidationScripts_jsdeliver.html" />
+    <None Remove="Templates\ExpressLocalizationValidationScripts_local.html" />
     <None Remove="_LazZiya.TagHelpers.nuspec.old" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.0.6" Exclude="analyzers" />
+    <Content Include="Templates\ExpressLocalizationValidationScripts_jsdeliver.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\ExpressLocalizationValidationScripts_local.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <PackageReference Include="Microsoft.AspNetCore.Localization" Version="1.0.0" Exclude="analyzers" />
   </ItemGroup>
 
@@ -50,9 +55,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.0" Exclude="Build,Analyzers" />
   </ItemGroup>
 -->
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2'">
-    <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.1.0" Exclude="Build,Analyzers" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp1.0' OR '$(TargetFramework)' == 'netcoreapp1.1'">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.0.6" Exclude="analyzers" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0' OR '$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2'">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0" Exclude="analyzers" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.0.0" Exclude="Build,Analyzers" />
   </ItemGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.2'">

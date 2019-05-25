@@ -16,6 +16,7 @@
     $.when(
         $.get("/lib/cldr-data/supplemental/likelySubtags.json"),
         $.get("/lib/cldr-data/main/{culture}/numbers.json"),
+        $.get("/lib/cldr-data/main/{culture}/currencies.json"),
         $.get("/lib/cldr-data/supplemental/numberingSystems.json"),
         $.get("/lib/cldr-data/main/{culture}/ca-gregorian.json"),
         $.get("/lib/cldr-data/main/{culture}/timeZoneNames.json"),

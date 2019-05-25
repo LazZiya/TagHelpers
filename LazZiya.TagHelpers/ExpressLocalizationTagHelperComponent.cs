@@ -1,32 +1,66 @@
-﻿#if NETCOREAPP2_1 || NETCOREAPP2_2
+﻿#if NETCOREAPP2_0 || NETCOREAPP2_1 || NETCOREAPP2_2
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 
 
 namespace LazZiya.TagHelpers
 {
-    class ExpressLocalizationTagHelperComponent : TagHelperComponent
+    /// <summary>
+    /// inserts all localizaiton validation scripts into relevant tag
+    /// </summary>
+    public class ExpressLocalizationTagHelperComponent : TagHelperComponent
     {
         private readonly IHostingEnvironment _hosting;
 
+        /// <summary>
+        /// inserts all localizaiton validation scripts into relevant tag
+        /// </summary>
+        /// <param name="hosting"></param>
         public ExpressLocalizationTagHelperComponent(IHostingEnvironment hosting)
         {
             _hosting = hosting;
         }
 
-        public override int Order => 2;
+        public override int Order => 1;
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            if (string.Equals(context.TagName, "body", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(context.TagName, "localization-validation-scripts", StringComparison.OrdinalIgnoreCase))
             {
-                var script = await File.ReadAllTextAsync("TagHelpers/ClientSideValidationScripts.html");
-                output.PostContent.AppendHtml(script.Replace("{culture}", GetCultureName()));
+                //get the source property from the taghelper
+                TagHelperAttribute _sourceProperty;
+                context.AllAttributes.TryGetAttribute("source", out _sourceProperty);
+
+                if (_sourceProperty == null) _sourceProperty = new TagHelperAttribute("source", ScriptSource.JsDeliver);
+
+                //get the value of the source property
+                var _scriptSource = ScriptSource.JsDeliver;
+                Enum.TryParse<ScriptSource>(_sourceProperty.Value.ToString(), out _scriptSource);
+
+                //assign relevant script file accordingly
+                var _script = _scriptSource == ScriptSource.JsDeliver
+                    ? "ExpressLocalizationValidationScripts_jsdeliver.html"
+                    : "ExpressLocalizationValidationScripts_local.html";
+
+                var assemblyFolderPath = GetCurrentAssemblyFolderPath();
+                var scriptFilePath = Path.Combine(Path.GetDirectoryName(assemblyFolderPath), "Templates", _script);
+                
+                var script = await File.ReadAllTextAsync(scriptFilePath);
+                var culture = GetCultureName();
+                output.PostContent.AppendHtml(script.Replace("{culture}", culture));
             }
+        }
+
+        private string GetCurrentAssemblyFolderPath()
+        {
+            string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+            var uri = new UriBuilder(codeBase);
+            return Uri.UnescapeDataString(uri.Path);
         }
 
         /// <summary>
