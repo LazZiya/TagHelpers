@@ -1,4 +1,4 @@
-﻿#if NETCOREAPP2_0 || NETCOREAPP2_1 || NETCOREAPP2_2
+﻿using LazZiya.TagHelpers.Properties;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
@@ -10,10 +10,15 @@ using System.Threading.Tasks;
 
 namespace LazZiya.TagHelpers
 {
+#if NETCOREAPP1_0 || NETCOREAPP1_1
+    public class LocalizationValidationScriptsTagHelperComponent
+    {
+    }
+#else
     /// <summary>
-    /// inserts all localizaiton validation scripts into relevant tag
+    /// inserts all client side localizaiton validation scripts into relevant tag
     /// </summary>
-    public class ExpressLocalizationTagHelperComponent : TagHelperComponent
+    public class LocalizationValidationScriptsTagHelperComponent : TagHelperComponent
     {
         private readonly IHostingEnvironment _hosting;
 
@@ -21,46 +26,45 @@ namespace LazZiya.TagHelpers
         /// inserts all localizaiton validation scripts into relevant tag
         /// </summary>
         /// <param name="hosting"></param>
-        public ExpressLocalizationTagHelperComponent(IHostingEnvironment hosting)
+        public LocalizationValidationScriptsTagHelperComponent(IHostingEnvironment hosting)
         {
             _hosting = hosting;
         }
 
         public override int Order => 1;
-
-        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+        public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             if (string.Equals(context.TagName, "localization-validation-scripts", StringComparison.OrdinalIgnoreCase))
             {
-                //get the source property from the taghelper
-                TagHelperAttribute _sourceProperty;
-                context.AllAttributes.TryGetAttribute("source", out _sourceProperty);
-
-                if (_sourceProperty == null) _sourceProperty = new TagHelperAttribute("source", ScriptSource.JsDeliver);
+                //read source attribute
+                var sourceAttribute = GetAttribute(context, "source", ScriptSource.JsDeliver);
 
                 //get the value of the source property
-                var _scriptSource = ScriptSource.JsDeliver;
-                Enum.TryParse<ScriptSource>(_sourceProperty.Value.ToString(), out _scriptSource);
-
+                Enum.TryParse<ScriptSource>(sourceAttribute.Value.ToString(), out ScriptSource _scriptSource);
                 //assign relevant script file accordingly
                 var _script = _scriptSource == ScriptSource.JsDeliver
-                    ? "ExpressLocalizationValidationScripts_jsdeliver.html"
-                    : "ExpressLocalizationValidationScripts_local.html";
+                    ? Resources.LocalizationValidationScripts_jsdeliver
+                    : Resources.LocalizationValidationScripts_local;
 
-                var assemblyFolderPath = GetCurrentAssemblyFolderPath();
-                var scriptFilePath = Path.Combine(Path.GetDirectoryName(assemblyFolderPath), "Templates", _script);
-                
-                var script = await File.ReadAllTextAsync(scriptFilePath);
-                var culture = GetCultureName();
-                output.PostContent.AppendHtml(script.Replace("{culture}", culture));
+                //read cldr-core-version attribute
+                var cldrCoreVersionAttribute = GetAttribute(context, "cldr-core-version", "35.1.0");
+                var cldrCoreVersion = cldrCoreVersionAttribute.Value.ToString();
+
+                var culture = _scriptSource == ScriptSource.JsDeliver
+                    ? CultureInfo.CurrentCulture.Name
+                    : GetCultureName();
+
+                output.PostContent.AppendHtml(_script.Replace("{culture}", culture)
+                                                     .Replace("{cldr-core-version}", cldrCoreVersion));
             }
         }
 
-        private string GetCurrentAssemblyFolderPath()
+        private TagHelperAttribute GetAttribute(TagHelperContext context, string tagName, object defaultValue)
         {
-            string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-            var uri = new UriBuilder(codeBase);
-            return Uri.UnescapeDataString(uri.Path);
+            //get the source property from the taghelper
+            context.AllAttributes.TryGetAttribute(tagName, out TagHelperAttribute attribute);
+
+            return attribute ?? new TagHelperAttribute(tagName, defaultValue);
         }
 
         /// <summary>
@@ -84,5 +88,5 @@ namespace LazZiya.TagHelpers
             return cultureToUse;
         }
     }
-}
 #endif
+}

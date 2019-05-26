@@ -12,8 +12,7 @@
     <PackageIcon>files\icon.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
-    <PackageReleaseNotes>- Backward compatibility with DotNetCore 1.0 to 2.2
-- New: LanguageNav tag helper</PackageReleaseNotes>
+    <PackageReleaseNotes>- New tag helper for client side localization validation scripts</PackageReleaseNotes>
     <Version>2.1.0</Version>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
     <FileVersion>2.1.0.0</FileVersion>
@@ -26,20 +25,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp1.0|AnyCPU'">
     <DocumentationFile>D:\MyWorks\WebDev\LazZiya\TagHelpers\LazZiya.TagHelpers\LazZiya.TagHelpers.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="LazZiya.TagHelpers.nuspec" />
-    <None Remove="Templates\ExpressLocalizationValidationScripts_jsdeliver.html" />
-    <None Remove="Templates\ExpressLocalizationValidationScripts_local.html" />
-    <None Remove="_LazZiya.TagHelpers.nuspec.old" />
-    <Content Include="Templates\ExpressLocalizationValidationScripts_jsdeliver.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Templates\ExpressLocalizationValidationScripts_local.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <PackageReference Include="Microsoft.AspNetCore.Localization" Version="1.0.0" Exclude="analyzers" />
-  </ItemGroup>
 
  <!--
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1'">
@@ -55,12 +40,17 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.0" Exclude="Build,Analyzers" />
   </ItemGroup>
 -->
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Localization" Version="1.0.0" Exclude="build,analyzers" />
+  </ItemGroup>
+  
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp1.0' OR '$(TargetFramework)' == 'netcoreapp1.1'">
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.0.6" Exclude="analyzers" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.0.6" Exclude="build,analyzers" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0' OR '$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2'">
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0" Exclude="analyzers" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0" Exclude="build,analyzers" />
     <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.0.0" Exclude="Build,Analyzers" />
   </ItemGroup>
   
@@ -75,7 +65,28 @@
     <None Update="files\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Templates\LocalizationValidationScripts_jsdeliver.html">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\LocalizationValidationScripts_local.html">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
     <None Include="files\license.txt" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties BuildVersion_BuildVersioningStyle="None.None.Increment.DeltaBaseYearDayOfYear" BuildVersion_UpdateFileVersion="True" BuildVersion_StartDate="2000/1/1" BuildVersion_UseUniversalClock="True" BuildVersion_UpdateAssemblyVersion="True" /></VisualStudio></ProjectExtensions>

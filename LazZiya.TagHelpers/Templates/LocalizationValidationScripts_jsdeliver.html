@@ -14,14 +14,14 @@
 
 <script type="text/javascript">
     $.when(
-        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-core@35.1.0/supplemental/likelySubtags.json"),
-        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-numbers-full@35.1.0/main/{culture}/numbers.json"),
-        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-numbers-full@35.1.0/main/{culture}/currencies.json"),
-        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-core@35.1.0/supplemental/numberingSystems.json"),
-        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-dates-full@35.1.0/main/{culture}/ca-gregorian.json"),
-        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-dates-full@35.1.0/main/{culture}/timeZoneNames.json"),
-        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-core@35.1.0/supplemental/timeData.json"),
-        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-core@35.1.0/supplemental/weekData.json")
+        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-core@{cldr-core-version}/supplemental/likelySubtags.json"),
+        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-numbers-full@{cldr-core-version}/main/{culture}/numbers.json"),
+        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-numbers-full@{cldr-core-version}/main/{culture}/currencies.json"),
+        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-core@{cldr-core-version}/supplemental/numberingSystems.json"),
+        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-dates-full@{cldr-core-version}/main/{culture}/ca-gregorian.json"),
+        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-dates-full@{cldr-core-version}/main/{culture}/timeZoneNames.json"),
+        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-core@{cldr-core-version}/supplemental/timeData.json"),
+        $.get("https://cdn.jsdelivr.net/gh/unicode-cldr/cldr-core@{cldr-core-version}/supplemental/weekData.json")
     ).then(function () {
         // Normalize $.get results, we only need the JSON, not the request statuses.
         return [].slice.apply(arguments, [0]).map(function (result) {
