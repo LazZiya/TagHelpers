@@ -1,7 +1,8 @@
 # LazZiya.TagHelpers
 
-Collection of helpful TagHelpers for any ASP.NET Core project. Latest version 2.0.0 contains the below TagHelpers :
+Collection of helpful TagHelpers for any ASP.NET Core project. Latest version 2.1.0 contains the below TagHelpers :
 
+- LocalizationValidationScriptsTagHelper (new v2.1)
 - LanguageNavTagHelper
 - PagingTagHelper
 - SelectEnumTagHelper
@@ -27,6 +28,16 @@ add tag helper to _ViewImports.cshtml:
 ````razor
 @addTagHelper *, LazZiya.TagHelpers
 ````
+
+## Localization validation scripts
+will add all required js files and code to validate localized input fields like numbers, date and currency. These scripts will help to validate localized decimal numbers with comma or dot format (e.g. EN culture: 1.2 - TR culture: 1,2).
+
+### How to add localization validation scripts
+````cshtml
+<localization validation scripts />
+````
+For more details visit http://www.ziyad.info/en/articles/34-Client_Side_Localization_Validation_Scripts 
+
 
 ### How to create a langauge navigation dropdown list
 ````cshtml
