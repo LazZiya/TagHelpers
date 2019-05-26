@@ -33,10 +33,18 @@ add tag helper to _ViewImports.cshtml:
 will add all required js files and code to validate localized input fields like numbers, date and currency. These scripts will help to validate localized decimal numbers with comma or dot format (e.g. EN culture: 1.2 - TR culture: 1,2).
 
 ### How to add localization validation scripts
-````cshtml
-<localization-validation-scripts></localization-validation-scripts>
-````
-For more details visit http://www.ziyad.info/en/articles/34-Client_Side_Localization_Validation_Scripts 
+
+ 1- Register tag helper component in startup
+ ````cs
+ services.AddTransient<ITagHelperComponent, LocalizationValidationScriptsTagHelperComponent>()
+ ````
+ or install [LazZiya.ExpressLocalization](https://github.com/LazZiya/ExpressLocalization) to simply localize the web application with one step.
+ 
+ 2- Add this code to the scripts section in the page:
+ ````cshtml
+ <localization-validation-scripts></localization-validation-scripts>
+ ````
+ For more details visit http://www.ziyad.info/en/articles/34-Client_Side_Localization_Validation_Scripts 
 
 
 ### How to create a langauge navigation dropdown list
