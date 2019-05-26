@@ -20,7 +20,7 @@ http://demo.ziyad.info/en/
 Install via nuget :
 
 ````
-Install-Package LazZiya.TagHelpers -Version 2.0.0
+Install-Package LazZiya.TagHelpers -Version 2.1.0
 ````
 
 add tag helper to _ViewImports.cshtml:
