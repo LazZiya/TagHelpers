@@ -34,7 +34,7 @@ will add all required js files and code to validate localized input fields like 
 
 ### How to add localization validation scripts
 ````cshtml
-<localization validation scripts />
+<localization-validation-scripts></localization-validation-scripts>
 ````
 For more details visit http://www.ziyad.info/en/articles/34-Client_Side_Localization_Validation_Scripts 
 
