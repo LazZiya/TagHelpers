@@ -191,6 +191,21 @@
             private list of supported CultureInfo,
             </summary>
         </member>
+        <member name="T:LazZiya.TagHelpers.ScriptSource">
+            <summary>
+            defines location to load localization valdiation scripts
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.ScriptSource.Local">
+            <summary>
+            valdiation scripts are located under wwwroot/lib folder
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.ScriptSource.JsDeliver">
+            <summary>
+            valdiation scripts will be loaded from jsdelivr
+            </summary>
+        </member>
         <member name="T:LazZiya.TagHelpers.PagingTagHelper">
             <summary>
             Creates a pagination control
@@ -500,6 +515,48 @@
             <param name="context"></param>
             <param name="output"></param>
             <returns></returns>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Properties.Resources.LocalizationValidationScripts_jsdeliver">
+             <summary>
+               Looks up a localized string similar to &lt;!-- cldr scripts (needed for globalize) --&gt;
+            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/rxaviers/cldrjs@0.5.1/dist/cldr.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/rxaviers/cldrjs@0.5.1/dist/cldr/event.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/rxaviers/cldrjs@0.5.1/dist/cldr/supplemental.js&quot;&gt;&lt;/script&gt;
+            
+            &lt;!-- globalize scripts --&gt;
+            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/globalizejs/globalize@1.4.2/dist/globalize.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/globalizejs/g [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Properties.Resources.LocalizationValidationScripts_local">
+             <summary>
+               Looks up a localized string similar to &lt;!-- cldr scripts (needed for globalize) --&gt;
+            &lt;script src=&quot;/lib/cldr/dist/cldr.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;/lib/cldr/dist/cldr/event.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;/lib/cldr/dist/cldr/supplemental.min.js&quot;&gt;&lt;/script&gt;
+            
+            &lt;!-- globalize scripts --&gt;
+            &lt;script src=&quot;/lib/globalize/dist/globalize.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;/lib/globalize/dist/globalize/number.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;/lib/globalize/dist/globalize/date.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;/lib/globalize/dist/globalize/currency.min.js&quot;&gt;&lt;/s [rest of string was truncated]&quot;;.
+             </summary>
         </member>
         <member name="T:LazZiya.TagHelpers.SelectEnumTagHelper">
             <summary>
