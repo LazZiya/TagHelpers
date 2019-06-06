@@ -34,11 +34,10 @@ will add all required js files and code to validate localized input fields like 
 
 ### How to add localization validation scripts
 
- 1- Register tag helper component in startup
+ 1- Register tag helper component in startup. Don't apply this step if you are using [ExpressLocalization](https://github.com/LazZiya/ExpressLocalization) it will be done automatically
  ````cs
  services.AddTransient<ITagHelperComponent, LocalizationValidationScriptsTagHelperComponent>()
  ````
- or install [LazZiya.ExpressLocalization](https://github.com/LazZiya/ExpressLocalization) to simply localize the web application with one step.
  
  2- Add this code to the scripts section in the page:
  ````cshtml
