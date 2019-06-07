@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
-using System.Threading.Tasks;
 
 
 namespace LazZiya.TagHelpers
 {
 #if NETCOREAPP1_0 || NETCOREAPP1_1
+    /// <summary>
+    /// This tag helepr is not compatible with dotnet lower than 2.0
+    /// </summary>
     public class LocalizationValidationScriptsTagHelperComponent
     {
     }

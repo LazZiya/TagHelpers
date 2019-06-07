@@ -2,22 +2,38 @@
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Collections.Generic;
+using LazZiya.TagHelpers.Alerts;
+using System.Threading.Tasks;
 
 namespace LazZiya.TagHelpers
 {
+    /// <summary>
+    /// Create alert messages styled with bootstrap 4.x
+    /// Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+    /// </summary>
     public class AlertTagHelper : TagHelper
     {
-        public AlertStyle AlertStyle { get; set; } = AlertStyle.Primary;
+        internal AlertStyle AlertStyle { get; set; } = AlertStyle.Primary;
 
+        /// <summary>
+        /// Header text for the alert
+        /// </summary>
         public string AlertHeading { get; set; }
 
-        public string AlertMessage { get; set; }
-
+        /// <summary>
+        /// Show closing button, default is true
+        /// </summary>
         public bool Dismissable { get; set; } = true;
 
+        /// <summary>
+        /// View context is required to access TempData dictionary that contains the alerts coming from backend
+        /// </summary>
         public ViewContext ViewContext { get; set; } = null;
 
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        /// <summary>
+        /// Create alert messages styled with bootstrap 4.x
+        /// </summary>
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "div";
 
@@ -30,13 +46,15 @@ namespace LazZiya.TagHelpers
                 alerts.ForEach(x => output.Content.AppendHtml(AddAlert(x)));
             }
 
+            // read alerts contents from inner html
+            var msg = await output.GetChildContentAsync();
 
-            if (!string.IsNullOrWhiteSpace(AlertMessage))
+            if (!string.IsNullOrWhiteSpace(msg.GetContent()))
             {
                 var manualAlert = AddAlert(new Alert
                 {
                     AlertHeading = this.AlertHeading,
-                    AlertMessage = this.AlertMessage,
+                    AlertMessage = msg.GetContent(),
                     AlertStyle = this.AlertStyle,
                     Dismissable = this.Dismissable
                 });
@@ -53,19 +71,19 @@ namespace LazZiya.TagHelpers
             _alert.AddCssClass($"alert alert-{alertStyle}");
             _alert.Attributes.Add("role", "alert");
 
+            if (alert.Dismissable)
+            {
+                _alert.InnerHtml.AppendHtml("<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>");
+            }
+
             if (!string.IsNullOrWhiteSpace(alert.AlertHeading))
             {
-                var _header = new TagBuilder("h4");
-                _header.AddCssClass("alert-heading");
-                _header.InnerHtml.Append(alert.AlertHeading);
-                _alert.InnerHtml.AppendHtml(_header);
+                _alert.InnerHtml.AppendHtml($"<h4 class='alert-heading'>{alert.AlertHeading}</h4>");
             }
 
             if (!string.IsNullOrWhiteSpace(alert.AlertMessage))
             {
-                var _msg = new TagBuilder("p");
-                _msg.InnerHtml.Append(alert.AlertMessage);
-                _alert.InnerHtml.AppendHtml(_msg);
+                _alert.InnerHtml.AppendHtml($"<p class='mb-0'>{alert.AlertMessage}</p>");
             }
 
             return _alert;

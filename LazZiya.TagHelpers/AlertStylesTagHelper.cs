@@ -1,76 +1,134 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using LazZiya.TagHelpers.Alerts;
+using System.Threading.Tasks;
 
 namespace LazZiya.TagHelpers
 {
+    /// <summary>
+    /// Create primary alert
+    /// Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+    /// </summary>
     public class AlertPrimaryTagHelper : AlertTagHelper
     {
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        /// <summary>
+        /// Create primary alert
+        /// </summary>
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             base.AlertStyle = AlertStyle.Primary;
-            base.Process(context, output);
+            await base.ProcessAsync(context, output);
         }
     }
 
+    /// <summary>
+    /// Create secondary alert
+    /// Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+    /// </summary>
     public class AlertSecondaryTagHelper : AlertTagHelper
     {
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        /// <summary>
+        /// Create secondary alert
+        /// </summary>
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             base.AlertStyle = AlertStyle.Secondary;
-            base.Process(context, output);
+            await base.ProcessAsync(context, output);
         }
     }
 
+    /// <summary>
+    /// Create success alert
+    /// Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+    /// </summary>
     public class AlertSuccessTagHelper : AlertTagHelper
     {
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        /// <summary>
+        /// Create success alert
+        /// </summary>
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             base.AlertStyle = AlertStyle.Success;
-            base.Process(context, output);
+            await base.ProcessAsync(context, output);
         }
     }
 
+    /// <summary>
+    /// Create danger alert
+    /// Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+    /// </summary>
     public class AlertDangerTagHelper : AlertTagHelper
     {
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        /// <summary>
+        /// Create danger alert
+        /// </summary>
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             base.AlertStyle = AlertStyle.Danger;
-            base.Process(context, output);
+            await base.ProcessAsync(context, output);
         }
     }
 
+    /// <summary>
+    /// Create warning alert
+    /// Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+    /// </summary>
     public class AlertWarningTagHelper : AlertTagHelper
     {
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        /// <summary>
+        /// Create danger alert
+        /// </summary>
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             base.AlertStyle = AlertStyle.Warning;
-            base.Process(context, output);
+            await base.ProcessAsync(context, output);
         }
     }
 
+    /// <summary>
+    /// Create info alert
+    /// Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+    /// </summary>
     public class AlertInfoTagHelper : AlertTagHelper
     {
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        /// <summary>
+        /// Create info alert
+        /// </summary>
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             base.AlertStyle = AlertStyle.Info;
-            base.Process(context, output);
+            await base.ProcessAsync(context, output);
         }
     }
 
+    /// <summary>
+    /// Create light alert
+    /// Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+    /// </summary>
     public class AlertLightTagHelper : AlertTagHelper
     {
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        /// <summary>
+        /// Create light alert
+        /// </summary>
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             base.AlertStyle = AlertStyle.Light;
-            base.Process(context, output);
+            await base.ProcessAsync(context, output);
         }
     }
 
+    /// <summary>
+    /// Create dark alert
+    /// Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+    /// </summary>
     public class AlertDarkTagHelper : AlertTagHelper
     {
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        /// <summary>
+        /// Create dark alert
+        /// </summary>
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             base.AlertStyle = AlertStyle.Dark;
-            base.Process(context, output);
+            await base.ProcessAsync(context, output);
         }
     }
 }

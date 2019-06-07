@@ -4,6 +4,272 @@
         <name>LazZiya.TagHelpers</name>
     </assembly>
     <members>
+        <member name="T:LazZiya.TagHelpers.AlertPrimaryTagHelper">
+            <summary>
+            Create primary alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertPrimaryTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create primary alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertSecondaryTagHelper">
+            <summary>
+            Create secondary alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertSecondaryTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create secondary alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertSuccessTagHelper">
+            <summary>
+            Create success alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertSuccessTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create success alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertDangerTagHelper">
+            <summary>
+            Create danger alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertDangerTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create danger alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertWarningTagHelper">
+            <summary>
+            Create warning alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertWarningTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create danger alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertInfoTagHelper">
+            <summary>
+            Create info alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertInfoTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create info alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertLightTagHelper">
+            <summary>
+            Create light alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertLightTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create light alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertDarkTagHelper">
+            <summary>
+            Create dark alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertDarkTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create dark alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Alerts.AlertStyle">
+            <summary>
+            Define alert style depending on Bootstrap4.x alert classes
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Primary">
+            <summary>
+            alert-primary
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Secondary">
+            <summary>
+            alert-secondary
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Success">
+            <summary>
+            alert-success
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Danger">
+            <summary>
+            alert-danger
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Warning">
+            <summary>
+            alert-warning
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Info">
+            <summary>
+            alert-info
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Light">
+            <summary>
+            alert-light
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Dark">
+            <summary>
+            alert-dark
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Alerts.Alert">
+            <summary>
+            Alert item that can be created in the backend manually for pushing alert to themp data
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.Alert.TempDataKey">
+            <summary>
+            Key to find alerts in TempData dictionary
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Alerts.Alert.AlertStyle">
+            <summary>
+            Alert style depending on Bootstrap 4.x classes
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Alerts.Alert.AlertHeading">
+            <summary>
+            Header text for the alert message
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Alerts.Alert.AlertMessage">
+            <summary>
+            Alert message body
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Alerts.Alert.Dismissable">
+            <summary>
+            true for dismissable alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Alerts.TempDataExtensions">
+            <summary>
+            Extensions for TempData for creating coder friendly alerts easily
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Primary(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create primary alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Secondary(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create secondary alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Success(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create success alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Danger(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create danger alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Warning(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create warning alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Info(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create info alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Light(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create light alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Dark(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create dark alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertTagHelper">
+            <summary>
+            Create alert messages styled with bootstrap 4.x
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.AlertTagHelper.AlertHeading">
+            <summary>
+            Header text for the alert
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.AlertTagHelper.Dismissable">
+            <summary>
+            Show closing button, default is true
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.AlertTagHelper.ViewContext">
+            <summary>
+            View context is required to access TempData dictionary that contains the alerts coming from backend
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create alert messages styled with bootstrap 4.x
+            </summary>
+        </member>
         <member name="T:LazZiya.TagHelpers.EmailTagHelper">
             <summary>
             creates email link with mark if email is confirmed
@@ -204,6 +470,16 @@
         <member name="F:LazZiya.TagHelpers.ScriptSource.JsDeliver">
             <summary>
             valdiation scripts will be loaded from jsdelivr
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper">
+            <summary>
+            This tag helepr is not compatible with dotnet lower than 2.0
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent">
+            <summary>
+            This tag helepr is not compatible with dotnet lower than 2.0
             </summary>
         </member>
         <member name="T:LazZiya.TagHelpers.PagingTagHelper">

@@ -12,10 +12,10 @@
     <PackageIcon>files\icon.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
-    <PackageReleaseNotes>- New Alert tag helper for displaying bootstrap alerts.</PackageReleaseNotes>
-    <Version>2.1.1</Version>
-    <AssemblyVersion>2.1.1.0</AssemblyVersion>
-    <FileVersion>2.1.1.0</FileVersion>
+    <PackageReleaseNotes>- New alert tag helpers for displaying bootstrap alerts.</PackageReleaseNotes>
+    <Version>2.2.0</Version>
+    <AssemblyVersion>2.2.0.0</AssemblyVersion>
+    <FileVersion>2.2.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</PackageIconUrl>
@@ -23,6 +23,10 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp1.0|AnyCPU'">
+    <DocumentationFile>D:\MyWorks\WebDev\LazZiya\TagHelpers\LazZiya.TagHelpers\LazZiya.TagHelpers.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp1.0|AnyCPU'">
     <DocumentationFile>D:\MyWorks\WebDev\LazZiya\TagHelpers\LazZiya.TagHelpers\LazZiya.TagHelpers.xml</DocumentationFile>
   </PropertyGroup>
 
@@ -51,8 +55,7 @@
   
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0' OR '$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2'">
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0" Exclude="build,analyzers" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.0.0" Exclude="Build,Analyzers" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" Version="2.0.0" Exclude="Build,Analyzers" />
+    <!--<PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.0.0" Exclude="Build,Analyzers" />-->
   </ItemGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.2'">
