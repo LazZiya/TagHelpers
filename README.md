@@ -2,7 +2,8 @@
 
 Collection of helpful TagHelpers for any ASP.NET Core project. Latest version 2.1.0 contains the below TagHelpers :
 
-- LocalizationValidationScriptsTagHelper (new v2.1)
+- AlertTagHelper (new v2.2)
+- LocalizationValidationScriptsTagHelper
 - LanguageNavTagHelper
 - PagingTagHelper
 - SelectEnumTagHelper
@@ -20,7 +21,7 @@ http://demo.ziyad.info/en/
 Install via nuget :
 
 ````
-Install-Package LazZiya.TagHelpers -Version 2.1.0
+Install-Package LazZiya.TagHelpers -Version 2.2.0
 ````
 
 add tag helper to _ViewImports.cshtml:
@@ -28,6 +29,26 @@ add tag helper to _ViewImports.cshtml:
 ````razor
 @addTagHelper *, LazZiya.TagHelpers
 ````
+
+## AlertTagHelper
+Easily create bootstrap 4.x alerts from c# backend or razor pages using html codes.
+All bootstrap alerts can be created from both ends (Primary, Secondary, Success, Info, Warning, Danger, Light, Dark).
+
+### Create alert from razor page using HTML
+````razor
+<alert-success>Congratulations! you have done the job!</alert-success>
+````
+
+### Create alert from c# backend
+Alert are TempData items, so they will be disposed once they are fetched.
+You can create alerts from the c# backend by the provided extension methods for TempData as below:
+````cs
+using LazZiya.TagHelpers.Alerts
+
+TempData.Danger("Ooopps! something went wrong with the code, please contact support.");
+````
+
+read more about alerts here: ** link coming soon **
 
 ## Localization validation scripts
 will add all required js files and code to validate localized input fields like numbers, date and currency. These scripts will help to validate localized decimal numbers with comma or dot format (e.g. EN culture: 1.2 - TR culture: 1,2).
