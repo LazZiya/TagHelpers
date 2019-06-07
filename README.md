@@ -52,7 +52,9 @@ Then use alert tag helepr on razor side to render the alerts:
 ````razor
 <alert view-context="ViewContext"></alert>
 ````
-read more about alerts here: ** link coming soon **
+read more about alerts here: http://ziyad.info/en/articles/37-Alert_TagHelper
+Live demo: http://demo.ziyad.info/en/Alerts
+
 
 ## Localization validation scripts
 will add all required js files and code to validate localized input fields like numbers, date and currency. These scripts will help to validate localized decimal numbers with comma or dot format (e.g. EN culture: 1.2 - TR culture: 1,2).
