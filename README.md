@@ -48,6 +48,10 @@ using LazZiya.TagHelpers.Alerts
 TempData.Danger("Ooopps! something went wrong with the code, please contact support.");
 ````
 
+Then use alert tag helepr on razor side to render the alerts:
+````razor
+<alert view-context="ViewContext"></alert>
+````
 read more about alerts here: ** link coming soon **
 
 ## Localization validation scripts
