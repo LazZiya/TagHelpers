@@ -3,7 +3,7 @@
 
 Collection of helpful TagHelpers for any ASP.NET Core project. Latest version 2.1.0 contains the below TagHelpers :
 
-- LocalizeTagHelper (available as a separate package in [LazZiya.TagHelpers.Localization](https://github.com/lazziya/TagHelpers.Localization)
+- LocalizeTagHelper : Available as a separate package in [LazZiya.TagHelpers.Localization](https://github.com/lazziya/TagHelpers.Localization)
 - AlertTagHelper (new v2.2)
 - LocalizationValidationScriptsTagHelper
 - LanguageNavTagHelper
