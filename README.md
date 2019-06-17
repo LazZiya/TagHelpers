@@ -1,7 +1,9 @@
+
 # LazZiya.TagHelpers
 
 Collection of helpful TagHelpers for any ASP.NET Core project. Latest version 2.1.0 contains the below TagHelpers :
 
+- LocalizeTagHelper (available as a separate package in [LazZiya.TagHelpers.Localization](https://github.com/lazziya/TagHelpers.Localization)
 - AlertTagHelper (new v2.2)
 - LocalizationValidationScriptsTagHelper
 - LanguageNavTagHelper
@@ -29,6 +31,13 @@ add tag helper to _ViewImports.cshtml:
 ````razor
 @addTagHelper *, LazZiya.TagHelpers
 ````
+
+## LocalizeTagHelper
+Use simple html tag to localize text/html in razor views
+````razor
+<localize>Hellow world!</localize>
+````
+For more details see: [LazZiya.TagHelpers.Localization](https://github.com/lazziya/TagHelpers.Localization)
 
 ## AlertTagHelper
 Easily create bootstrap 4.x alerts from c# backend or razor pages using html codes.
