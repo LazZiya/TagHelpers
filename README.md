@@ -1,10 +1,9 @@
 # LazZiya.TagHelpers
 Collection of helpful TagHelpers for any ASP.NET Core project. 
 
-## Release history
-https:/github.com/lazziya/taghelpers/master/ReleaseHistory.md
+Goto [Release history](https://github.com/LazZiya/TagHelpers/blob/master/ReleseHistory.md)
 
-## Included TagHelpers
+## Contents
 - LocalizeTagHelper ([Repository](https://github.com/lazziya/TagHelpers.Localize), [Demo](http://demo.ziyad.info/en/Localize))
 - AlertTagHelper ([Docs](http://www.ziyad.info/en/articles/37-Alert_TagHelpers), [Demo](http://demo.ziyad.info/en/Alerts))
 - LocalizationValidationScriptsTagHelper ([Docs](http://www.ziyad.info/en/articles/34-Localization_Validation_Scripts), [Demo](http://demo.ziyad.info/en/Trips))
