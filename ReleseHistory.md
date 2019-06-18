@@ -16,6 +16,7 @@ _26 May 2019_
 
 ## v2.0.0
 _14 April 2019_
+
 **LanguageNav TagHelper :** Create language navigation for multicultural web applications
 - Documentation : http://www.ziyad.info/en/articles/32-Language_Navigation_TagHelper
 - Live demo : http://demo.ziyad.info/en/LanguageNav
