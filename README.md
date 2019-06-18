@@ -27,12 +27,18 @@ add tag helper to _ViewImports.cshtml:
 @addTagHelper *, LazZiya.TagHelpers
 ````
 
+# Code Samples
 ## LocalizeTagHelper
 Use simple html tag to localize text/html in razor views
 ````razor
 <localize>Hellow world!</localize>
 ````
-For more details see: [LazZiya.TagHelpers.Localization](https://github.com/lazziya/TagHelpers.Localization)
+_Requires [LazZiya.TagHelpers.Localization](https://github.com/lazziya/TagHelpers.Localize) and [LazZiya.ExpressLocalization](https://github.com/lazziya/ExpressLocalization) nuget packages._
+
+For more details see: 
+- [LazZiya.TagHelpers.Localization](https://github.com/lazziya/TagHelpers.Localization)
+- [LazZiya.ExpressLocalization](https://github.com/lazziya/ExpressLocalization)
+- [Step-by-step tutorial to develop multi-cultural Asp.Net Core 2.2 web app](http://www.ziyad.info/en/articles/36-Develop_Multi_Cultural_Web_Application_Using_ExpressLocalization)
 
 ## AlertTagHelper
 Easily create bootstrap 4.x alerts from c# backend or razor pages using html codes.
