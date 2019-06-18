@@ -1,22 +1,18 @@
-
 # LazZiya.TagHelpers
+Collection of helpful TagHelpers for any ASP.NET Core project. 
 
-Collection of helpful TagHelpers for any ASP.NET Core project. Latest version 2.1.0 contains the below TagHelpers :
+## Release history
+https:/github.com/lazziya/taghelpers/master/ReleaseHistory.md
 
-- LocalizeTagHelper : Available as a separate package in [LazZiya.TagHelpers.Localization](https://github.com/lazziya/TagHelpers.Localization)
-- AlertTagHelper (new v2.2)
-- LocalizationValidationScriptsTagHelper
-- LanguageNavTagHelper
-- PagingTagHelper
-- SelectEnumTagHelper
+## Included TagHelpers
+- LocalizeTagHelper ([Repository](https://github.com/lazziya/TagHelpers.Localize), [Demo](http://demo.ziyad.info/en/Localize))
+- AlertTagHelper ([Docs](http://www.ziyad.info/en/articles/37-Alert_TagHelpers), [Demo](http://demo.ziyad.info/en/Alerts))
+- LocalizationValidationScriptsTagHelper ([Docs](http://www.ziyad.info/en/articles/34-Localization_Validation_Scripts), [Demo](http://demo.ziyad.info/en/Trips))
+- LanguageNavTagHelper ([Docs](http://www.ziyad.info/en/articles/32-Language_Navigation_TagHelper), [Demo](http://demo.ziyad.info/en/LanguageNav))
+- SelectEnumTagHelper ([Docs](http://www.ziyad.info/en/articles/28-Select_Enum_TagHelper), [Demo](http://demo.ziyad.info/en/SelectEnum))
+- PagingTagHelper ([Docs](http://www.ziyad.info/en/articles/21-Paging_TagHelper_for_ASP_NET_Core), [Demo](http://demo.ziyad.info/en/Paging))
 - EmailTagHelper
 - PhoneNumberTagHelper
-
-## Project site:
-http://ziyad.info/en/articles/27-LazZiya_TagHelpers
-
-## Live Demos :
-http://demo.ziyad.info/en/
 
 ## Installation:
 
@@ -122,11 +118,12 @@ it is important to add `query-string-value` if there is multiple filtering param
 
 For more details visit http://www.ziyad.info/en/articles/21-Paging_TagHelper_for_ASP_NET_Core
 
-see more in WiKi pages or project site.
 
-goto Wiki: https://github.com/LazZiya/TagHelpers/wiki
+## Project site:
+http://ziyad.info/en/articles/27-LazZiya_TagHelpers
 
-goto project website: http://ziyad.info/en/articles/27-LazZiya_TagHelpers
+## Live Demos :
+http://demo.ziyad.info/en/
 
 ## License
 https://github.com/LazZiya/TagHelpers/blob/master/LICENSE
