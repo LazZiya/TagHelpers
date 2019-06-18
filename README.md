@@ -68,7 +68,7 @@ Read more :
 - [Demo](http://demo.ziyad.info/en/Alerts)
 
 
-### LocalizationValidationScripts TagHelper
+## LocalizationValidationScripts TagHelper
 will add all required js files and code to validate localized input fields like numbers, date and currency. These scripts will help to validate localized decimal numbers with comma or dot format (e.g. EN culture: 1.2 - TR culture: 1,2).
 
  1- Register tag helper component in startup. Don't apply this step if you are using [ExpressLocalization](https://github.com/LazZiya/ExpressLocalization) it will be done automatically
@@ -85,7 +85,7 @@ will add all required js files and code to validate localized input fields like 
  - [Demo](http://demo.ziyad.info/en/Trips)
 
 
-### LangaugeNav TagHelper
+## LangaugeNav TagHelper
 ````cshtml
 <language-nav view-context="ViewContext"></language-nav>
 ````
@@ -94,7 +94,7 @@ For more details :
 - [Demo](http://demo.ziyad.info/en/LanguageNav)
 
 
-### SelectEnum TagHelper
+## SelectEnum TagHelper
 
 Sample enum :
 ````cs
@@ -113,7 +113,7 @@ For more details :
 - [Demo](http://demo.ziyad.info/en/SelectEnum)
 
 
-### Paging TagHelper
+## Paging TagHelper
 
 Only few parameters are required to fireup the agination control
 
