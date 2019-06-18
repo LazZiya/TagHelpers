@@ -34,7 +34,7 @@ _17 September 2019_
 **Paging TagHelper :** easily create pagination control
 - Documentation : http://www.ziyad.info/en/articles/21-Paging_TagHelper_for_ASP_NET_Core
 - Live demo : http://demo.ziyad.info/en/Paging
- 
+- Step by step tutorial : http://www.ziyad.info/en/articles/38-How_to_build_an_efficient_pagination_system 
 
 ## Project site:
 http://ziyad.info/en/articles/27-LazZiya_TagHelpers
