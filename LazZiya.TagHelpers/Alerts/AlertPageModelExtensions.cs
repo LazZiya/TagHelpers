@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using LazZiya.TagHelpers.Utilities;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Newtonsoft.Json;
 
 namespace LazZiya.TagHelpers.Alerts
 {
@@ -107,7 +109,7 @@ namespace LazZiya.TagHelpers.Alerts
         private static void AddAlert(ITempDataDictionary tempData, AlertStyle alertStyle, string message, string header, bool dismissable)
         {
             var alerts = tempData.ContainsKey(Alert.TempDataKey)
-                ? (List<Alert>)tempData[Alert.TempDataKey]
+                ? JsonConvert.DeserializeObject<List<Alert>>(tempData[Alert.TempDataKey].ToString())
                 : new List<Alert>();
 
             alerts.Add(new Alert
@@ -118,7 +120,7 @@ namespace LazZiya.TagHelpers.Alerts
                 Dismissable = dismissable
             });
 
-            tempData[Alert.TempDataKey] = alerts;
+            tempData.Put<List<Alert>>(Alert.TempDataKey, alerts);
         }
     }
 }

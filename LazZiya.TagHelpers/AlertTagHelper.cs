@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using LazZiya.TagHelpers.Alerts;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using LazZiya.TagHelpers.Utilities;
 
 namespace LazZiya.TagHelpers
 {
@@ -40,7 +42,9 @@ namespace LazZiya.TagHelpers
             if (ViewContext != null)
             {
                 var alerts = ViewContext.TempData.ContainsKey(Alert.TempDataKey)
-                    ? (List<Alert>)ViewContext.TempData[Alert.TempDataKey]
+                    //? JsonConvert.DeserializeObject<List<Alert>>(ViewContext.TempData[Alert.TempDataKey].ToString())
+                    //? (List<Alert>)ViewContext.TempData[Alert.TempDataKey]
+                    ? ViewContext.TempData.Get<List<Alert>>(Alert.TempDataKey)
                     : new List<Alert>();
 
                 alerts.ForEach(x => output.Content.AppendHtml(AddAlert(x)));

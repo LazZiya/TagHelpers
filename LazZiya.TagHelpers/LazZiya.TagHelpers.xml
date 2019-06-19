@@ -862,5 +862,29 @@
             <param name="context"></param>
             <param name="output"></param>
         </member>
+        <member name="T:LazZiya.TagHelpers.Utilities.GenericTempDataExtensions">
+            <summary>
+            Generic extension to TempData for adding complex object and fix serialization problem
+            </summary>
+            <![CDATA[https://stackoverflow.com/a/35042391/5519026]]>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Utilities.GenericTempDataExtensions.Put``1(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,``0)">
+            <summary>
+            Add object to temp data
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="tempData"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Utilities.GenericTempDataExtensions.Get``1(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String)">
+            <summary>
+            Read object from temp data
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="tempData"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
