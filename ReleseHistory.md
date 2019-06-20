@@ -1,5 +1,10 @@
 # LazZiya.TagHelpers Release History
 
+## v2.2.1 
+_20 June 2019_
+
+**Hotfix for Alert TagHelper :** See related isse here https://github.com/LazZiya/TagHelpers/issues/2
+
 ## v2.2.0 
 _07 June 2019_
 
