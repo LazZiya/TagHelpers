@@ -13,9 +13,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>- HotFix: Fixed TempData serialization error of LazZiya.TagHelpers.Alerts.Alert </PackageReleaseNotes>
-    <Version>2.2.1</Version>
-    <AssemblyVersion>2.2.1.0</AssemblyVersion>
-    <FileVersion>2.2.1.0</FileVersion>
+    <Version>3.0.0-preview</Version>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</PackageIconUrl>
@@ -23,29 +23,14 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp1.0|AnyCPU'">
-    <DocumentationFile>D:\MyWorks\WebDev\LazZiya\TagHelpers\LazZiya.TagHelpers\LazZiya.TagHelpers.xml</DocumentationFile>
+    <DocumentationFile>files\LazZiya.TagHelpers.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp1.0|AnyCPU'">
-    <DocumentationFile>D:\MyWorks\WebDev\LazZiya\TagHelpers\LazZiya.TagHelpers\LazZiya.TagHelpers.xml</DocumentationFile>
+    <DocumentationFile>files\LazZiya.TagHelpers.xml</DocumentationFile>
   </PropertyGroup>
 
- <!--
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1'">
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.1.0" Exclude="Build,Analyzers" />
-    <dependency id="Microsoft.NETCore.App" version="1.1.2" exclude="Build,Analyzers" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0'">
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0" Exclude="Build,Analyzers" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1'">
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.0" Exclude="Build,Analyzers" />
-  </ItemGroup>
--->
-
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'netcoreapp3.0'">
     <PackageReference Include="Microsoft.AspNetCore.Localization" Version="1.0.0" Exclude="build,analyzers" />
   </ItemGroup>
   
@@ -95,7 +80,5 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
-  <ProjectExtensions><VisualStudio><UserProperties BuildVersion_BuildVersioningStyle="None.None.Increment.DeltaBaseYearDayOfYear" BuildVersion_UpdateFileVersion="True" BuildVersion_StartDate="2000/1/1" BuildVersion_UseUniversalClock="True" BuildVersion_UpdateAssemblyVersion="True" /></VisualStudio></ProjectExtensions>
 
 </Project>
