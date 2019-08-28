@@ -5,7 +5,6 @@ using System;
 using System.Globalization;
 using System.IO;
 
-
 namespace LazZiya.TagHelpers
 {
 #if NETCOREAPP1_0 || NETCOREAPP1_1
@@ -90,4 +89,4 @@ namespace LazZiya.TagHelpers
         }
     }
 #endif
-}
+    }
