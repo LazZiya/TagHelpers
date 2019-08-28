@@ -406,7 +406,7 @@
             required for listing supported cultures
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.LanguageNavTagHelper},Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions})">
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.LanguageNavTagHelper},Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions},Microsoft.AspNetCore.Routing.LinkGenerator)">
             <summary>
             creates a language navigation menu, depends on supported cultures
             </summary>
@@ -474,24 +474,42 @@
         </member>
         <member name="T:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper">
             <summary>
-            This tag helepr is not compatible with dotnet lower than 2.0
+            creates localization validation scripts tag to place client side validiation scripts inside
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.Source">
+            <summary>
+            (optional) define where to load scripts from, Local or JsDelivr.
+            <para>Default: JsDelivr</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.CldrVersion">
+            <summary>
+            (optional) set cldr version to load.
+            <para>Default: 35.1</para>
             </summary>
         </member>
         <member name="T:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent">
             <summary>
-            This tag helepr is not compatible with dotnet lower than 2.0
+            inserts all client side localizaiton validation scripts into relevant tag
             </summary>
         </member>
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            inserts all localizaiton validation scripts into relevant tag
+            </summary>
+            <param name="hosting"></param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.GetCultureName" -->
         <member name="T:LazZiya.TagHelpers.PagingTagHelper">
             <summary>
             Creates a pagination control
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.PagingTagHelper.#ctor(Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.PagingTagHelper})">
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.PagingTagHelper})">
             <summary>
-            creates a pagination control
+            Creates a pagination control
             </summary>
-            <param name="logger">default logger</param>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageNo">
             <summary>

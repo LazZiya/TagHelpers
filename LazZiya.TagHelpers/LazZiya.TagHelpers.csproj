@@ -12,17 +12,16 @@
     <PackageIcon>files\icon.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
-    <PackageReleaseNotes>- HotFix: Fixed TempData serialization error of LazZiya.TagHelpers.Alerts.Alert </PackageReleaseNotes>
-    <Version>3.0.0-preview</Version>
-    <AssemblyVersion>3.0.0.0</AssemblyVersion>
-    <FileVersion>3.0.0.0</FileVersion>
+    <PackageReleaseNotes>Endpoint routing for dotnet core 3</PackageReleaseNotes>
+    <Version>3.0.1-preview</Version>
+    <AssemblyVersion>3.0.1.0</AssemblyVersion>
+    <FileVersion>3.0.1.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/LazZiya/TagHelpers</RepositoryUrl>
   </PropertyGroup>
 
-  <!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp1.0|AnyCPU'">-->
   <PropertyGroup>
     <DocumentationFile>files\LazZiya.TagHelpers.xml</DocumentationFile>
   </PropertyGroup>

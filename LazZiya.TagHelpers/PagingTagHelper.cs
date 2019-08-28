@@ -35,6 +35,9 @@ namespace LazZiya.TagHelpers
         private IConfiguration Configuration { get; }
         private ILogger _logger;
 
+        /// <summary>
+        /// Creates a pagination control
+        /// </summary>
         public PagingTagHelper(IConfiguration configuration, ILogger<PagingTagHelper> logger)
         {
             Configuration = configuration;

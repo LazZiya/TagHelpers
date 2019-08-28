@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-#if NETCOREAPP2_2
+#if NETCOREAPP2_2 || NETCOREAPP3_0
 using Microsoft.AspNetCore.Routing;
 #endif
 
@@ -67,7 +67,7 @@ namespace LazZiya.TagHelpers
         private readonly IOptions<RequestLocalizationOptions> _ops;
         private readonly ILogger _logger;
 
-#if NETCOREAPP2_2
+#if NETCOREAPP2_2 || NETCOREAPP3_0
         private readonly LinkGenerator _lg;
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace LazZiya.TagHelpers
 
                 var urlRoute = new UrlRouteContext { Values = _routeData };
 
-#if NETCOREAPP2_2
+#if NETCOREAPP2_2 || NETCOREAPP3_0
                 var url = _lg.GetPathByRouteValues(httpContext: ViewContext.HttpContext, "", _routeData);
 #else
                 var url = urlHelper.RouteUrl(urlRoute);
