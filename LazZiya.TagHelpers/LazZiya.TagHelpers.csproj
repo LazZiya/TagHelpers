@@ -22,11 +22,8 @@
     <RepositoryUrl>https://github.com/LazZiya/TagHelpers</RepositoryUrl>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp1.0|AnyCPU'">
-    <DocumentationFile>files\LazZiya.TagHelpers.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp1.0|AnyCPU'">
+  <!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp1.0|AnyCPU'">-->
+  <PropertyGroup>
     <DocumentationFile>files\LazZiya.TagHelpers.xml</DocumentationFile>
   </PropertyGroup>
 
