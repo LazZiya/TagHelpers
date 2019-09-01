@@ -411,7 +411,8 @@
             creates a language navigation menu, depends on supported cultures
             </summary>
             <param name="logger"></param>
-            <param name="ops"></param>
+            <param name="ops">Request localization options</param>
+            <param name="lg">link generator</param>
         </member>
         <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
             <summary>
@@ -489,18 +490,41 @@
             <para>Default: 35.1</para>
             </summary>
         </member>
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.#ctor(Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            creates localization validation scripts tag to place client side validiation scripts inside
+            </summary>
+        </member>
         <member name="T:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent">
             <summary>
             inserts all client side localizaiton validation scripts into relevant tag
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
             inserts all localizaiton validation scripts into relevant tag
             </summary>
             <param name="hosting"></param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.GetCultureName" -->
+        <member name="P:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.Order">
+            <summary>
+            default order is 0
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            generate the taghelper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.GetCultureName">
+            <summary>
+            find json files related to the current culture, if not found return parent culture, if not found return default culture.
+            see ClientSideValidationScripts.html for how to configure paths
+            </summary>
+            <returns>culture name e.g. tr</returns>
+        </member>
         <member name="T:LazZiya.TagHelpers.PagingTagHelper">
             <summary>
             Creates a pagination control

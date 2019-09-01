@@ -74,7 +74,8 @@ namespace LazZiya.TagHelpers
         /// creates a language navigation menu, depends on supported cultures
         /// </summary>
         /// <param name="logger"></param>
-        /// <param name="ops"></param>
+        /// <param name="ops">Request localization options</param>
+        /// <param name="lg">link generator</param>
         public LanguageNavTagHelper(ILogger<LanguageNavTagHelper> logger, IOptions<RequestLocalizationOptions> ops, LinkGenerator lg)
         {
             _logger = logger;
