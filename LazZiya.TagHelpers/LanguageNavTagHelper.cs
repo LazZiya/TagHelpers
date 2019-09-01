@@ -146,7 +146,12 @@ namespace LazZiya.TagHelpers
         private void CreateBootstrapItems(ref TagHelperOutput output, List<LanguageItem> langDictionary)
         {
             var div = new TagBuilder("div");
-            div.AddCssClass("dropdown-menu dropdown-menu-right");
+
+            if(CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                div.AddCssClass("dropdown-menu dropdown-menu-left");
+            else
+                div.AddCssClass("dropdown-menu dropdown-menu-right");
+
             div.Attributes.Add("aria-labeledby", "dropdownlang");
 
             foreach (var lang in langDictionary.Where(x => x.Name != CultureInfo.CurrentCulture.Name).OrderBy(x=>x.DisplayText))

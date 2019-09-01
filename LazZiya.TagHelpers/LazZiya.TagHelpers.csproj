@@ -12,7 +12,11 @@
     <PackageIcon>files\icon.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
-    <PackageReleaseNotes>Endpoint routing for dotnet core 3</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      - support for dotnetcore 3.0
+      - Endpoint routing for dotnet core 3
+      - RTL support for language nav
+    </PackageReleaseNotes>
     <Version>3.0.0-preview1</Version>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
