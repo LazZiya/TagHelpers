@@ -3,8 +3,9 @@ Collection of helpful TagHelpers for any ASP.NET Core project.
 
 ## Latest release
 
-20 June 2019
-- v2.2.1 - hotfix https://github.com/LazZiya/TagHelpers/issues/2
+02 September 2019
+- v3.0.0-preview1
+  DotNetCore 3.0 support
 - [Release history](https://github.com/LazZiya/TagHelpers/blob/master/ReleseHistory.md)
 
 ## Contents
@@ -22,7 +23,7 @@ Collection of helpful TagHelpers for any ASP.NET Core project.
 Install via nuget :
 
 ````
-Install-Package LazZiya.TagHelpers -Version 2.2.1
+Install-Package LazZiya.TagHelpers -Version 3.3.0-preview1
 ````
 
 add tag helper to _ViewImports.cshtml:
