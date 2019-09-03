@@ -13,11 +13,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>
-      - support for dotnetcore 3.0
-      - Endpoint routing for dotnet core 3
-      - RTL support for language nav
+      - LanguageTagHelper: Support for generating URL's with EndPointRouting enabled or disabled
     </PackageReleaseNotes>
-    <Version>3.0.0-preview1</Version>
+    <Version>3.0.0-preview2</Version>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc;
 
 #if NETCOREAPP2_2 || NETCOREAPP3_0
 using Microsoft.AspNetCore.Routing;
@@ -66,8 +67,10 @@ namespace LazZiya.TagHelpers
         /// </summary>
         private readonly IOptions<RequestLocalizationOptions> _ops;
         private readonly ILogger _logger;
-
+        
+        
 #if NETCOREAPP2_2 || NETCOREAPP3_0
+        private readonly IOptions<MvcOptions> _mvcOps;
         private readonly LinkGenerator _lg;
 
         /// <summary>
@@ -76,11 +79,13 @@ namespace LazZiya.TagHelpers
         /// <param name="logger"></param>
         /// <param name="ops">Request localization options</param>
         /// <param name="lg">link generator</param>
-        public LanguageNavTagHelper(ILogger<LanguageNavTagHelper> logger, IOptions<RequestLocalizationOptions> ops, LinkGenerator lg)
+        /// <param name="mvcOps">MvcOptions</param>
+        public LanguageNavTagHelper(ILogger<LanguageNavTagHelper> logger, IOptions<RequestLocalizationOptions> ops, LinkGenerator lg, IOptions<MvcOptions> mvcOps)
         {
             _logger = logger;
             _ops = ops;
             _lg = lg;
+            _mvcOps = mvcOps;
         }
 #else
         /// <summary>
@@ -123,7 +128,7 @@ namespace LazZiya.TagHelpers
         private void CreateClassicItems(ref TagHelperOutput output, List<LanguageItem> langDictionary)
         {
             output.TagName = "select";
-            foreach (var lang in langDictionary.OrderBy(x=>x.DisplayText))
+            foreach (var lang in langDictionary.OrderBy(x => x.DisplayText))
             {
                 var option = new TagBuilder("option");
                 option.Attributes.Add("value", lang.Url);
@@ -147,14 +152,14 @@ namespace LazZiya.TagHelpers
         {
             var div = new TagBuilder("div");
 
-            if(CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+            if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
                 div.AddCssClass("dropdown-menu dropdown-menu-left");
             else
                 div.AddCssClass("dropdown-menu dropdown-menu-right");
 
             div.Attributes.Add("aria-labeledby", "dropdownlang");
 
-            foreach (var lang in langDictionary.Where(x => x.Name != CultureInfo.CurrentCulture.Name).OrderBy(x=>x.DisplayText))
+            foreach (var lang in langDictionary.Where(x => x.Name != CultureInfo.CurrentCulture.Name).OrderBy(x => x.DisplayText))
             {
                 var a = new TagBuilder("a");
                 a.AddCssClass("dropdown-item small");
@@ -203,10 +208,22 @@ namespace LazZiya.TagHelpers
 
                 var urlRoute = new UrlRouteContext { Values = _routeData };
 
-#if NETCOREAPP2_2 || NETCOREAPP3_0
-                var url = _lg.GetPathByRouteValues(httpContext: ViewContext.HttpContext, "", _routeData);
+                string url;
+
+#if NETCOREAPP2_2
+                // DotNetCore 2.2 uses EndPointRouting, 
+                // so we need to use the link generator to generate url
+                url = _lg.GetPathByRouteValues(httpContext: ViewContext.HttpContext, "", _routeData);
+#elif NETCOREAPP3_0
+                // DotNetCore 3.0 has optional value to use EndPointRouting
+                // First check if EndPointRouting is enabled
+                // Or use generic urlHelper to generate url
+                url = _mvcOps.Value.EnableEndpointRouting
+                    ? _lg.GetPathByRouteValues(httpContext: ViewContext.HttpContext, "", _routeData)
+                    : urlHelper.RouteUrl(urlRoute);
 #else
-                var url = urlHelper.RouteUrl(urlRoute);
+                // DotNetCore versions before 2.2 uses generic url herlper
+                url = urlHelper.RouteUrl(urlRoute);
 #endif
                 var label = GetLanguageLabel(cul);
                 dic.Add(new LanguageItem { Name = cul.Name, DisplayText = label, Url = url });
