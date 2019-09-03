@@ -1,5 +1,11 @@
 # LazZiya.TagHelpers Release History
 
+## v3.0.0-preview1
+_02 Sep 2019_
+
+**DotNetCore 3.0 Support :** Added support for dotnet core 3.0.
+**LanguageTagHelper :** Auto RTL direction for Language TagHelper dropdown
+
 ## v2.2.1 
 _20 June 2019_
 
