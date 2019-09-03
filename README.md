@@ -1,5 +1,6 @@
 # LazZiya.TagHelpers
 Collection of helpful TagHelpers for any ASP.NET Core project. 
+> - preview version for Asp.Net Core 3.0 is available [here][1]
 
 ## Latest release
 
@@ -145,3 +146,5 @@ http://demo.ziyad.info/en/
 
 ## License
 https://github.com/LazZiya/TagHelpers/blob/master/LICENSE
+
+[1]: https://github.com/LazZiya/TagHelpers/tree/TagHelpersCore3
