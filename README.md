@@ -1,8 +1,10 @@
 # LazZiya.TagHelpers
 Collection of helpful TagHelpers for any ASP.NET Core project. 
-> - preview version for Asp.Net Core 3.0 is available [here][1]
 
 ## Latest release
+
+# 25 September 2019
+- v3.0.0
 
 02 September 2019
 - v3.0.0-preview1
