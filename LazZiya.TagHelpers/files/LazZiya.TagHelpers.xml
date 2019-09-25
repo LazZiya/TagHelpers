@@ -1,0 +1,933 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LazZiya.TagHelpers</name>
+    </assembly>
+    <members>
+        <member name="T:LazZiya.TagHelpers.AlertPrimaryTagHelper">
+            <summary>
+            Create primary alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertPrimaryTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create primary alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertSecondaryTagHelper">
+            <summary>
+            Create secondary alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertSecondaryTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create secondary alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertSuccessTagHelper">
+            <summary>
+            Create success alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertSuccessTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create success alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertDangerTagHelper">
+            <summary>
+            Create danger alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertDangerTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create danger alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertWarningTagHelper">
+            <summary>
+            Create warning alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertWarningTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create danger alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertInfoTagHelper">
+            <summary>
+            Create info alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertInfoTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create info alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertLightTagHelper">
+            <summary>
+            Create light alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertLightTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create light alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertDarkTagHelper">
+            <summary>
+            Create dark alert
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertDarkTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create dark alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Alerts.AlertStyle">
+            <summary>
+            Define alert style depending on Bootstrap4.x alert classes
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Primary">
+            <summary>
+            alert-primary
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Secondary">
+            <summary>
+            alert-secondary
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Success">
+            <summary>
+            alert-success
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Danger">
+            <summary>
+            alert-danger
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Warning">
+            <summary>
+            alert-warning
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Info">
+            <summary>
+            alert-info
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Light">
+            <summary>
+            alert-light
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.AlertStyle.Dark">
+            <summary>
+            alert-dark
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Alerts.Alert">
+            <summary>
+            Alert item that can be created in the backend manually for pushing alert to themp data
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.Alert.TempDataKey">
+            <summary>
+            Key to find alerts in TempData dictionary
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Alerts.Alert.AlertStyle">
+            <summary>
+            Alert style depending on Bootstrap 4.x classes
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Alerts.Alert.AlertHeading">
+            <summary>
+            Header text for the alert message
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Alerts.Alert.AlertMessage">
+            <summary>
+            Alert message body
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Alerts.Alert.Dismissable">
+            <summary>
+            true for dismissable alert
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Alerts.TempDataExtensions">
+            <summary>
+            Extensions for TempData for creating coder friendly alerts easily
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Primary(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create primary alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Secondary(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create secondary alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Success(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create success alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Danger(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create danger alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Warning(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create warning alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Info(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create info alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Light(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create light alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Alerts.TempDataExtensions.Dark(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,System.String,System.Boolean)">
+            <summary>
+            Create dark alert
+            </summary>
+            <param name="tempData">TempData</param>
+            <param name="alertMessage">message body</param>
+            <param name="alertHeader">message header</param>
+            <param name="dismissable">Show closing button</param>
+        </member>
+        <member name="T:LazZiya.TagHelpers.AlertTagHelper">
+            <summary>
+            Create alert messages styled with bootstrap 4.x
+            Alert contents must be replaced between alert tags e.g. <![CDATA[<alert-success>job done!</alert-success>]]>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.AlertTagHelper.AlertHeading">
+            <summary>
+            Header text for the alert
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.AlertTagHelper.Dismissable">
+            <summary>
+            Show closing button, default is true
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.AlertTagHelper.ViewContext">
+            <summary>
+            View context is required to access TempData dictionary that contains the alerts coming from backend
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.AlertTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            Create alert messages styled with bootstrap 4.x
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.EmailTagHelper">
+            <summary>
+            creates email link with mark if email is confirmed
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.EmailTagHelper.EmailConfirmed">
+            <summary>
+            boolean value to indicate if the email is confirmed or not
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.EmailTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            process in creating email tag helper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LazZiya.TagHelpers.LanguageLabel">
+            <summary>
+            The label to display for language dropdown list on language names
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageLabel.Name">
+            <summary>
+            Culture name
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageLabel.DisplayName">
+            <summary>
+            Culture display name
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageLabel.EnglishName">
+            <summary>
+            Culture English name
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageLabel.NativeName">
+            <summary>
+            Culture native name
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageLabel.TwoLetterISOLanguageName">
+            <summary>
+            Two letter ISO language name
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.RedirectTo">
+            <summary>
+            Defines where to redirect when language is changes
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RedirectTo.HomePage">
+            <summary>
+            redirects to home page in the project root
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RedirectTo.SamePage">
+            <summary>
+            redirects to the same page and keep all filter like search
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RedirectTo.SamePageNoQueryString">
+            <summary>
+            redirect to the same page and clear all filters (QueryString) values
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.RenderMode">
+            <summary>
+            choose render mode style,
+            <para>classic: regular dropdown select list</para>
+            <para>Bootstrap4: HTML5 div with Bootstrap4 support</para>
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.Classic">
+            <summary>
+            regular dropdown list
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.Bootstrap">
+            <summary>
+            HTML5 div with Bootstrap 4 support
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.LanguageNavTagHelper">
+            <summary>
+            creates a language navigation menu, depends on supported cultures
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.CultureKeyName">
+            <summary>
+            optional: route data key name for culture, default "culture"
+            default: cultute
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.SupportedCultures">
+            <summary>
+            optional: manually specify list of supported cultures
+            <example>
+            en-US,tr, ar
+            </example>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.LanguageLabel">
+            <summary>
+            optional: what to display as label for language dropdown
+            default: LanguageLabel.EnglishName
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.RedirectTo">
+            <summary>
+            optional: specify where to redirect when the language is changed
+            <para>default value: RedirectTo.SamePage</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.HomePageName">
+            <summary>
+            optinal: name of the home page to redirect to when RedirectTo is HomePage
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.ViewContext">
+            <summary>
+            current view context to access RouteData.Values and Request.Query collection
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.RenderMode">
+            <summary>
+            Choose render mode: classis for regular dropdown list, Bootstrap4 for HTML5 div with Bootstrap4 style.
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageNavTagHelper._ops">
+            <summary>
+            required for listing supported cultures
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.LanguageNavTagHelper},Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions},Microsoft.AspNetCore.Routing.LinkGenerator,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Mvc.MvcOptions})">
+            <summary>
+            creates a language navigation menu, depends on supported cultures
+            </summary>
+            <param name="logger"></param>
+            <param name="ops">Request localization options</param>
+            <param name="lg">link generator</param>
+            <param name="mvcOps">MvcOptions</param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            start creating the language navigation dropdown
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateClassicItems(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput@,System.Collections.Generic.List{LazZiya.TagHelpers.LanguageItem})">
+            <summary>
+            create classic list items list
+            <example><![CDATA[<option value="/en-US/Index">English</option>]]></example>
+            </summary>
+            <param name="langDictionary">language name-URL dictionary</param>
+            <param name="output">reference to TagHelperOuput</param>
+            <returns></returns>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateBootstrapItems(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput@,System.Collections.Generic.List{LazZiya.TagHelpers.LanguageItem})">
+            <summary>
+            create classic list items list
+            <example><![CDATA[<a href="/en-US/Index" class="itemxyz">English</a>]]></example>
+            </summary>
+            <param name="langDictionary">language name-URL dictionary</param>
+            <param name="output">reference to TagHelperOuput</param>
+            <returns></returns>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateNavDictionary">
+            <summary>
+            create dictonary for all supported cultures
+            <para>Key: Language display name for label</para>
+            <para>Value: Navigation URL</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateRouteDataDictionary">
+            <summary>
+            Get route data values for the current route,
+            then save all values to _routeData dictionary
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.GetSupportedCultures">
+            <summary>
+            private list of supported CultureInfo,
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.ScriptSource">
+            <summary>
+            defines location to load localization valdiation scripts
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.ScriptSource.Local">
+            <summary>
+            valdiation scripts are located under wwwroot/lib folder
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.ScriptSource.JsDeliver">
+            <summary>
+            valdiation scripts will be loaded from jsdelivr
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper">
+            <summary>
+            creates localization validation scripts tag to place client side validiation scripts inside
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.Source">
+            <summary>
+            (optional) define where to load scripts from, Local or JsDelivr.
+            <para>Default: JsDelivr</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.CldrVersion">
+            <summary>
+            (optional) set cldr version to load.
+            <para>Default: 35.1</para>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.#ctor(Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            creates localization validation scripts tag to place client side validiation scripts inside
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent">
+            <summary>
+            inserts all client side localizaiton validation scripts into relevant tag
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            inserts all localizaiton validation scripts into relevant tag
+            </summary>
+            <param name="hosting"></param>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.Order">
+            <summary>
+            default order is 0
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            generate the taghelper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.GetCultureName">
+            <summary>
+            find json files related to the current culture, if not found return parent culture, if not found return default culture.
+            see ClientSideValidationScripts.html for how to configure paths
+            </summary>
+            <returns>culture name e.g. tr</returns>
+        </member>
+        <member name="T:LazZiya.TagHelpers.PagingTagHelper">
+            <summary>
+            Creates a pagination control
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.PagingTagHelper})">
+            <summary>
+            Creates a pagination control
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageNo">
+            <summary>
+            current page number.
+            <para>default: 1</para>
+            <para>example: p=1</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSize">
+            <summary>
+            how many items to get from db per page per request
+            <para>default: 25</para>
+            <para>example: pageSize=25</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TotalRecords">
+            <summary>
+            Total count of records in the db
+            <para>default: 0</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.MaxDisplayedPages">
+            <summary>
+            if count of pages is too much, restrict shown pages count to specific number
+            <para>default: 10</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.GapSize">
+            <summary>
+            Gap size to start show first/last numbered page
+            <para>default: 5</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.SettingsJson">
+            <summary>
+            name of the settings section in appSettings.json
+            <param>default: "default"</param>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavFormMethod">
+            <summary>
+            Form submit method when selecting different page size option
+            <para>default: get</para>
+            <para>options: get, post</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavBlockSize">
+            <summary>
+            The minimum block size to populate all possible page sizes for dropdown list
+            <para>default: 25</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavMaxItems">
+            <summary>
+            maximum nmber of items to show in the page size navigation menu
+            <para>default: 5</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavOnChange">
+            <summary>
+            action to take when page size dropdown changes
+            <para>default: this.form.submit();</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.QueryStringKeyPageNo">
+            <summary>
+            Query string paramter name for current page.
+            <para>default: p</para>
+            <para>exmaple: p=1</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.QueryStringKeyPageSize">
+            <summary>
+            Query string parameter name for page size
+            <para>default: s</para>
+            <para>example: s=25</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.QueryStringValue">
+            <summary>
+            Query string value starting from the ? including all next query string parameters 
+            to consider for next pages links.
+            <para>default: string.Empty</para>
+            <example>
+            <code>
+            @(Request.QueryString.Value)
+            </code>
+            </example>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowPageSizeNav">
+            <summary>
+            Show drop down list for different page size options
+            <para>default: false</para>
+            <para>options: true, false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowFirstLast">
+            <summary>
+            Show/hide First-Last buttons
+            <para>default: false, but will auto show if total pages > max displayed pages</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowPrevNext">
+            <summary>
+            Show/hide Previous-Next buttons
+            <para>default: false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowTotalPages">
+            <summary>
+            Show or hide total pages count
+            <para>default: false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowTotalRecords">
+            <summary>
+            Show or hide total records count
+            <para>default: false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowLastNumberedPage">
+            <summary>
+            Show last numbered page when total pages count is larger than max displayed pages
+            <para>default: false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowFirstNumberedPage">
+            <summary>
+            Show first numbered page when total pages count is larger than max displayed pages
+            <para>default: false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextPageSize">
+            <summary>
+            The text to display at page size dropdown list label
+            <para>default: Show </para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextFirst">
+            <summary>
+            Text to show on the "Go To First" Page button
+            <para>
+            <![CDATA[default: &laquo;]]></para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextLast">
+            <summary>
+            Text to show on "Go to last page" button
+            <para>
+            <![CDATA[default: &raquo;]]></para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextNext">
+            <summary>
+            Next button text
+            <para>
+            <![CDATA[default: &rsaquo;]]></para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextPrevious">
+            <summary>
+            previous button text
+            <para>
+            <![CDATA[default: &lsaquo;]]></para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextTotalPages">
+            <summary>
+            Display text for total pages label
+            <para>default: page</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextTotalRecords">
+            <summary>
+            Display text for total records label
+            <para>default: records</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.SrTextFirst">
+            <summary>
+            Text for screen readers only
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.SrTextLast">
+            <summary>
+            text for screen readers only
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.SrTextNext">
+            <summary>
+            text for screenreaders only
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.SrTextPrevious">
+            <summary>
+            text for screen readers only
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.Class">
+            <summary>
+            add custom class to content div
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassPagingControlDiv">
+            <summary>
+            css class for pagination div
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassInfoDiv">
+            <summary>
+            css class for page count/record count div
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassPageSizeDiv">
+            <summary>
+            styling class for page size div
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassPagingControl">
+            <summary>
+            pagination control class
+            <para>default: pagination</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassActivePage">
+            <summary>
+            class name for the active page
+            <para>default: active</para>
+            <para>examples: disabled, active, ...</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassDisabledJumpingButton">
+            <summary>
+            name of the class when jumping button is disabled.
+            jumping buttons are prev-next and first-last buttons
+            <param>default: disabled</param>
+            <para>example: disabled, d-hidden</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassTotalRecords">
+            <summary>
+            css class for total records info
+            <para>default: badge badge-light</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassTotalPages">
+            <summary>
+            css class for total pages info
+            <para>default: badge badge-light</para>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            process creating paging tag helper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.SetDefaults">
+            <summary>
+            This method will assign the values by checking three places
+            1- Property value if set from HTML code
+            2- Default values in appSettings.json
+            3- Hard coded default value in code
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.CreatePageSizeControl">
+            <summary>
+            dropdown list for changing page size (items per page)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.CreateUrlTemplate(System.Int32,System.Int32,System.String)">
+            <summary>
+            edit the url for each page, so it navigates to its target page number
+            </summary>
+            <param name="pageNo"></param>
+            <param name="pageSize"></param>
+            <param name="urlPath"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LazZiya.TagHelpers.PhoneNumberTagHelper">
+            <summary>
+            creates a display for phone number
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PhoneNumberTagHelper.PhoneNumberConfirmed">
+            <summary>
+            boolean value to indicate if the phone number has been confirmed
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PhoneNumberTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            process creating phone number tag helper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Properties.Resources.LocalizationValidationScripts_jsdeliver">
+             <summary>
+               Looks up a localized string similar to &lt;!-- cldr scripts (needed for globalize) --&gt;
+            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/rxaviers/cldrjs@0.5.1/dist/cldr.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/rxaviers/cldrjs@0.5.1/dist/cldr/event.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/rxaviers/cldrjs@0.5.1/dist/cldr/supplemental.js&quot;&gt;&lt;/script&gt;
+            
+            &lt;!-- globalize scripts --&gt;
+            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/globalizejs/globalize@1.4.2/dist/globalize.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;https://cdn.jsdelivr.net/gh/globalizejs/g [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Properties.Resources.LocalizationValidationScripts_local">
+             <summary>
+               Looks up a localized string similar to &lt;!-- cldr scripts (needed for globalize) --&gt;
+            &lt;script src=&quot;/lib/cldr/dist/cldr.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;/lib/cldr/dist/cldr/event.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;/lib/cldr/dist/cldr/supplemental.min.js&quot;&gt;&lt;/script&gt;
+            
+            &lt;!-- globalize scripts --&gt;
+            &lt;script src=&quot;/lib/globalize/dist/globalize.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;/lib/globalize/dist/globalize/number.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;/lib/globalize/dist/globalize/date.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script src=&quot;/lib/globalize/dist/globalize/currency.min.js&quot;&gt;&lt;/s [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.SelectEnumTagHelper">
+            <summary>
+            creates a dropdown list from custom enum with supports for localization
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.SelectEnumTagHelper.SelectedValue">
+            <summary>
+            (int)MyEnum.ValueName
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.SelectEnumTagHelper.EnumType">
+            <summary>
+            typeof(MyEnum)
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.SelectEnumTagHelper.TextLocalizerDelegate">
+            <summary>
+            localization method as delegate
+            e.g. delegate(string s) { return _localizaer["My value"]; }
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.SelectEnumTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            start creating select-enum tag helper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Utilities.GenericTempDataExtensions">
+            <summary>
+            Generic extension to TempData for adding complex object and fix serialization problem
+            </summary>
+            <![CDATA[https://stackoverflow.com/a/35042391/5519026]]>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Utilities.GenericTempDataExtensions.Put``1(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String,``0)">
+            <summary>
+            Add object to temp data
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="tempData"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Utilities.GenericTempDataExtensions.Get``1(Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary,System.String)">
+            <summary>
+            Read object from temp data
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="tempData"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

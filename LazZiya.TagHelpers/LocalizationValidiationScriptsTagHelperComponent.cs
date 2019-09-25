@@ -5,7 +5,6 @@ using System;
 using System.Globalization;
 using System.IO;
 
-
 namespace LazZiya.TagHelpers
 {
 #if NETCOREAPP1_0 || NETCOREAPP1_1
@@ -21,6 +20,20 @@ namespace LazZiya.TagHelpers
     /// </summary>
     public class LocalizationValidationScriptsTagHelperComponent : TagHelperComponent
     {
+
+#if NETCOREAPP3_0
+        private readonly IWebHostEnvironment _hosting;
+
+        /// <summary>
+        /// inserts all localizaiton validation scripts into relevant tag
+        /// </summary>
+        /// <param name="hosting"></param>
+        public LocalizationValidationScriptsTagHelperComponent(IWebHostEnvironment hosting)
+        {
+            _hosting = hosting;
+        }
+
+#else
         private readonly IHostingEnvironment _hosting;
 
         /// <summary>
@@ -31,8 +44,17 @@ namespace LazZiya.TagHelpers
         {
             _hosting = hosting;
         }
-
+#endif
+        /// <summary>
+        /// default order is 0
+        /// </summary>
         public override int Order => 1;
+
+        /// <summary>
+        /// generate the taghelper
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="output"></param>
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             if (string.Equals(context.TagName, "localization-validation-scripts", StringComparison.OrdinalIgnoreCase))
@@ -71,7 +93,6 @@ namespace LazZiya.TagHelpers
         /// <summary>
         /// find json files related to the current culture, if not found return parent culture, if not found return default culture.
         /// see ClientSideValidationScripts.html for how to configure paths
-        /// </para>
         /// </summary>
         /// <returns>culture name e.g. tr</returns>
         private string GetCultureName()
@@ -90,4 +111,4 @@ namespace LazZiya.TagHelpers
         }
     }
 #endif
-}
+    }

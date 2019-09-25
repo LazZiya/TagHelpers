@@ -47,6 +47,9 @@ namespace LazZiya.TagHelpers
         [HtmlAttributeName("cldr-core-version")]
         public string CldrVersion { get; set; } = "35.1.0";
 
+        /// <summary>
+        /// creates localization validation scripts tag to place client side validiation scripts inside
+        /// </summary>
         public LocalizationValidationScriptsTagHelperComponentTagHelper(ITagHelperComponentManager manager, ILoggerFactory loggerFactory) : base(manager, loggerFactory)
         {
         }
