@@ -9,13 +9,13 @@
     <Copyright>Ziyad.info</Copyright>
     <PackageProjectUrl>http://www.ziyad.info/en/articles/27-LazZiya_TagHelpers</PackageProjectUrl>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
-    <PackageIcon>files\icon.png</PackageIcon>
+    <PackageIcon>icon.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>
-      - LanguageTagHelper: Support for generating URL's with EndPointRouting enabled or disabled
+      - DotNet Core 3.0 suppport
     </PackageReleaseNotes>
-    <Version>3.0.0-preview2</Version>
+    <Version>3.0.0</Version>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -50,10 +50,10 @@
 
   <ItemGroup>
     <None Update="files\icon.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="files\icon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="files\icon.png" Pack="true" PackagePath="">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Templates\LocalizationValidationScripts_jsdeliver.html">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
