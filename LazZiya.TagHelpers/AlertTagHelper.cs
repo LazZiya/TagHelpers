@@ -30,6 +30,7 @@ namespace LazZiya.TagHelpers
         /// <summary>
         /// View context is required to access TempData dictionary that contains the alerts coming from backend
         /// </summary>
+        [ViewContext]
         public ViewContext ViewContext { get; set; } = null;
 
         /// <summary>
