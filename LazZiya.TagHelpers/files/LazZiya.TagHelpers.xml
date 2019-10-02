@@ -262,7 +262,9 @@
         </member>
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.ViewContext">
             <summary>
-            View context is required to access TempData dictionary that contains the alerts coming from backend
+            <para>ViewContext property is not required any more to be passed as parameter, you can remove it from the code.</para>
+            <para>The public access modifier will be replaced by private in an upcoming version.</para>
+            <para>View context is required to access TempData dictionary that contains the alerts coming from backend</para>
             </summary>
         </member>
         <member name="M:LazZiya.TagHelpers.AlertTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
@@ -393,7 +395,9 @@
         </member>
         <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.ViewContext">
             <summary>
-            current view context to access RouteData.Values and Request.Query collection
+            <para>ViewContext property is not required any more to be passed as parameter, you can remove it from the code.</para>
+            <para>The public access modifier will be replaced by private in an upcoming version.</para>
+            <para>current view context to access RouteData.Values and Request.Query collection</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.RenderMode">
@@ -406,14 +410,12 @@
             required for listing supported cultures
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.LanguageNavTagHelper},Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions},Microsoft.AspNetCore.Routing.LinkGenerator,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Mvc.MvcOptions})">
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.LanguageNavTagHelper},Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions})">
             <summary>
             creates a language navigation menu, depends on supported cultures
             </summary>
             <param name="logger"></param>
-            <param name="ops">Request localization options</param>
-            <param name="lg">link generator</param>
-            <param name="mvcOps">MvcOptions</param>
+            <param name="ops"></param>
         </member>
         <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
             <summary>
@@ -501,7 +503,7 @@
             inserts all client side localizaiton validation scripts into relevant tag
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
             <summary>
             inserts all localizaiton validation scripts into relevant tag
             </summary>

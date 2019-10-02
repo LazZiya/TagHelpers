@@ -13,11 +13,11 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>
-      - ViewContext attribute
+      - AlertTagHelper and LanguageNavTagHelper : ViewContext no more required to be passed as parameter
     </PackageReleaseNotes>
     <Version>3.0.1</Version>
-    <AssemblyVersion>3.0.0.1</AssemblyVersion>
-    <FileVersion>3.0.0.1</FileVersion>
+    <AssemblyVersion>3.0.1.0</AssemblyVersion>
+    <FileVersion>3.0.1.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</PackageIconUrl>

@@ -54,8 +54,13 @@ namespace LazZiya.TagHelpers
         public string HomePageName { get; set; } = "Index";
 
         /// <summary>
-        /// current view context to access RouteData.Values and Request.Query collection
+        /// <para>ViewContext property is not required any more to be passed as parameter, you can remove it from the code.</para>
+        /// <para>The public access modifier will be replaced by private in an upcoming version.</para>
+        /// <para>current view context to access RouteData.Values and Request.Query collection</para>
         /// </summary>
+        [Obsolete("ViewContext property is not required any more to be passed as parameter, you can remove it from the code. " +
+            "The public access modifier will be replaced by private in an upcoming version.")]
+        [ViewContext]
         public ViewContext ViewContext { get; set; }
 
         /// <summary>
