@@ -3,7 +3,7 @@ Collection of helpful TagHelpers for any ASP.NET Core project.
 
 ## Latest release
 
-25 September 2019
+16 October 2019
 - v3.0.2
 - Fix for issue [#5](https://github.com/LazZiya/TagHelpers/issues/5)
 - Removed support for .Net core 1.x
