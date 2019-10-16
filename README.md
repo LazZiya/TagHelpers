@@ -4,12 +4,9 @@ Collection of helpful TagHelpers for any ASP.NET Core project.
 ## Latest release
 
 25 September 2019
-- v3.0.0
-
-02 September 2019
-- v3.0.0-preview1
-  DotNetCore 3.0 support
-- [Release history](https://github.com/LazZiya/TagHelpers/blob/master/ReleseHistory.md)
+- v3.0.2
+- Fix for issue [#5](https://github.com/LazZiya/TagHelpers/issues/5)
+- Removed support for .Net core 1.x
 
 ## Contents
 - LocalizeTagHelper ([Repository](https://github.com/lazziya/TagHelpers.Localize), [Demo](http://demo.ziyad.info/en/Localize), [Tutorial](http://www.ziyad.info/en/articles/36-Develop_Multi_Cultural_Web_Application_Using_ExpressLocalization))
@@ -26,7 +23,7 @@ Collection of helpful TagHelpers for any ASP.NET Core project.
 Install via nuget :
 
 ````
-Install-Package LazZiya.TagHelpers -Version 3.0.0
+Install-Package LazZiya.TagHelpers -Version 3.0.2
 ````
 
 add tag helper to _ViewImports.cshtml:
