@@ -68,6 +68,13 @@ TempData.Danger("Ooopps! something went wrong with the code, please contact supp
 ````
 
 Then use alert tag helepr on razor side to render the alerts:
+
+- version >= 3.0.1
+````razor
+<alert></alert>
+````
+
+- version <= 3.0.0
 ````razor
 <alert view-context="ViewContext"></alert>
 ````
@@ -94,6 +101,13 @@ will add all required js files and code to validate localized input fields like 
 
 
 ## LangaugeNav TagHelper
+
+- version >= 3.0.1
+````razor
+<language-nav></language-nav>
+````
+
+- version <= 3.0.0
 ````cshtml
 <language-nav view-context="ViewContext"></language-nav>
 ````
