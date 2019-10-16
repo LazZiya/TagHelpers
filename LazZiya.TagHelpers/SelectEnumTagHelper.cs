@@ -4,10 +4,6 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-#if NETCOREAPP1_0 || NETCOREAPP1_1
-using System.Reflection;
-#endif
-
 namespace LazZiya.TagHelpers
 {
     /// <summary>

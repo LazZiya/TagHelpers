@@ -7,14 +7,6 @@ using System.IO;
 
 namespace LazZiya.TagHelpers
 {
-#if NETCOREAPP1_0 || NETCOREAPP1_1
-    /// <summary>
-    /// This tag helepr is not compatible with dotnet lower than 2.0
-    /// </summary>
-    public class LocalizationValidationScriptsTagHelperComponent
-    {
-    }
-#else
     /// <summary>
     /// inserts all client side localizaiton validation scripts into relevant tag
     /// </summary>
@@ -110,5 +102,4 @@ namespace LazZiya.TagHelpers
             return cultureToUse;
         }
     }
-#endif
-    }
+}

@@ -19,14 +19,7 @@ namespace LazZiya.TagHelpers
         /// </summary>
         JsDeliver
     }
-#if NETCOREAPP1_0 || NETCOREAPP1_1
-    /// <summary>
-    /// This tag helepr is not compatible with dotnet lower than 2.0
-    /// </summary>
-    public class LocalizationValidationScriptsTagHelperComponentTagHelper
-    {
-    }
-#else
+
     /// <summary>
     /// creates localization validation scripts tag to place client side validiation scripts inside
     /// </summary>
@@ -54,5 +47,4 @@ namespace LazZiya.TagHelpers
         {
         }
     }
-#endif
 }

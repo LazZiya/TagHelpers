@@ -19,19 +19,6 @@ namespace LazZiya.TagHelpers
     /// </summary>
     public class PagingTagHelper : TagHelper
     {
-
-#if NETCOREAPP1_0 || NETCOREAPP1_1
-        private ILogger _logger;
-
-        /// <summary>
-        /// creates a pagination control
-        /// </summary>
-        /// <param name="logger">default logger</param>
-        public PagingTagHelper(ILogger<PagingTagHelper> logger)
-        {
-            _logger = logger;
-        }
-#else
         private IConfiguration Configuration { get; }
         private ILogger _logger;
 
@@ -43,7 +30,6 @@ namespace LazZiya.TagHelpers
             Configuration = configuration;
             _logger = logger;
         }
-#endif
 
         #region Settings
 
@@ -460,85 +446,6 @@ namespace LazZiya.TagHelpers
         /// </summary>
         private void SetDefaults()
         {
-#if NETCOREAPP1_0 || NETCOREAPP1_1
-            PageNo = PageNo > 1 ? PageNo : 1;
-
-            PageSize = PageSize > 0 ? PageSize : 10;
-
-            TotalRecords = TotalRecords > 0 ? TotalRecords : 0;
-
-            MaxDisplayedPages = MaxDisplayedPages > 0 ? MaxDisplayedPages : 10;
-
-            GapSize = GapSize > 0 ? GapSize : 3;
-
-            PageSizeNavFormMethod = PageSizeNavFormMethod ?? "get";
-
-            PageSizeNavBlockSize = PageSizeNavBlockSize > 0 ? PageSizeNavBlockSize : 10;
-
-            PageSizeNavMaxItems = PageSizeNavMaxItems > 0 ? PageSizeNavMaxItems : 3;
-
-            PageSizeNavOnChange = PageSizeNavOnChange ?? "this.form.submit();";
-
-            QueryStringKeyPageNo = QueryStringKeyPageNo ?? "p";
-
-            QueryStringKeyPageSize = QueryStringKeyPageSize ?? "s";
-
-            QueryStringValue = QueryStringValue ?? "";
-
-            ShowFirstLast = ShowFirstLast == null ? true : ShowFirstLast;
-
-            ShowPrevNext = ShowPrevNext == null ? true : ShowPrevNext;
-
-            ShowPageSizeNav = ShowPageSizeNav == null ? false : ShowPageSizeNav;
-
-            ShowTotalPages = ShowTotalPages == null ? false : ShowTotalPages;
-
-            ShowTotalRecords = ShowTotalRecords == null ? false : ShowTotalRecords;
-
-            ShowFirstNumberedPage = ShowFirstNumberedPage == null ? false : ShowFirstNumberedPage;
-
-            ShowLastNumberedPage = ShowLastNumberedPage == null ? false : ShowLastNumberedPage;
-
-            TextPageSize = TextPageSize ?? "Items per page";
-
-            TextFirst = TextFirst ?? "&laquo;";
-
-            TextLast = TextLast ?? "&raquo;";
-
-            TextPrevious = TextPrevious ?? "&lsaquo;";
-
-            TextNext = TextNext ?? "&rsaquo;";
-
-            TextTotalPages = TextTotalPages ?? "pages";
-
-            TextTotalRecords = TextTotalRecords ?? "records";
-
-            SrTextFirst = SrTextFirst ?? "First";
-
-            SrTextLast = SrTextLast ?? "Last";
-
-            SrTextPrevious = SrTextPrevious ?? "Previous";
-
-            SrTextNext = SrTextNext ?? "Next";
-
-            Class = Class ?? "row";
-
-            ClassActivePage = ClassActivePage ?? "active";
-
-            ClassDisabledJumpingButton = ClassDisabledJumpingButton ?? "disabled";
-
-            ClassInfoDiv = ClassInfoDiv ?? "col";
-
-            ClassPageSizeDiv = ClassPageSizeDiv ?? "col";
-
-            ClassPagingControlDiv = ClassPagingControlDiv ?? "col";
-
-            ClassPagingControl = ClassPagingControl ?? "pagination";
-
-            ClassTotalPages = ClassTotalPages ?? "badge badge-secondary";
-
-            ClassTotalRecords = ClassTotalRecords ?? "badge badge-info";
-#else
             var _settingsJson = SettingsJson ?? "default";
 
             _logger.LogInformation($"----> PagingTagHelper SettingsJson: {SettingsJson} - {_settingsJson}");
@@ -628,7 +535,7 @@ namespace LazZiya.TagHelpers
             ClassTotalPages = ClassTotalPages ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-total-pages"] ?? "badge badge-secondary";
 
             ClassTotalRecords = ClassTotalRecords ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-total-records"] ?? "badge badge-info";
-#endif
+
             _logger.LogInformation($"----> PagingTagHelper - " +
                 $"{nameof(PageNo)}: {PageNo}, " +
                 $"{nameof(PageSize)}: {PageSize}, " +
