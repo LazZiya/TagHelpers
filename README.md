@@ -23,7 +23,7 @@ Collection of helpful TagHelpers for any ASP.NET Core project.
 Install via nuget :
 
 ````
-Install-Package LazZiya.TagHelpers -Version
+Install-Package LazZiya.TagHelpers
 ````
 
 add tag helper to _ViewImports.cshtml:
