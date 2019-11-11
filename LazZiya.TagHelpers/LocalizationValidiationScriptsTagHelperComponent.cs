@@ -13,7 +13,7 @@ namespace LazZiya.TagHelpers
     public class LocalizationValidationScriptsTagHelperComponent : TagHelperComponent
     {
 
-#if NETCOREAPP3_0
+#if NETCOREAPP3_0 || NETCOREAPP3_1
         private readonly IWebHostEnvironment _hosting;
 
         /// <summary>

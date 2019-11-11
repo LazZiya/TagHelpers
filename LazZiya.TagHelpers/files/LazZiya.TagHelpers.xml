@@ -262,7 +262,7 @@
         </member>
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.ViewContext">
             <summary>
-            <para>ViewContext property is not required any more to be passed as parameter, you can remove it from the code.</para>
+            <para>ViewContext property is not required to be passed as parameter, it will be assigned automatically by the tag helper.</para>
             <para>View context is required to access TempData dictionary that contains the alerts coming from backend</para>
             </summary>
         </member>
@@ -394,7 +394,7 @@
         </member>
         <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.ViewContext">
             <summary>
-            <para>ViewContext property is not required any more to be passed as parameter, you can remove it from the code.</para>
+            <para>ViewContext property is not required to be passed as parameter, it will be auto assigned by the tag helpoer.</para>
             <para>current view context to access RouteData.Values and Request.Query collection</para>
             </summary>
         </member>
@@ -533,6 +533,12 @@
             Creates a pagination control
             </summary>
         </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ViewContext">
+            <summary>
+            <para>ViewContext property is not required to be passed as parameter, it will be assigned automatically by the tag helper.</para>
+            <para>View context is required to access TempData dictionary that contains the alerts coming from backend</para>
+            </summary>
+        </member>
         <member name="M:LazZiya.TagHelpers.PagingTagHelper.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.PagingTagHelper})">
             <summary>
             Creates a pagination control
@@ -617,14 +623,7 @@
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.QueryStringValue">
             <summary>
-            Query string value starting from the ? including all next query string parameters 
-            to consider for next pages links.
-            <para>default: string.Empty</para>
-            <example>
-            <code>
-            @(Request.QueryString.Value)
-            </code>
-            </example>
+            query-string-value is obsolte and will be removed in a future release.
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowPageSizeNav">
@@ -810,13 +809,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:LazZiya.TagHelpers.PagingTagHelper.CreateUrlTemplate(System.Int32,System.Int32,System.String)">
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.CreateUrlTemplate(System.Int32,System.Int32)">
             <summary>
             edit the url for each page, so it navigates to its target page number
             </summary>
             <param name="pageNo"></param>
             <param name="pageSize"></param>
-            <param name="urlPath"></param>
             <returns></returns>
         </member>
         <member name="T:LazZiya.TagHelpers.PhoneNumberTagHelper">

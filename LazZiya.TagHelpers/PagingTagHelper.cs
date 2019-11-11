@@ -6,6 +6,7 @@
  * 
  * *****************************************************/
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -20,7 +21,15 @@ namespace LazZiya.TagHelpers
     public class PagingTagHelper : TagHelper
     {
         private IConfiguration Configuration { get; }
-        private ILogger _logger;
+        private readonly ILogger _logger;
+
+
+        /// <summary>
+        /// <para>ViewContext property is not required to be passed as parameter, it will be assigned automatically by the tag helper.</para>
+        /// <para>View context is required to access TempData dictionary that contains the alerts coming from backend</para>
+        /// </summary>
+        [ViewContext]
+        public ViewContext ViewContext { get; set; } = null;
 
         /// <summary>
         /// Creates a pagination control
@@ -118,15 +127,9 @@ namespace LazZiya.TagHelpers
         public string QueryStringKeyPageSize { get; set; }
 
         /// <summary>
-        /// Query string value starting from the ? including all next query string parameters 
-        /// to consider for next pages links.
-        /// <para>default: string.Empty</para>
-        /// <example>
-        /// <code>
-        /// @(Request.QueryString.Value)
-        /// </code>
-        /// </example>
+        /// query-string-value is obsolte and will be removed in a future release.
         /// </summary>
+        [Obsolete("query-string-value is obsolte and will be removed in a future release")]
         public string QueryStringValue { get; set; }
 
         #endregion
@@ -479,8 +482,6 @@ namespace LazZiya.TagHelpers
 
             QueryStringKeyPageSize = QueryStringKeyPageSize ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:query-string-key-page-size"] ?? "s";
 
-            QueryStringValue = QueryStringValue ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:query-string-value"] ?? "";
-
             ShowFirstLast = ShowFirstLast == null ?
                 bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-first-last"], out bool _sfl) ? _sfl : false : ShowFirstLast;
 
@@ -543,7 +544,6 @@ namespace LazZiya.TagHelpers
                 $"{nameof(TotalPages)}: {TotalPages}, " +
                 $"{nameof(QueryStringKeyPageNo)}: {QueryStringKeyPageNo}, " +
                 $"{nameof(QueryStringKeyPageSize)}: {QueryStringKeyPageSize}, " +
-                $"{nameof(QueryStringValue)}: {QueryStringValue}" +
                 $"");
         }
 
@@ -596,7 +596,7 @@ namespace LazZiya.TagHelpers
 
             var aTag = new TagBuilder("a");
             aTag.AddCssClass("page-link");
-            aTag.Attributes.Add("href", CreateUrlTemplate(targetPageNo, PageSize, QueryStringValue));
+            aTag.Attributes.Add("href", CreateUrlTemplate(targetPageNo, PageSize));
 
             if (string.IsNullOrWhiteSpace(textSr))
             {
@@ -665,10 +665,11 @@ namespace LazZiya.TagHelpers
         /// </summary>
         /// <param name="pageNo"></param>
         /// <param name="pageSize"></param>
-        /// <param name="urlPath"></param>
         /// <returns></returns>
-        private string CreateUrlTemplate(int pageNo, int pageSize, string urlPath)
+        private string CreateUrlTemplate(int pageNo, int pageSize)
         {
+            var urlPath = ViewContext.HttpContext.Request.QueryString.Value;
+
             _logger.LogDebug($"----> Page No '{pageNo}', Page Size '{pageSize}', URL Path '{urlPath}'");
 
             string p = $"{QueryStringKeyPageNo}={pageNo}"; // CurrentPageNo query string parameter, default: p

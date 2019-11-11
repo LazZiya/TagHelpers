@@ -28,10 +28,9 @@ namespace LazZiya.TagHelpers
         public bool Dismissable { get; set; } = true;
 
         /// <summary>
-        /// <para>ViewContext property is not required any more to be passed as parameter, you can remove it from the code.</para>
+        /// <para>ViewContext property is not required to be passed as parameter, it will be assigned automatically by the tag helper.</para>
         /// <para>View context is required to access TempData dictionary that contains the alerts coming from backend</para>
         /// </summary>
-        [Obsolete("ViewContext property is not required any more to be passed as parameter, you can remove it from the code. ")]
         [ViewContext]
         public ViewContext ViewContext { get; set; } = null;
 

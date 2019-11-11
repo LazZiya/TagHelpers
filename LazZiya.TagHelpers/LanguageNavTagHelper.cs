@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-#if NETCOREAPP2_2 || NETCOREAPP3_0
+#if NETCOREAPP2_2 || NETCOREAPP3_0 || NETCOREAPP3_1
 using Microsoft.AspNetCore.Routing;
 #endif
 
@@ -54,10 +54,9 @@ namespace LazZiya.TagHelpers
         public string HomePageName { get; set; } = "Index";
 
         /// <summary>
-        /// <para>ViewContext property is not required any more to be passed as parameter, you can remove it from the code.</para>
+        /// <para>ViewContext property is not required to be passed as parameter, it will be auto assigned by the tag helpoer.</para>
         /// <para>current view context to access RouteData.Values and Request.Query collection</para>
         /// </summary>
-        [Obsolete("ViewContext property is not required any more to be passed as parameter, you can remove it from the code. ")]
         [ViewContext]
         public ViewContext ViewContext { get; set; }
 
@@ -71,9 +70,9 @@ namespace LazZiya.TagHelpers
         /// </summary>
         private readonly IOptions<RequestLocalizationOptions> _ops;
         private readonly ILogger _logger;
-        
-        
-#if NETCOREAPP2_2 || NETCOREAPP3_0
+
+
+#if NETCOREAPP2_2 || NETCOREAPP3_0 || NETCOREAPP3_1
         private readonly IOptions<MvcOptions> _mvcOps;
         private readonly LinkGenerator _lg;
 
@@ -218,7 +217,7 @@ namespace LazZiya.TagHelpers
                 // DotNetCore 2.2 uses EndPointRouting, 
                 // so we need to use the link generator to generate url
                 url = _lg.GetPathByRouteValues(httpContext: ViewContext.HttpContext, "", _routeData);
-#elif NETCOREAPP3_0
+#elif NETCOREAPP3_0 || NETCOREAPP3_1
                 // DotNetCore 3.0 has optional value to use EndPointRouting
                 // First check if EndPointRouting is enabled
                 // Or use generic urlHelper to generate url

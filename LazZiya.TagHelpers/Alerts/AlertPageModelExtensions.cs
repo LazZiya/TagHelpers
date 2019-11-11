@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using LazZiya.TagHelpers.Utilities;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#if NETCOREAPP3_0
+#if NETCOREAPP3_0 || NETCOREAPP3_1
 using System.Text.Json;
 #else
 using Newtonsoft.Json;
@@ -112,7 +112,7 @@ namespace LazZiya.TagHelpers.Alerts
 
         private static void AddAlert(ITempDataDictionary tempData, AlertStyle alertStyle, string message, string header, bool dismissable)
         {
-#if NETCOREAPP3_0
+#if NETCOREAPP3_0 || NETCOREAPP3_1
             var alerts = tempData.ContainsKey(Alert.TempDataKey)
                 ? JsonSerializer.Deserialize<List<Alert>>(tempData[Alert.TempDataKey].ToString())
                 : new List<Alert>();
