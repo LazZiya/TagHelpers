@@ -3,10 +3,10 @@ Collection of helpful TagHelpers for any ASP.NET Core project.
 
 ## Latest release
 
-16 October 2019
-- v3.0.2
-- Fix for issue [#5](https://github.com/LazZiya/TagHelpers/issues/5)
-- Removed support for .Net core 1.x
+11 November 2019
+- v3.1.0-preview1
+- Supprt for DotnETcORE 3.1
+- PagingTagHelper : `query-string-value` not required to be passed as parameter, it will be assigned automatically by ViewContext in the tag helper.
 
 ## Contents
 - LocalizeTagHelper ([Repository](https://github.com/lazziya/TagHelpers.Localize), [Demo](http://demo.ziyad.info/en/Localize), [Tutorial](http://www.ziyad.info/en/articles/36-Develop_Multi_Cultural_Web_Application_Using_ExpressLocalization))
@@ -23,7 +23,7 @@ Collection of helpful TagHelpers for any ASP.NET Core project.
 Install via nuget :
 
 ````
-Install-Package LazZiya.TagHelpers -Version 3.0.2
+Install-Package LazZiya.TagHelpers
 ````
 
 add tag helper to _ViewImports.cshtml:
@@ -33,6 +33,33 @@ add tag helper to _ViewImports.cshtml:
 ````
 
 # Code Samples
+
+## Paging TagHelper
+
+Only few parameters are required to fireup the agination control
+
+- version >= 3.1.0
+````razor
+<paging total-records="Model.TotalRecords"
+        page-no="Model.PageNo">
+</paging>
+````
+
+- version <= 3.0.2
+````razor
+<paging total-records="Model.TotalRecords"
+        page-no="Model.PageNo"
+        query-string-value="@(Request.QueryString.Value)">
+</paging>
+````
+
+it is important to add `query-string-value` for versions before 3.1.0.
+
+For more details :
+- [Docs](http://www.ziyad.info/en/articles/21-Paging_TagHelper_for_ASP_NET_Core)
+- [Demo](http://demo.ziyad.info/en/Paging)
+- [Step-by-step tutorial to build an efficient pagination system](http://www.ziyad.info/en/articles/38-How_to_build_an_efficient_pagination_system)
+
 ## Localize TagHelper
 Use simple html tag to localize text/html in razor views
 ````razor
@@ -80,6 +107,22 @@ Read more :
 - [Demo](http://demo.ziyad.info/en/Alerts)
 
 
+## LangaugeNav TagHelper
+
+- version >= 3.0.1
+````razor
+<language-nav></language-nav>
+````
+
+- version <= 3.0.0
+````cshtml
+<language-nav view-context="ViewContext"></language-nav>
+````
+For more details :
+- [Docs](http://www.ziyad.info/en/articles/32-Language_Navigation_TagHelper)
+- [Demo](http://demo.ziyad.info/en/LanguageNav)
+
+
 ## LocalizationValidationScripts TagHelper
 will add all required js files and code to validate localized input fields like numbers, date and currency. These scripts will help to validate localized decimal numbers with comma or dot format (e.g. EN culture: 1.2 - TR culture: 1,2).
 
@@ -95,22 +138,6 @@ will add all required js files and code to validate localized input fields like 
  For more details :
  - [Docs](http://www.ziyad.info/en/articles/34-Client_Side_Localization_Validation_Scripts)
  - [Demo](http://demo.ziyad.info/en/Trips)
-
-
-## LangaugeNav TagHelper
-
-- version >= 3.0.1
-````razor
-<language-nav></language-nav>
-````
-
-- version <= 3.0.0
-````cshtml
-<language-nav view-context="ViewContext"></language-nav>
-````
-For more details :
-- [Docs](http://www.ziyad.info/en/articles/32-Language_Navigation_TagHelper)
-- [Demo](http://demo.ziyad.info/en/LanguageNav)
 
 
 ## SelectEnum TagHelper
@@ -130,27 +157,6 @@ create the related select list dropdown in razor page :
 For more details :
 - [Docs](http://www.ziyad.info/en/articles/28-Select_Enum_TagHelper)
 - [Demo](http://demo.ziyad.info/en/SelectEnum)
-
-
-## Paging TagHelper
-
-Only few parameters are required to fireup the agination control
-
-````razor
-<paging total-records="Model.TotalRecords"
-        page-no="Model.PageNo"
-        query-string-value="@(Request.QueryString.Value)"
-        show-prev-next="true">
-</paging>
-````
-
-it is important to add `query-string-value` if there is multiple filtering parameters in the url.
-
-For more details :
-- [Docs](http://www.ziyad.info/en/articles/21-Paging_TagHelper_for_ASP_NET_Core)
-- [Demo](http://demo.ziyad.info/en/Paging)
-- [Step-by-step tutorial to build an efficient pagination system](http://www.ziyad.info/en/articles/38-How_to_build_an_efficient_pagination_system)
-
 
 ## Project site:
 http://ziyad.info/en/articles/27-LazZiya_TagHelpers

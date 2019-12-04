@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-#if NETCOREAPP3_0
+#if NETCOREAPP3_0 || NETCOREAPP3_1
 using System.Text.Json;
 #else
 using Newtonsoft.Json;
@@ -25,7 +25,7 @@ namespace LazZiya.TagHelpers.Utilities
         /// <param name="value"></param>
         public static void Put<T>(this ITempDataDictionary tempData, string key, T value) where T : class
         {
-#if NETCOREAPP3_0
+#if NETCOREAPP3_0 || NETCOREAPP3_1
             tempData[key] = JsonSerializer.Serialize(value);
 #else
             tempData[key] = JsonConvert.SerializeObject(value);
@@ -41,10 +41,9 @@ namespace LazZiya.TagHelpers.Utilities
         /// <returns></returns>
         public static T Get<T>(this ITempDataDictionary tempData, string key) where T : class
         {
-            object o;
-            tempData.TryGetValue(key, out o);
+            tempData.TryGetValue(key, out object o);
 
-#if NETCOREAPP3_0
+#if NETCOREAPP3_0 || NETCOREAPP3_1
             var obj = JsonSerializer.Deserialize<T>((string)o);
 #else
             var obj = JsonConvert.DeserializeObject<T>((string)o);

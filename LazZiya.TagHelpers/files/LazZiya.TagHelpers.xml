@@ -262,7 +262,7 @@
         </member>
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.ViewContext">
             <summary>
-            <para>ViewContext property is not required any more to be passed as parameter, you can remove it from the code.</para>
+            <para>ViewContext property is not required to be passed as parameter, it will be assigned automatically by the tag helper.</para>
             <para>View context is required to access TempData dictionary that contains the alerts coming from backend</para>
             </summary>
         </member>
@@ -394,7 +394,7 @@
         </member>
         <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.ViewContext">
             <summary>
-            <para>ViewContext property is not required any more to be passed as parameter, you can remove it from the code.</para>
+            <para>ViewContext property is not required to be passed as parameter, it will be auto assigned by the tag helpoer.</para>
             <para>current view context to access RouteData.Values and Request.Query collection</para>
             </summary>
         </member>
@@ -408,11 +408,10 @@
             required for listing supported cultures
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.LanguageNavTagHelper},Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions},Microsoft.AspNetCore.Routing.LinkGenerator,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Mvc.MvcOptions})">
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions},Microsoft.AspNetCore.Routing.LinkGenerator,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Mvc.MvcOptions})">
             <summary>
             creates a language navigation menu, depends on supported cultures
             </summary>
-            <param name="logger"></param>
             <param name="ops">Request localization options</param>
             <param name="lg">link generator</param>
             <param name="mvcOps">MvcOptions</param>
@@ -533,6 +532,12 @@
             Creates a pagination control
             </summary>
         </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ViewContext">
+            <summary>
+            <para>ViewContext property is not required to be passed as parameter, it will be assigned automatically by the tag helper.</para>
+            <para>View context is required to access TempData dictionary that contains the alerts coming from backend</para>
+            </summary>
+        </member>
         <member name="M:LazZiya.TagHelpers.PagingTagHelper.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.PagingTagHelper})">
             <summary>
             Creates a pagination control
@@ -548,8 +553,8 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSize">
             <summary>
             how many items to get from db per page per request
-            <para>default: 25</para>
-            <para>example: pageSize=25</para>
+            <para>default: 10</para>
+            <para>example: pageSize=10</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.TotalRecords">
@@ -567,7 +572,7 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.GapSize">
             <summary>
             Gap size to start show first/last numbered page
-            <para>default: 5</para>
+            <para>default: 3</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.SettingsJson">
@@ -586,13 +591,13 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavBlockSize">
             <summary>
             The minimum block size to populate all possible page sizes for dropdown list
-            <para>default: 25</para>
+            <para>default: 10</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavMaxItems">
             <summary>
             maximum nmber of items to show in the page size navigation menu
-            <para>default: 5</para>
+            <para>default: 3</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavOnChange">
@@ -617,57 +622,50 @@
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.QueryStringValue">
             <summary>
-            Query string value starting from the ? including all next query string parameters 
-            to consider for next pages links.
-            <para>default: string.Empty</para>
-            <example>
-            <code>
-            @(Request.QueryString.Value)
-            </code>
-            </example>
+            query-string-value is obsolte and will be removed in a future release.
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowPageSizeNav">
             <summary>
             Show drop down list for different page size options
-            <para>default: false</para>
+            <para>default: true</para>
             <para>options: true, false</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowFirstLast">
             <summary>
             Show/hide First-Last buttons
-            <para>default: false, but will auto show if total pages > max displayed pages</para>
+            <para>default: true, if set to false and total pages > max displayed pages it will be true</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowPrevNext">
             <summary>
             Show/hide Previous-Next buttons
-            <para>default: false</para>
+            <para>default: true</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowTotalPages">
             <summary>
             Show or hide total pages count
-            <para>default: false</para>
+            <para>default: true</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowTotalRecords">
             <summary>
             Show or hide total records count
-            <para>default: false</para>
+            <para>default: true</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowLastNumberedPage">
             <summary>
             Show last numbered page when total pages count is larger than max displayed pages
-            <para>default: false</para>
+            <para>default: true</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowFirstNumberedPage">
             <summary>
             Show first numbered page when total pages count is larger than max displayed pages
-            <para>default: false</para>
+            <para>default: true</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextPageSize">
@@ -810,13 +808,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:LazZiya.TagHelpers.PagingTagHelper.CreateUrlTemplate(System.Int32,System.Int32,System.String)">
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.CreateUrlTemplate(System.Int32,System.Int32)">
             <summary>
             edit the url for each page, so it navigates to its target page number
             </summary>
             <param name="pageNo"></param>
             <param name="pageSize"></param>
-            <param name="urlPath"></param>
             <returns></returns>
         </member>
         <member name="T:LazZiya.TagHelpers.PhoneNumberTagHelper">
