@@ -16,7 +16,7 @@
       - Support for dot net core 3.1.0
       - PagingTagHelper : QueryStringValue is Obsolete, replaced by auto assigned ViewContext
     </PackageReleaseNotes>
-    <Version>3.1.0-preview1</Version>
+    <Version>3.1.0-preview2</Version>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <FileVersion>3.1.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

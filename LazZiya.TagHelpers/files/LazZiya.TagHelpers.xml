@@ -408,11 +408,10 @@
             required for listing supported cultures
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.LanguageNavTagHelper},Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions},Microsoft.AspNetCore.Routing.LinkGenerator,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Mvc.MvcOptions})">
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions},Microsoft.AspNetCore.Routing.LinkGenerator,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Mvc.MvcOptions})">
             <summary>
             creates a language navigation menu, depends on supported cultures
             </summary>
-            <param name="logger"></param>
             <param name="ops">Request localization options</param>
             <param name="lg">link generator</param>
             <param name="mvcOps">MvcOptions</param>
@@ -554,8 +553,8 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSize">
             <summary>
             how many items to get from db per page per request
-            <para>default: 25</para>
-            <para>example: pageSize=25</para>
+            <para>default: 10</para>
+            <para>example: pageSize=10</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.TotalRecords">
@@ -573,7 +572,7 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.GapSize">
             <summary>
             Gap size to start show first/last numbered page
-            <para>default: 5</para>
+            <para>default: 3</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.SettingsJson">
@@ -592,13 +591,13 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavBlockSize">
             <summary>
             The minimum block size to populate all possible page sizes for dropdown list
-            <para>default: 25</para>
+            <para>default: 10</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavMaxItems">
             <summary>
             maximum nmber of items to show in the page size navigation menu
-            <para>default: 5</para>
+            <para>default: 3</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavOnChange">
@@ -629,44 +628,44 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowPageSizeNav">
             <summary>
             Show drop down list for different page size options
-            <para>default: false</para>
+            <para>default: true</para>
             <para>options: true, false</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowFirstLast">
             <summary>
             Show/hide First-Last buttons
-            <para>default: false, but will auto show if total pages > max displayed pages</para>
+            <para>default: true, if set to false and total pages > max displayed pages it will be true</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowPrevNext">
             <summary>
             Show/hide Previous-Next buttons
-            <para>default: false</para>
+            <para>default: true</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowTotalPages">
             <summary>
             Show or hide total pages count
-            <para>default: false</para>
+            <para>default: true</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowTotalRecords">
             <summary>
             Show or hide total records count
-            <para>default: false</para>
+            <para>default: true</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowLastNumberedPage">
             <summary>
             Show last numbered page when total pages count is larger than max displayed pages
-            <para>default: false</para>
+            <para>default: true</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowFirstNumberedPage">
             <summary>
             Show first numbered page when total pages count is larger than max displayed pages
-            <para>default: false</para>
+            <para>default: true</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextPageSize">

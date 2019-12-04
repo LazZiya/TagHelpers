@@ -47,38 +47,38 @@ namespace LazZiya.TagHelpers
         /// <para>default: 1</para>
         /// <para>example: p=1</para>
         /// </summary>
-        public int PageNo { get; set; }
+        public int PageNo { get; set; } = 1;
 
         /// <summary>
         /// how many items to get from db per page per request
-        /// <para>default: 25</para>
-        /// <para>example: pageSize=25</para>
+        /// <para>default: 10</para>
+        /// <para>example: pageSize=10</para>
         /// </summary>
-        public int PageSize { get; set; }
+        public int PageSize { get; set; } = 10;
 
         /// <summary>
         /// Total count of records in the db
         /// <para>default: 0</para>
         /// </summary>
-        public int TotalRecords { get; set; }
+        public int TotalRecords { get; set; } = 0;
 
         /// <summary>
         /// if count of pages is too much, restrict shown pages count to specific number
         /// <para>default: 10</para>
         /// </summary>
-        public int MaxDisplayedPages { get; set; }
+        public int MaxDisplayedPages { get; set; } = 10;
 
         /// <summary>
         /// Gap size to start show first/last numbered page
-        /// <para>default: 5</para>
+        /// <para>default: 3</para>
         /// </summary>
-        public int GapSize { get; set; }
+        public int GapSize { get; set; } = 3;
 
         /// <summary>
         /// name of the settings section in appSettings.json
         /// <param>default: "default"</param>
         /// </summary>
-        public string SettingsJson { get; set; }
+        public string SettingsJson { get; set; } = "default";
 
         #endregion
 
@@ -88,25 +88,25 @@ namespace LazZiya.TagHelpers
         /// <para>default: get</para>
         /// <para>options: get, post</para>
         /// </summary>
-        public string PageSizeNavFormMethod { get; set; }
+        public string PageSizeNavFormMethod { get; set; } = "get";
 
         /// <summary>
         /// The minimum block size to populate all possible page sizes for dropdown list
-        /// <para>default: 25</para>
+        /// <para>default: 10</para>
         /// </summary>
-        public int PageSizeNavBlockSize { get; set; }
+        public int PageSizeNavBlockSize { get; set; } = 10;
 
         /// <summary>
         /// maximum nmber of items to show in the page size navigation menu
-        /// <para>default: 5</para>
+        /// <para>default: 3</para>
         /// </summary>
-        public int PageSizeNavMaxItems { get; set; }
+        public int PageSizeNavMaxItems { get; set; } = 3;
 
         /// <summary>
         /// action to take when page size dropdown changes
         /// <para>default: this.form.submit();</para>
         /// </summary>
-        public string PageSizeNavOnChange { get; set; }
+        public string PageSizeNavOnChange { get; set; } = "this.form.submit()";
 
         #endregion
 
@@ -117,14 +117,14 @@ namespace LazZiya.TagHelpers
         /// <para>default: p</para>
         /// <para>exmaple: p=1</para>
         /// </summary>
-        public string QueryStringKeyPageNo { get; set; }
+        public string QueryStringKeyPageNo { get; set; } = "p";
 
         /// <summary>
         /// Query string parameter name for page size
         /// <para>default: s</para>
         /// <para>example: s=25</para>
         /// </summary>
-        public string QueryStringKeyPageSize { get; set; }
+        public string QueryStringKeyPageSize { get; set; } = "s";
 
         /// <summary>
         /// query-string-value is obsolte and will be removed in a future release.
@@ -138,46 +138,46 @@ namespace LazZiya.TagHelpers
 
         /// <summary>
         /// Show drop down list for different page size options
-        /// <para>default: false</para>
+        /// <para>default: true</para>
         /// <para>options: true, false</para>
         /// </summary>
-        public bool? ShowPageSizeNav { get; set; }
+        public bool? ShowPageSizeNav { get; set; } = true;
 
         /// <summary>
         /// Show/hide First-Last buttons
-        /// <para>default: false, but will auto show if total pages > max displayed pages</para>
+        /// <para>default: true, if set to false and total pages > max displayed pages it will be true</para>
         /// </summary>
-        public bool? ShowFirstLast { get; set; }
+        public bool? ShowFirstLast { get; set; } = true;
 
         /// <summary>
         /// Show/hide Previous-Next buttons
-        /// <para>default: false</para>
+        /// <para>default: true</para>
         /// </summary>
-        public bool? ShowPrevNext { get; set; }
+        public bool? ShowPrevNext { get; set; } = true;
 
         /// <summary>
         /// Show or hide total pages count
-        /// <para>default: false</para>
+        /// <para>default: true</para>
         /// </summary>
-        public bool? ShowTotalPages { get; set; }
+        public bool? ShowTotalPages { get; set; } = true;
 
         /// <summary>
         /// Show or hide total records count
-        /// <para>default: false</para>
+        /// <para>default: true</para>
         /// </summary>
-        public bool? ShowTotalRecords { get; set; }
+        public bool? ShowTotalRecords { get; set; } = true;
 
         /// <summary>
         /// Show last numbered page when total pages count is larger than max displayed pages
-        /// <para>default: false</para>
+        /// <para>default: true</para>
         /// </summary>
-        public bool? ShowLastNumberedPage { get; set; }
+        public bool? ShowLastNumberedPage { get; set; } = true;
 
         /// <summary>
         /// Show first numbered page when total pages count is larger than max displayed pages
-        /// <para>default: false</para>
+        /// <para>default: true</para>
         /// </summary>
-        public bool? ShowFirstNumberedPage { get; set; }
+        public bool? ShowFirstNumberedPage { get; set; } = true;
 
         #endregion
 
@@ -483,19 +483,19 @@ namespace LazZiya.TagHelpers
             QueryStringKeyPageSize = QueryStringKeyPageSize ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:query-string-key-page-size"] ?? "s";
 
             ShowFirstLast = ShowFirstLast == null ?
-                bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-first-last"], out bool _sfl) ? _sfl : false : ShowFirstLast;
+                bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-first-last"], out bool _sfl) ? _sfl : true : ShowFirstLast;
 
-            ShowPrevNext = ShowPrevNext == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-prev-next"], out bool _sprn) ? _sprn : false : ShowPrevNext;
+            ShowPrevNext = ShowPrevNext == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-prev-next"], out bool _sprn) ? _sprn : true : ShowPrevNext;
 
-            ShowPageSizeNav = ShowPageSizeNav == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-page-size-nav"], out bool _spsn) ? _spsn : false : ShowPageSizeNav;
+            ShowPageSizeNav = ShowPageSizeNav == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-page-size-nav"], out bool _spsn) ? _spsn : true : ShowPageSizeNav;
 
-            ShowTotalPages = ShowTotalPages == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-total-pages"], out bool _stp) ? _stp : false : ShowTotalPages;
+            ShowTotalPages = ShowTotalPages == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-total-pages"], out bool _stp) ? _stp : true : ShowTotalPages;
 
-            ShowTotalRecords = ShowTotalRecords == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-total-records"], out bool _str) ? _str : false : ShowTotalRecords;
+            ShowTotalRecords = ShowTotalRecords == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-total-records"], out bool _str) ? _str : true : ShowTotalRecords;
 
-            ShowFirstNumberedPage = ShowFirstNumberedPage == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-first-numbered-page"], out bool _sfp) ? _sfp : false : ShowFirstNumberedPage;
+            ShowFirstNumberedPage = ShowFirstNumberedPage == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-first-numbered-page"], out bool _sfp) ? _sfp : true : ShowFirstNumberedPage;
 
-            ShowLastNumberedPage = ShowLastNumberedPage == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-last-numbered-page"], out bool _slp) ? _slp : false : ShowLastNumberedPage;
+            ShowLastNumberedPage = ShowLastNumberedPage == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-last-numbered-page"], out bool _slp) ? _slp : true : ShowLastNumberedPage;
 
             TextPageSize = TextPageSize ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-page-size"] ?? "Items per page";
 
@@ -558,8 +558,8 @@ namespace LazZiya.TagHelpers
 
         private Boundaries CalculateBoundaries(int currentPageNo, int totalPages, int maxDisplayedPages)
         {
-            var _start = 1;
-            var _end = maxDisplayedPages;
+            int _start, _end;
+
             var _gap = (int)Math.Ceiling(maxDisplayedPages / 2.0);
 
             if (maxDisplayedPages > totalPages)

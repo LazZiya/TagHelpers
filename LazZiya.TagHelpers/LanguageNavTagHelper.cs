@@ -69,8 +69,6 @@ namespace LazZiya.TagHelpers
         /// required for listing supported cultures
         /// </summary>
         private readonly IOptions<RequestLocalizationOptions> _ops;
-        private readonly ILogger _logger;
-
 
 #if NETCOREAPP2_2 || NETCOREAPP3_0 || NETCOREAPP3_1
         private readonly IOptions<MvcOptions> _mvcOps;
@@ -79,13 +77,11 @@ namespace LazZiya.TagHelpers
         /// <summary>
         /// creates a language navigation menu, depends on supported cultures
         /// </summary>
-        /// <param name="logger"></param>
         /// <param name="ops">Request localization options</param>
         /// <param name="lg">link generator</param>
         /// <param name="mvcOps">MvcOptions</param>
-        public LanguageNavTagHelper(ILogger<LanguageNavTagHelper> logger, IOptions<RequestLocalizationOptions> ops, LinkGenerator lg, IOptions<MvcOptions> mvcOps)
+        public LanguageNavTagHelper(IOptions<RequestLocalizationOptions> ops, LinkGenerator lg, IOptions<MvcOptions> mvcOps)
         {
-            _logger = logger;
             _ops = ops;
             _lg = lg;
             _mvcOps = mvcOps;
@@ -94,11 +90,9 @@ namespace LazZiya.TagHelpers
         /// <summary>
         /// creates a language navigation menu, depends on supported cultures
         /// </summary>
-        /// <param name="logger"></param>
         /// <param name="ops"></param>
-        public LanguageNavTagHelper(ILogger<LanguageNavTagHelper> logger, IOptions<RequestLocalizationOptions> ops)
+        public LanguageNavTagHelper(IOptions<RequestLocalizationOptions> ops)
         {
-            _logger = logger;
             _ops = ops;
         }
 #endif

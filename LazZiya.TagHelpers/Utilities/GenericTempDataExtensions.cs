@@ -41,8 +41,7 @@ namespace LazZiya.TagHelpers.Utilities
         /// <returns></returns>
         public static T Get<T>(this ITempDataDictionary tempData, string key) where T : class
         {
-            object o;
-            tempData.TryGetValue(key, out o);
+            tempData.TryGetValue(key, out object o);
 
 #if NETCOREAPP3_0 || NETCOREAPP3_1
             var obj = JsonSerializer.Deserialize<T>((string)o);
