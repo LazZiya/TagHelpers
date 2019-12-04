@@ -13,8 +13,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>
-      - Support for dot net core 3.1.0
-      - PagingTagHelper : QueryStringValue is Obsolete, replaced by auto assigned ViewContext
+      - PagingTagHelper : New default values, all options are on, switch off manually if not needed.
     </PackageReleaseNotes>
     <Version>3.1.0-preview2</Version>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
