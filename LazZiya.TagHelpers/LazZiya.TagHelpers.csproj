@@ -8,7 +8,6 @@
     <Description>Collection of tag helpers for ASP.NET Core web applications, like Paging, SelectEnum and LanguageNav dropdown tag helpers for MVC and Razor Pages.</Description>
     <Copyright>Ziyad.info</Copyright>
     <PackageProjectUrl>http://www.ziyad.info/en/articles/27-LazZiya_TagHelpers</PackageProjectUrl>
-    <PackageLicenseFile>license.txt</PackageLicenseFile>
     <PackageIcon>icon.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
