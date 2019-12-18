@@ -13,13 +13,15 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>
-      - PagingTagHelper : New default values, all options are on, switch off manually if not needed.
+      - Support for DotNetCore 3.1
+      - PagingTagHelper: query-string-value is not required to be passed as parameter,
+      - PagingTagHelper: All options are on, switch off manually if not needed.
     </PackageReleaseNotes>
-    <Version>3.1.0-preview2</Version>
+    <Version>3.1.0</Version>
     <AssemblyVersion>3.1.0.0</AssemblyVersion>
     <FileVersion>3.1.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/LazZiya/TagHelpers</RepositoryUrl>
   </PropertyGroup>
