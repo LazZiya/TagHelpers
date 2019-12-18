@@ -26,7 +26,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DocumentationFile>files\LazZiya.TagHelpers.xml</DocumentationFile>
+    <DocumentationFile>LazZiya.TagHelpers.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0' OR '$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2'">
