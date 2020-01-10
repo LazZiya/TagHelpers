@@ -3,11 +3,13 @@ Collection of helpful TagHelpers for any ASP.NET Core project.
 
 ## Latest release
 
-18 December 2019
-- v3.1.0
-- Support for .NeT Core 3.1
-- PagingTagHelper : `query-string-value` not required to be passed as parameter, it will be assigned automatically by ViewContext in the tag helper.
-- PagingTagHelper : All opitons are on by default, can be turned off manually if not needed. See [Demo page](http://demo.ziyad.info/en/paging) for more details about all options.
+10 December 2019
+- v3.1.1
+- Fix for issue [#7](https://github.com/LazZiya/TagHelpers/issues/7)
+
+
+### Notice
+Starting from v3.1.0 all opitons are on by default, can be turned off manually if not needed. See [Demo page](http://demo.ziyad.info/en/paging) for more details about all options.
 
 ## Contents
 - LocalizeTagHelper ([Repository](https://github.com/lazziya/TagHelpers.Localize), [Demo](http://demo.ziyad.info/en/Localize), [Tutorial](http://www.ziyad.info/en/articles/36-Develop_Multi_Cultural_Web_Application_Using_ExpressLocalization))
