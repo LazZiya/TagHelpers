@@ -54,25 +54,25 @@ namespace LazZiya.TagHelpers
         /// <para>default: 10</para>
         /// <para>example: pageSize=10</para>
         /// </summary>
-        public int PageSize { get; set; } = 10;
+        public int PageSize { get; set; }
 
         /// <summary>
         /// Total count of records in the db
         /// <para>default: 0</para>
         /// </summary>
-        public int TotalRecords { get; set; } = 0;
+        public int TotalRecords { get; set; }
 
         /// <summary>
         /// if count of pages is too much, restrict shown pages count to specific number
         /// <para>default: 10</para>
         /// </summary>
-        public int MaxDisplayedPages { get; set; } = 10;
+        public int MaxDisplayedPages { get; set; }
 
         /// <summary>
         /// Gap size to start show first/last numbered page
         /// <para>default: 3</para>
         /// </summary>
-        public int GapSize { get; set; } = 3;
+        public int GapSize { get; set; }
 
         /// <summary>
         /// name of the settings section in appSettings.json
@@ -88,25 +88,25 @@ namespace LazZiya.TagHelpers
         /// <para>default: get</para>
         /// <para>options: get, post</para>
         /// </summary>
-        public string PageSizeNavFormMethod { get; set; } = "get";
+        public string PageSizeNavFormMethod { get; set; }
 
         /// <summary>
         /// The minimum block size to populate all possible page sizes for dropdown list
         /// <para>default: 10</para>
         /// </summary>
-        public int PageSizeNavBlockSize { get; set; } = 10;
+        public int PageSizeNavBlockSize { get; set; }
 
         /// <summary>
         /// maximum nmber of items to show in the page size navigation menu
         /// <para>default: 3</para>
         /// </summary>
-        public int PageSizeNavMaxItems { get; set; } = 3;
+        public int PageSizeNavMaxItems { get; set; }
 
         /// <summary>
         /// action to take when page size dropdown changes
         /// <para>default: this.form.submit();</para>
         /// </summary>
-        public string PageSizeNavOnChange { get; set; } = "this.form.submit()";
+        public string PageSizeNavOnChange { get; set; }
 
         #endregion
 
@@ -117,14 +117,14 @@ namespace LazZiya.TagHelpers
         /// <para>default: p</para>
         /// <para>exmaple: p=1</para>
         /// </summary>
-        public string QueryStringKeyPageNo { get; set; } = "p";
+        public string QueryStringKeyPageNo { get; set; }
 
         /// <summary>
         /// Query string parameter name for page size
         /// <para>default: s</para>
         /// <para>example: s=25</para>
         /// </summary>
-        public string QueryStringKeyPageSize { get; set; } = "s";
+        public string QueryStringKeyPageSize { get; set; }
 
         /// <summary>
         /// query-string-value is obsolte and will be removed in a future release.
@@ -141,43 +141,43 @@ namespace LazZiya.TagHelpers
         /// <para>default: true</para>
         /// <para>options: true, false</para>
         /// </summary>
-        public bool? ShowPageSizeNav { get; set; } = true;
+        public bool? ShowPageSizeNav { get; set; }
 
         /// <summary>
         /// Show/hide First-Last buttons
         /// <para>default: true, if set to false and total pages > max displayed pages it will be true</para>
         /// </summary>
-        public bool? ShowFirstLast { get; set; } = true;
+        public bool? ShowFirstLast { get; set; }
 
         /// <summary>
         /// Show/hide Previous-Next buttons
         /// <para>default: true</para>
         /// </summary>
-        public bool? ShowPrevNext { get; set; } = true;
+        public bool? ShowPrevNext { get; set; }
 
         /// <summary>
         /// Show or hide total pages count
         /// <para>default: true</para>
         /// </summary>
-        public bool? ShowTotalPages { get; set; } = true;
+        public bool? ShowTotalPages { get; set; }
 
         /// <summary>
         /// Show or hide total records count
         /// <para>default: true</para>
         /// </summary>
-        public bool? ShowTotalRecords { get; set; } = true;
+        public bool? ShowTotalRecords { get; set; }
 
         /// <summary>
         /// Show last numbered page when total pages count is larger than max displayed pages
         /// <para>default: true</para>
         /// </summary>
-        public bool? ShowLastNumberedPage { get; set; } = true;
+        public bool? ShowLastNumberedPage { get; set; }
 
         /// <summary>
         /// Show first numbered page when total pages count is larger than max displayed pages
         /// <para>default: true</para>
         /// </summary>
-        public bool? ShowFirstNumberedPage { get; set; } = true;
+        public bool? ShowFirstNumberedPage { get; set; }
 
         #endregion
 
@@ -332,9 +332,12 @@ namespace LazZiya.TagHelpers
                 var pagingControl = new TagBuilder("ul");
                 pagingControl.AddCssClass($"{ClassPagingControl}");
 
-                // if first/last buttons are not enabled, but the total pages more than displayed pages
-                // then show jumping buttons automatically
-                if (ShowFirstLast != true && TotalPages > MaxDisplayedPages)
+                /* old behavior */ 
+                // show first/last buttons always if totalpages > maxdisplaypages
+                // if (ShowFirstLast != true && TotalPages > MaxDisplayedPages)
+                /* new behavior */
+                // show/hide first/last buttons on user options
+                if (ShowFirstLast == true)
                 {
                     ShowFirstLast = true;
                 }
@@ -525,11 +528,11 @@ namespace LazZiya.TagHelpers
 
             ClassDisabledJumpingButton = ClassDisabledJumpingButton ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-disabled-jumping-button"] ?? "disabled";
 
-            ClassInfoDiv = ClassInfoDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-info-div"] ?? "col";
+            ClassInfoDiv = ClassInfoDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-info-div"] ?? "col-2";
 
-            ClassPageSizeDiv = ClassPageSizeDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-page-size-div"] ?? "col";
+            ClassPageSizeDiv = ClassPageSizeDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-page-size-div"] ?? "col-2";
 
-            ClassPagingControlDiv = ClassPagingControlDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-paging-control-div"] ?? "col";
+            ClassPagingControlDiv = ClassPagingControlDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-paging-control-div"] ?? "col-8";
 
             ClassPagingControl = ClassPagingControl ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-paging-control"] ?? "pagination";
 
