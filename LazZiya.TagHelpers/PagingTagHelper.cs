@@ -88,6 +88,7 @@ namespace LazZiya.TagHelpers
         /// <para>default: get</para>
         /// <para>options: get, post</para>
         /// </summary>
+        [Obsolete("This item has no more functionality and will be removed in a feature release.")]
         public string PageSizeNavFormMethod { get; set; }
 
         /// <summary>
@@ -184,7 +185,7 @@ namespace LazZiya.TagHelpers
         #region Texts
         /// <summary>
         /// The text to display at page size dropdown list label
-        /// <para>default: Show </para>
+        /// <para>default: Page size </para>
         /// </summary>
         public string TextPageSize { get; set; }
 
@@ -471,7 +472,7 @@ namespace LazZiya.TagHelpers
             GapSize = GapSize > 0 ? GapSize :
                 int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:gap-size"], out int _gap) ? _gap : 3;
 
-            PageSizeNavFormMethod = PageSizeNavFormMethod ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-nav-form-method"] ?? "get";
+            //PageSizeNavFormMethod = PageSizeNavFormMethod ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-nav-form-method"] ?? "get";
 
             PageSizeNavBlockSize = PageSizeNavBlockSize > 0 ? PageSizeNavBlockSize :
                 int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-nav-block-size"], out int _bs) ? _bs : 10;
@@ -479,7 +480,7 @@ namespace LazZiya.TagHelpers
             PageSizeNavMaxItems = PageSizeNavMaxItems > 0 ? PageSizeNavMaxItems :
                 int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-nav-max-items"], out int _mi) ? _mi : 3;
 
-            PageSizeNavOnChange = PageSizeNavOnChange ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-nav-on-change"] ?? "this.form.submit();";
+            PageSizeNavOnChange = PageSizeNavOnChange ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-nav-on-change"] ?? "window.location.href=this.value";
 
             QueryStringKeyPageNo = QueryStringKeyPageNo ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:query-string-key-page-no"] ?? "p";
 
@@ -500,7 +501,7 @@ namespace LazZiya.TagHelpers
 
             ShowLastNumberedPage = ShowLastNumberedPage == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-last-numbered-page"], out bool _slp) ? _slp : true : ShowLastNumberedPage;
 
-            TextPageSize = TextPageSize ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-page-size"] ?? "Items per page";
+            TextPageSize = TextPageSize ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-page-size"] ?? "Page size";
 
             TextFirst = TextFirst ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-first"] ?? "&laquo;";
 
@@ -631,13 +632,14 @@ namespace LazZiya.TagHelpers
         {
             var dropDown = new TagBuilder("select");
             dropDown.AddCssClass($"form-control");
-            dropDown.Attributes.Add("name", QueryStringKeyPageSize);
+            //dropDown.Attributes.Add("name", QueryStringKeyPageSize);
             dropDown.Attributes.Add("onchange", $"{PageSizeNavOnChange}");
 
             for (int i = 1; i <= PageSizeNavMaxItems; i++)
             {
                 var option = new TagBuilder("option");
                 option.InnerHtml.AppendHtml($"{i * PageSizeNavBlockSize}");
+                option.Attributes.Add("value", $"{CreateUrlTemplate(1, i * PageSizeNavBlockSize)}");
 
                 if ((i * PageSizeNavBlockSize) == PageSize)
                     option.Attributes.Add("selected", "selected");
@@ -646,21 +648,16 @@ namespace LazZiya.TagHelpers
             }
 
 
-            var fGroup = new TagBuilder("div");
-            fGroup.AddCssClass("form-group");
+            var pageSizezDiv = new TagBuilder("div");
+            pageSizezDiv.AddCssClass("form-inline");
 
             var label = new TagBuilder("label");
             label.Attributes.Add("for", "pageSizeControl");
             label.InnerHtml.AppendHtml($"{TextPageSize}&nbsp;");
-            fGroup.InnerHtml.AppendHtml(label);
-            fGroup.InnerHtml.AppendHtml(dropDown);
+            pageSizezDiv.InnerHtml.AppendHtml(label);
+            pageSizezDiv.InnerHtml.AppendHtml(dropDown);
 
-            var form = new TagBuilder("form");
-            form.AddCssClass("form-inline");
-            form.Attributes.Add("method", PageSizeNavFormMethod);
-            form.InnerHtml.AppendHtml(fGroup);
-
-            return form;
+            return pageSizezDiv;
         }
 
         /// <summary>
@@ -684,8 +681,8 @@ namespace LazZiya.TagHelpers
             {
                 var q = urlTemplate[i];
                 urlTemplate[i] =
-                    q.StartsWith($"{QueryStringKeyPageNo}=") ? p :
-                    q.StartsWith($"{QueryStringKeyPageSize}=") ? s :
+                    q.StartsWith($"{QueryStringKeyPageNo}=", StringComparison.OrdinalIgnoreCase) ? p :
+                    q.StartsWith($"{QueryStringKeyPageSize}=", StringComparison.OrdinalIgnoreCase) ? s :
                     q;
             }
 

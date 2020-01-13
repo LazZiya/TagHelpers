@@ -671,7 +671,7 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextPageSize">
             <summary>
             The text to display at page size dropdown list label
-            <para>default: Show </para>
+            <para>default: Page size </para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextFirst">

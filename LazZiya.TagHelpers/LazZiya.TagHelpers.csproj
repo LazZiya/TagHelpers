@@ -12,12 +12,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>
-      - Fix for issue #7 https://github.com/LazZiya/TagHelpers/issues/7
-      - Hotfix for style: wider room for paging controls, reduced free space in total records and size navigation.
+      - Hotfix for issue #8 https://github.com/LazZiya/TagHelpers/issues/8
+      - Deprected: "PageSizeNavFormMethod" property is no more required, will be removed in a feature release
+      - "Items per page" renamed to "Page size"
     </PackageReleaseNotes>
-    <Version>3.1.1</Version>
-    <AssemblyVersion>3.1.1.0</AssemblyVersion>
-    <FileVersion>3.1.1.0</FileVersion>
+    <Version>3.1.2</Version>
+    <AssemblyVersion>3.1.2.0</AssemblyVersion>
+    <FileVersion>3.1.2.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</PackageIconUrl>
