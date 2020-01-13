@@ -3,9 +3,12 @@ Collection of helpful TagHelpers for any ASP.NET Core project.
 
 ## Latest release
 
-10 December 2019
-- v3.1.1
-- Fix for issue [#7](https://github.com/LazZiya/TagHelpers/issues/7)
+13 January 2020
+- v3.1.2
+- ##### PagingTagHelper
+  - Hotfix for issue [#8](https://github.com/LazZiya/TagHelpers/issues/8)
+  - Deprected: "PageSizeNavFormMethod" property is no more required, will be removed in a feature release
+  - "Items per page" renamed to "Page size"
 
 
 ### Notice
