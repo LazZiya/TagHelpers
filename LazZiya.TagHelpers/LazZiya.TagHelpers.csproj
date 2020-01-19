@@ -16,7 +16,7 @@
       - LanguageNavTagHelper and LocalizationValdiationScriptsTagHelper moved to another nuget
       - See LazZiya.ExpressLocalization in https://lazziya.github.io/ExpressLocalization/
     </PackageReleaseNotes>
-    <Version>4.0.0-beta5</Version>
+    <Version>4.0.0-beta8</Version>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <FileVersion>4.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -31,6 +31,7 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0' OR '$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2'">
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0" Exclude="build,analyzers" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.0.0" Exclude="build,analyzers" />
   </ItemGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.2'">

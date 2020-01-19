@@ -289,6 +289,89 @@
             <param name="output"></param>
             <returns></returns>
         </member>
+        <member name="T:LazZiya.TagHelpers.Localization.LocalizationTagHelperBase">
+            <summary>
+            base class for localize tag helpers
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Localization.LocalizationTagHelperBase.Args">
+            <summary>
+            pass array of objects for arguments
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Localization.LocalizationTagHelperBase.Culture">
+            <summary>
+            localization string with reference to the specified culture
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Localization.LocalizationTagHelperBase.ResourceSource">
+            <summary>
+            type of the source of localized resources file that containes the local culture strings
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Localization.LocalizationTagHelperBase.#ctor(Microsoft.Extensions.Localization.IStringLocalizer)">
+            <summary>
+            inject SharedCultureLocalizer
+            </summary>
+            <param name="loc"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Localization.LocalizationTagHelperBase.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            process localize tag helper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Localization.LocalizeAttributesTagHelper">
+            <summary>
+            Localization tag helper, localize text inside <![CDATA[<localize>Hellow</localize>]]>
+            </summary>
+            
+        </member>
+        <member name="P:LazZiya.TagHelpers.Localization.LocalizeAttributesTagHelper.Localize">
+            <summary>
+            Bool value, true to localize content
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.Localization.LocalizeAttributesTagHelper.LocalizeAttribute">
+            <summary>
+            localize custom attribute fields
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Localization.LocalizeAttributesTagHelper.#ctor(Microsoft.Extensions.Localization.IStringLocalizer)">
+            <summary>
+            inject SharedCultureLocalizer
+            </summary>
+            <param name="loc"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Localization.LocalizeAttributesTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            process localize tag helper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Localization.LocalizeTagHelper">
+            <summary>
+            Localization tag helper, localize text inside <![CDATA[<localize>Hellow</localize>]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Localization.LocalizeTagHelper.#ctor(Microsoft.Extensions.Localization.IStringLocalizer)">
+            <summary>
+            inject SharedCultureLocalizer
+            </summary>
+            <param name="loc"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Localization.LocalizeTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            process localize tag helper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+            <returns></returns>
+        </member>
         <member name="T:LazZiya.TagHelpers.PagingTagHelper">
             <summary>
             Creates a pagination control
