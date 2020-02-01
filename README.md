@@ -7,7 +7,7 @@ Collection of helpful TagHelpers for any ASP.NET Core project.
 - v3.1.2
 - ##### PagingTagHelper
   - Hotfix for issue [#8](https://github.com/LazZiya/TagHelpers/issues/8)
-  - Deprected: "PageSizeNavFormMethod" property is no more required, will be removed in a feature release
+  - Deprected: "PageSizeNavFormMethod" property is no longer required, will be removed in a future release
   - "Items per page" renamed to "Page size"
 
 
@@ -32,7 +32,7 @@ Install via nuget :
 Install-Package LazZiya.TagHelpers
 ````
 
-add tag helper to _ViewImports.cshtml:
+Add tag helper to _ViewImports.cshtml:
 
 ````razor
 @addTagHelper *, LazZiya.TagHelpers
@@ -42,7 +42,7 @@ add tag helper to _ViewImports.cshtml:
 
 ## Paging TagHelper
 
-Only few parameters are required to fireup the agination control
+Only few parameters are required to fireup the pagination control
 
 - version >= 3.1.0
 ````razor
@@ -113,7 +113,7 @@ Read more :
 - [Demo](http://demo.ziyad.info/en/Alerts)
 
 
-## LangaugeNav TagHelper
+## LanguageNav TagHelper
 
 - version >= 3.0.1
 ````razor
@@ -153,7 +153,7 @@ Sample enum :
 public enum WeekDays { MON, TUE, WED, THU, FRI, SAT, SUN }
 ````
 
-create the related select list dropdown in razor page :
+Create the related select list dropdown in razor page :
 ````razor
 <select-enum 
         enum-type="typeof(WeekDays)" 
