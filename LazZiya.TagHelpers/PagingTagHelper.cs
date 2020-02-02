@@ -22,6 +22,10 @@ namespace LazZiya.TagHelpers
     {
         private IConfiguration Configuration { get; }
         private readonly ILogger _logger;
+
+        /// <summary>
+        /// Dictonary object to hold all ajax attributes
+        /// </summary>
         private AttributeDictionary AjaxAttributes { get; set; }
 
         /// <summary>
@@ -397,6 +401,7 @@ namespace LazZiya.TagHelpers
                 var pagingControl = new TagBuilder("ul");
                 pagingControl.AddCssClass($"{ClassPagingControl}");
 
+                // If ajax is anabled, create a dictionary of all ajax attributes
                 if (Ajax)
                 {
                     // Add loader element
