@@ -22,7 +22,7 @@ namespace LazZiya.TagHelpers
     {
         private IConfiguration Configuration { get; }
         private readonly ILogger _logger;
-
+        private AttributeDictionary AjaxAttributes { get; set; }
 
         /// <summary>
         /// <para>ViewContext property is not required to be passed as parameter, it will be assigned automatically by the tag helper.</para>
@@ -311,6 +311,70 @@ namespace LazZiya.TagHelpers
 
         #endregion
 
+        #region Ajax
+        /// <summary>
+        /// Set to true to use ajax pagination
+        /// </summary>
+        public bool Ajax { get; set; } = false;
+
+        /// <summary>
+        /// The message to display in a confirmation window before a request is submitted.
+        /// </summary>
+        public string AjaxConfirm { get; set; }
+
+        /*
+        /// <summary>
+        /// The HTTP request method ("Get" or "Post").
+        /// </summary>
+        public AjaxMethod AjaxMethod { get; set; } = AjaxMethod.get;
+        */
+
+        /// <summary>
+        ///  The mode that specifies how to insert the response into the target DOM element. Valid values are before, after and replace. Default is replace
+        /// </summary>
+        public PagingAjaxMode AjaxMode { get; set; } = PagingAjaxMode.replace;
+
+        /// <summary>
+        /// A value, in milliseconds, that controls the duration of the animation when showing or hiding the loading element.
+        /// </summary>
+        public int AjaxLoadingDuration { get; set; }
+
+        /// <summary>
+        /// The id attribute of an HTML element that is displayed while the Ajax function is loading. Default is #spinner
+        /// </summary>
+        public string AjaxLoading { get; set; } = "#spinner";
+
+        /// <summary>
+        /// The name of the JavaScript function to call immediately before the page is updated.
+        /// </summary>
+        public string AjaxBegin { get; set; }
+
+        /// <summary>
+        /// The JavaScript function to call when response data has been instantiated but before the page is updated.
+        /// </summary>
+        public string AjaxComplete { get; set; }
+
+        /// <summary>
+        /// The JavaScript function to call if the page update fails.
+        /// </summary>
+        public string AjaxFailure { get; set; }
+
+        /// <summary>
+        /// The JavaScript function to call after the page is successfully updated.
+        /// </summary>
+        public string AjaxSuccess { get; set; }
+
+        /// <summary>
+        /// The ID of the DOM element to update by using the response from the server.
+        /// </summary>
+        public string AjaxUpdate { get; set; }
+
+        /// <summary>
+        /// The URL to make the request to.
+        /// </summary>
+        public string AjaxUrl { get; set; }
+        #endregion
+
         private int TotalPages => (int)Math.Ceiling(TotalRecords / (double)PageSize);
 
         private class Boundaries
@@ -333,11 +397,46 @@ namespace LazZiya.TagHelpers
                 var pagingControl = new TagBuilder("ul");
                 pagingControl.AddCssClass($"{ClassPagingControl}");
 
-                /* old behavior */ 
-                // show first/last buttons always if totalpages > maxdisplaypages
-                // if (ShowFirstLast != true && TotalPages > MaxDisplayedPages)
-                /* new behavior */
-                // show/hide first/last buttons on user options
+                if (Ajax)
+                {
+                    // Add loader element
+                    output.PostElement.SetHtmlContent("<span id=\"loading\" style=\"display:none;\"><i class=\"fas fa-spinner fa-spin\"></i></span>");
+
+                    if (string.IsNullOrWhiteSpace(AjaxUpdate))
+                        throw new ArgumentNullException(nameof(AjaxUpdate));
+
+                    if (string.IsNullOrWhiteSpace(AjaxUrl))
+                        throw new ArgumentNullException(nameof(AjaxUrl));
+
+                    AjaxAttributes = new AttributeDictionary();
+
+                    AjaxAttributes.Add("data-ajax", "true");
+                    AjaxAttributes.Add("data-ajax-mode", $"{AjaxMode}");
+                    AjaxAttributes.Add("data-ajax-update", AjaxUpdate);
+
+                    if (!string.IsNullOrWhiteSpace(AjaxBegin))
+                        AjaxAttributes.Add("data-ajax-begin", AjaxBegin);
+
+                    if (!string.IsNullOrWhiteSpace(AjaxComplete))
+                        AjaxAttributes.Add("data-ajax-complete", AjaxComplete);
+
+                    if (!string.IsNullOrWhiteSpace(AjaxConfirm))
+                        AjaxAttributes.Add("data-ajax-confirm", AjaxConfirm);
+
+                    if (!string.IsNullOrWhiteSpace(AjaxFailure))
+                        AjaxAttributes.Add("data-ajax-failure", AjaxFailure);
+
+                    if (!string.IsNullOrWhiteSpace(AjaxLoading))
+                        AjaxAttributes.Add("data-ajax-loading", AjaxLoading);
+
+                    if (AjaxLoadingDuration > 0)
+                        AjaxAttributes.Add("data-ajax-loading-duration", $"{AjaxLoadingDuration}");
+
+                    if (!string.IsNullOrWhiteSpace(AjaxSuccess))
+                        AjaxAttributes.Add("data-ajax-success", AjaxSuccess);
+                }
+
+                // show-hide first-last buttons on user options
                 if (ShowFirstLast == true)
                 {
                     ShowFirstLast = true;
@@ -501,7 +600,7 @@ namespace LazZiya.TagHelpers
 
             ShowLastNumberedPage = ShowLastNumberedPage == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-last-numbered-page"], out bool _slp) ? _slp : true : ShowLastNumberedPage;
 
-            TextPageSize = TextPageSize ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-page-size"] ?? "Page size";
+            TextPageSize = TextPageSize ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-page-size"];
 
             TextFirst = TextFirst ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-first"] ?? "&laquo;";
 
@@ -529,11 +628,11 @@ namespace LazZiya.TagHelpers
 
             ClassDisabledJumpingButton = ClassDisabledJumpingButton ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-disabled-jumping-button"] ?? "disabled";
 
-            ClassInfoDiv = ClassInfoDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-info-div"] ?? "col-2";
+            ClassInfoDiv = ClassInfoDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-info-div"] ?? "col-1";
 
-            ClassPageSizeDiv = ClassPageSizeDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-page-size-div"] ?? "col-2";
+            ClassPageSizeDiv = ClassPageSizeDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-page-size-div"] ?? "col-1";
 
-            ClassPagingControlDiv = ClassPagingControlDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-paging-control-div"] ?? "col-8";
+            ClassPagingControlDiv = ClassPagingControlDiv ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-paging-control-div"] ?? "col-10";
 
             ClassPagingControl = ClassPagingControl ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-paging-control"] ?? "pagination";
 
@@ -598,9 +697,11 @@ namespace LazZiya.TagHelpers
             var liTag = new TagBuilder("li");
             liTag.AddCssClass("page-item");
 
+            var pageUrl = CreateUrlTemplate(targetPageNo, PageSize);
+
             var aTag = new TagBuilder("a");
             aTag.AddCssClass("page-link");
-            aTag.Attributes.Add("href", CreateUrlTemplate(targetPageNo, PageSize));
+            aTag.Attributes.Add("href", pageUrl);
 
             if (string.IsNullOrWhiteSpace(textSr))
             {
@@ -620,6 +721,17 @@ namespace LazZiya.TagHelpers
                 aTag.Attributes.Remove("href");
             }
 
+            if (Ajax)
+            {
+                var ajaxUrl = pageUrl.Replace("?", $"{AjaxUrl}&");
+                aTag.Attributes.Add("data-ajax-url", ajaxUrl);
+
+                foreach (var att in AjaxAttributes)
+                {
+                    aTag.Attributes.Add(att.Key, att.Value);
+                }
+            }
+
             liTag.InnerHtml.AppendHtml(aTag);
             return liTag;
         }
@@ -630,34 +742,52 @@ namespace LazZiya.TagHelpers
         /// <returns></returns>
         private TagBuilder CreatePageSizeControl()
         {
-            var dropDown = new TagBuilder("select");
-            dropDown.AddCssClass($"form-control");
-            //dropDown.Attributes.Add("name", QueryStringKeyPageSize);
-            dropDown.Attributes.Add("onchange", $"{PageSizeNavOnChange}");
+            var dropDownDiv = new TagBuilder("div");
+            dropDownDiv.AddCssClass("dropdown");
+
+            var dropDownBtn = new TagBuilder("button");
+            dropDownBtn.AddCssClass("btn btn-light dropdown-toggle");
+            dropDownBtn.Attributes.Add("type", "button");
+            dropDownBtn.Attributes.Add("id", "pagingDropDownMenuBtn");
+            dropDownBtn.Attributes.Add("data-toggle", "dropdown");
+            dropDownBtn.Attributes.Add("aria-haspopup", "true");
+            dropDownBtn.Attributes.Add("ara-expanded", "false");
+            dropDownBtn.InnerHtml.Append(TextPageSize ?? $"{PageSize}");
+
+            var dropDownMenu = new TagBuilder("div");
+            dropDownMenu.AddCssClass("dropdown-menu dropdown-menu-right");
+            dropDownMenu.Attributes.Add("aria-labelledby", "pagingDropDownMenuBtn");
 
             for (int i = 1; i <= PageSizeNavMaxItems; i++)
             {
-                var option = new TagBuilder("option");
-                option.InnerHtml.AppendHtml($"{i * PageSizeNavBlockSize}");
-                option.Attributes.Add("value", $"{CreateUrlTemplate(1, i * PageSizeNavBlockSize)}");
+                var pageUrl = $"{CreateUrlTemplate(1, i * PageSizeNavBlockSize)}";
+
+                var option = new TagBuilder("a");
+                option.AddCssClass("dropdown-item");
+                option.Attributes.Add("href", pageUrl);
+                option.InnerHtml.Append($"{i * PageSizeNavBlockSize}");
 
                 if ((i * PageSizeNavBlockSize) == PageSize)
-                    option.Attributes.Add("selected", "selected");
+                    option.AddCssClass("active");
 
-                dropDown.InnerHtml.AppendHtml(option);
+                if (Ajax)
+                {
+                    var ajaxUrl = pageUrl.Replace("?", $"{AjaxUrl}&");
+                    option.Attributes.Add("data-ajax-url", ajaxUrl);
+
+                    foreach (var att in AjaxAttributes)
+                    {
+                        option.Attributes.Add(att.Key, att.Value);
+                    }
+                }
+
+                dropDownMenu.InnerHtml.AppendHtml(option);
             }
 
+            dropDownDiv.InnerHtml.AppendHtml(dropDownBtn);
+            dropDownDiv.InnerHtml.AppendHtml(dropDownMenu);
 
-            var pageSizezDiv = new TagBuilder("div");
-            pageSizezDiv.AddCssClass("form-inline");
-
-            var label = new TagBuilder("label");
-            label.Attributes.Add("for", "pageSizeControl");
-            label.InnerHtml.AppendHtml($"{TextPageSize}&nbsp;");
-            pageSizezDiv.InnerHtml.AppendHtml(label);
-            pageSizezDiv.InnerHtml.AppendHtml(dropDown);
-
-            return pageSizezDiv;
+            return dropDownDiv;
         }
 
         /// <summary>
@@ -668,7 +798,7 @@ namespace LazZiya.TagHelpers
         /// <returns></returns>
         private string CreateUrlTemplate(int pageNo, int pageSize)
         {
-            var urlPath = ViewContext.HttpContext.Request.QueryString.Value;
+            var urlPath = ViewContext.HttpContext.Request.QueryString.Value.Replace($"{AjaxUrl}&", "");
 
             _logger.LogDebug($"----> Page No '{pageNo}', Page Size '{pageSize}', URL Path '{urlPath}'");
 
@@ -677,13 +807,17 @@ namespace LazZiya.TagHelpers
 
             var urlTemplate = urlPath.TrimStart('?').Split('&').ToList();
 
+            // Remove xml request parameters from url list
+            urlTemplate.Remove(urlTemplate.FirstOrDefault(x => x.StartsWith("X-Requested-With=")));
+            urlTemplate.Remove(urlTemplate.FirstOrDefault(x => x.StartsWith("_=")));
+
             for (int i = 0; i < urlTemplate.Count; i++)
             {
-                var q = urlTemplate[i];
-                urlTemplate[i] =
-                    q.StartsWith($"{QueryStringKeyPageNo}=", StringComparison.OrdinalIgnoreCase) ? p :
-                    q.StartsWith($"{QueryStringKeyPageSize}=", StringComparison.OrdinalIgnoreCase) ? s :
-                    q;
+                    var q = urlTemplate[i];
+                    urlTemplate[i] =
+                        q.StartsWith($"{QueryStringKeyPageNo}=", StringComparison.OrdinalIgnoreCase) ? p :
+                        q.StartsWith($"{QueryStringKeyPageSize}=", StringComparison.OrdinalIgnoreCase) ? s :
+                        q;
             }
 
             if (!urlTemplate.Any(x => x == p))

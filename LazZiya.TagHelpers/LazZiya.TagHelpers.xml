@@ -289,88 +289,40 @@
             <param name="output"></param>
             <returns></returns>
         </member>
-        <member name="T:LazZiya.TagHelpers.Localization.LocalizationTagHelperBase">
+        <member name="T:LazZiya.TagHelpers.PagingAjaxMode">
             <summary>
-            base class for localize tag helpers
+            ajax update modes
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.Localization.LocalizationTagHelperBase.Args">
+        <member name="F:LazZiya.TagHelpers.PagingAjaxMode.before">
             <summary>
-            pass array of objects for arguments
+            update before target content
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.Localization.LocalizationTagHelperBase.Culture">
+        <member name="F:LazZiya.TagHelpers.PagingAjaxMode.after">
             <summary>
-            localization string with reference to the specified culture
+            update after target content
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.Localization.LocalizationTagHelperBase.ResourceSource">
+        <member name="F:LazZiya.TagHelpers.PagingAjaxMode.replace">
             <summary>
-            type of the source of localized resources file that containes the local culture strings
+            replace target content
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.Localization.LocalizationTagHelperBase.#ctor(Microsoft.Extensions.Localization.IStringLocalizer)">
+        <member name="T:LazZiya.TagHelpers.AjaxMethod">
             <summary>
-            inject SharedCultureLocalizer
-            </summary>
-            <param name="loc"></param>
-        </member>
-        <member name="M:LazZiya.TagHelpers.Localization.LocalizationTagHelperBase.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
-            <summary>
-            process localize tag helper
-            </summary>
-            <param name="context"></param>
-            <param name="output"></param>
-            <returns></returns>
-        </member>
-        <member name="T:LazZiya.TagHelpers.Localization.LocalizeAttributesTagHelper">
-            <summary>
-            Localization tag helper, localize text inside <![CDATA[<localize>Hellow</localize>]]>
-            </summary>
-            
-        </member>
-        <member name="P:LazZiya.TagHelpers.Localization.LocalizeAttributesTagHelper.Localize">
-            <summary>
-            Bool value, true to localize content
+            The http request method
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.Localization.LocalizeAttributesTagHelper.LocalizeAttribute">
+        <member name="F:LazZiya.TagHelpers.AjaxMethod.get">
             <summary>
-            localize custom attribute fields
+            get request
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.Localization.LocalizeAttributesTagHelper.#ctor(Microsoft.Extensions.Localization.IStringLocalizer)">
+        <member name="F:LazZiya.TagHelpers.AjaxMethod.post">
             <summary>
-            inject SharedCultureLocalizer
+            post request
             </summary>
-            <param name="loc"></param>
-        </member>
-        <member name="M:LazZiya.TagHelpers.Localization.LocalizeAttributesTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
-            <summary>
-            process localize tag helper
-            </summary>
-            <param name="context"></param>
-            <param name="output"></param>
-            <returns></returns>
-        </member>
-        <member name="T:LazZiya.TagHelpers.Localization.LocalizeTagHelper">
-            <summary>
-            Localization tag helper, localize text inside <![CDATA[<localize>Hellow</localize>]]>
-            </summary>
-        </member>
-        <member name="M:LazZiya.TagHelpers.Localization.LocalizeTagHelper.#ctor(Microsoft.Extensions.Localization.IStringLocalizer)">
-            <summary>
-            inject SharedCultureLocalizer
-            </summary>
-            <param name="loc"></param>
-        </member>
-        <member name="M:LazZiya.TagHelpers.Localization.LocalizeTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
-            <summary>
-            process localize tag helper
-            </summary>
-            <param name="context"></param>
-            <param name="output"></param>
-            <returns></returns>
         </member>
         <member name="T:LazZiya.TagHelpers.PagingTagHelper">
             <summary>
@@ -630,6 +582,61 @@
             <summary>
             css class for total pages info
             <para>default: badge badge-light</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.Ajax">
+            <summary>
+            Set to true to use ajax pagination
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxConfirm">
+            <summary>
+            The message to display in a confirmation window before a request is submitted.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxMode">
+            <summary>
+             The mode that specifies how to insert the response into the target DOM element. Valid values are before, after and replace. Default is replace
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxLoadingDuration">
+            <summary>
+            A value, in milliseconds, that controls the duration of the animation when showing or hiding the loading element.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxLoading">
+            <summary>
+            The id attribute of an HTML element that is displayed while the Ajax function is loading. Default is #spinner
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxBegin">
+            <summary>
+            The name of the JavaScript function to call immediately before the page is updated.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxComplete">
+            <summary>
+            The JavaScript function to call when response data has been instantiated but before the page is updated.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxFailure">
+            <summary>
+            The JavaScript function to call if the page update fails.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxSuccess">
+            <summary>
+            The JavaScript function to call after the page is successfully updated.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxUpdate">
+            <summary>
+            The ID of the DOM element to update by using the response from the server.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxUrl">
+            <summary>
+            The URL to make the request to.
             </summary>
         </member>
         <member name="M:LazZiya.TagHelpers.PagingTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">

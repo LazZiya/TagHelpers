@@ -16,7 +16,7 @@
       - LanguageNavTagHelper and LocalizationValdiationScriptsTagHelper moved to another nuget
       - See LazZiya.ExpressLocalization in https://lazziya.github.io/ExpressLocalization/
     </PackageReleaseNotes>
-    <Version>4.0.0-beta8</Version>
+    <Version>4.0.0-beta9</Version>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <FileVersion>4.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
