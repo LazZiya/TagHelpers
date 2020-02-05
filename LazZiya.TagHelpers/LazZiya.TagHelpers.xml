@@ -840,7 +840,7 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.NumberFormat">
             <summary>
             The number display format for page numbers. Use a list of numbers splitted by space e.g. "0 1 2 3 4 5 6 7 8 9" or use one from a pre-defined numbers formats in :
-            <see cref="!:LazZiya.TagHelpers.Utilities.NumberFormats"/>
+            <see cref="T:LazZiya.Common.Text.NumberFormats"/>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.SrTextFirst">
@@ -1034,6 +1034,11 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:LazZiya.TagHelpers.Properties.Resources.LocalizationServiceNotInUse">
+            <summary>
+              Looks up a localized string similar to Localization service is not registered or null. SelectEnum dropdown will not localize values. Install LazZiya.ExpessLocalization or implement a localization service of type ISharedCultureLocalizer.
+            </summary>
+        </member>
         <member name="P:LazZiya.TagHelpers.Properties.Resources.LocalizationServiceNull">
             <summary>
               Looks up a localized string similar to Localization service is not registered or null.  Install LazZiya.ExpessLocalization or implement a localization service of type ISharedCultureLocalizer.
@@ -1085,11 +1090,12 @@
             This property is not in use! <see cref="T:LazZiya.Common.ISharedCultureLocalizer"/>
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.SelectEnumTagHelper.#ctor(System.IServiceProvider)">
+        <member name="M:LazZiya.TagHelpers.SelectEnumTagHelper.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.SelectEnumTagHelper})">
             <summary>
             Initialize a new instance of SelectEnum taghelper
             </summary>
             <param name="provider"></param>
+            <param name="log"></param>
         </member>
         <member name="M:LazZiya.TagHelpers.SelectEnumTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
             <summary>

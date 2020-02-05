@@ -230,7 +230,7 @@ namespace LazZiya.TagHelpers
 
         /// <summary>
         /// The number display format for page numbers. Use a list of numbers splitted by space e.g. "0 1 2 3 4 5 6 7 8 9" or use one from a pre-defined numbers formats in :
-        /// <see cref="LazZiya.TagHelpers.Utilities.NumberFormats"/>
+        /// <see cref="LazZiya.Common.Text.NumberFormats"/>
         /// </summary>
         public string NumberFormat { get; set; }
         #endregion

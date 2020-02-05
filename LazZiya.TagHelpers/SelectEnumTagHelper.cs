@@ -15,6 +15,7 @@ namespace LazZiya.TagHelpers
     public class SelectEnumTagHelper : TagHelper
     {
         private readonly ISharedCultureLocalizer _loc;
+        private readonly ILogger _log;
 
         /// <summary>
         /// (int)MyEnum.ValueName
@@ -36,14 +37,17 @@ namespace LazZiya.TagHelpers
         /// Initialize a new instance of SelectEnum taghelper
         /// </summary>
         /// <param name="provider"></param>
-        public SelectEnumTagHelper(IServiceProvider provider)
+        /// <param name="log"></param>
+        public SelectEnumTagHelper(IServiceProvider provider, ILogger<SelectEnumTagHelper> log)
         {
-            var loc = provider.GetService(typeof(ISharedCultureLocalizer));
-            
-            if (loc == null)
-                throw new NullReferenceException(Resources.LocalizationServiceNull);
+            _log = log;
 
-            _loc = (ISharedCultureLocalizer)loc;
+            var loc = provider.GetService(typeof(ISharedCultureLocalizer));
+            if (loc != null)
+                _loc = (ISharedCultureLocalizer)loc;
+            else
+                _log.LogWarning(Resources.LocalizationServiceNotInUse);
+
         }
 
         /// <summary>

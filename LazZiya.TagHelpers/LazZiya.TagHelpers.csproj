@@ -20,7 +20,7 @@
       Change :
       - LocalizationValdiationScriptsTagHelper needs manually installation in startup
     </PackageReleaseNotes>
-    <Version>4.0.0-preview7</Version>
+    <Version>4.0.0-preview8</Version>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <FileVersion>4.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
