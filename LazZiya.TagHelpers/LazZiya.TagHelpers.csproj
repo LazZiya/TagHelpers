@@ -13,13 +13,14 @@
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>
       New :
-      - Ajax support for PagingTagHelper
+      - PagingTagHelper : Ajax support
+      - PagingTagHelper: Display page numbers in different cultures number formats
       - LocalizeTagHelper: use html tag or attributes to localize views
       - SelectEnumTagHelper: ISharedCultureLocalizer is used for localizing enum dropdown
       Change :
       - LocalizationValdiationScriptsTagHelper needs manually installation in startup
     </PackageReleaseNotes>
-    <Version>4.0.0-preview6</Version>
+    <Version>4.0.0-preview7</Version>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <FileVersion>4.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -33,7 +34,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LazZiya.Common" Version="1.0.0-preview1" Exclude="Build,Analyzers" />
+    <PackageReference Include="LazZiya.Common" Version="1.0.0-preview2" Exclude="Build,Analyzers" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0' OR '$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2'">

@@ -1,10 +1,4 @@
-﻿/*******************************************************
- * Copyright © 2018  Ziya Mollamahmut
- * http://www.ziya.info/en/21-Pagination_TagHelper_ASP_NET_Core_2
- * 
- * License: no restriction, just keep the credits note in place :)
- * 
- * *****************************************************/
+﻿using LazZiya.Common.Text;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -233,6 +227,12 @@ namespace LazZiya.TagHelpers
         /// <para>default: records</para>
         /// </summary>
         public string TextTotalRecords { get; set; }
+
+        /// <summary>
+        /// The number display format for page numbers. Use a list of numbers splitted by space e.g. "0 1 2 3 4 5 6 7 8 9" or use one from a pre-defined numbers formats in :
+        /// <see cref="LazZiya.TagHelpers.Utilities.NumberFormats"/>
+        /// </summary>
+        public string NumberFormat { get; set; }
         #endregion
 
         #region Screen Reader
@@ -344,9 +344,9 @@ namespace LazZiya.TagHelpers
         public int AjaxLoadingDuration { get; set; }
 
         /// <summary>
-        /// The id attribute of an HTML element that is displayed while the Ajax function is loading. Default is #spinner
+        /// The id attribute of an HTML element that is displayed while the Ajax function is loading. Default is #loading-spinner
         /// </summary>
-        public string AjaxLoading { get; set; } = "#spinner";
+        public string AjaxLoading { get; set; } = "#loading-spinner";
 
         /// <summary>
         /// The name of the JavaScript function to call immediately before the page is updated.
@@ -405,7 +405,7 @@ namespace LazZiya.TagHelpers
                 if (Ajax)
                 {
                     // Add loader element
-                    output.PostElement.SetHtmlContent("<span id=\"loading\" style=\"display:none;\"><i class=\"fas fa-spinner fa-spin\"></i></span>");
+                    output.PreElement.SetHtmlContent("<span id=\"loading-spinner\" style=\"display:none;\"><i class=\"fas fa-spinner fa-spin\"></i></span>");
 
                     if (string.IsNullOrWhiteSpace(AjaxUpdate))
                         throw new ArgumentNullException(nameof(AjaxUpdate));
@@ -605,6 +605,8 @@ namespace LazZiya.TagHelpers
 
             ShowLastNumberedPage = ShowLastNumberedPage == null ? bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:show-last-numbered-page"], out bool _slp) ? _slp : true : ShowLastNumberedPage;
 
+            NumberFormat = NumberFormat ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:number-format"] ?? NumberFormats.Default;
+
             TextPageSize = TextPageSize ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-page-size"];
 
             TextFirst = TextFirst ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:text-first"] ?? "&laquo;";
@@ -708,9 +710,15 @@ namespace LazZiya.TagHelpers
             aTag.AddCssClass("page-link");
             aTag.Attributes.Add("href", pageUrl);
 
+            // If no text provided for screen readers
+            // use the actual page number
             if (string.IsNullOrWhiteSpace(textSr))
             {
-                aTag.InnerHtml.Append($"{targetPageNo}");
+                var pageNoText = NumberFormat == NumberFormats.Default
+                    ? targetPageNo.ToString()
+                    : targetPageNo.ToNumberFormat(NumberFormat);
+
+                aTag.InnerHtml.Append($"{pageNoText}");
             }
             else
             {
