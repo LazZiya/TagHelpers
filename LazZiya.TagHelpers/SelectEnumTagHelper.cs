@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using LazZiya.Common;
+using LazZiya.TagHelpers.Properties;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.Extensions.Logging;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,6 +14,8 @@ namespace LazZiya.TagHelpers
     /// </summary>
     public class SelectEnumTagHelper : TagHelper
     {
+        private readonly ISharedCultureLocalizer _loc;
+
         /// <summary>
         /// (int)MyEnum.ValueName
         /// </summary>
@@ -22,10 +27,24 @@ namespace LazZiya.TagHelpers
         public Type EnumType { get; set; }
 
         /// <summary>
-        /// localization method as delegate
-        /// e.g. delegate(string s) { return _localizaer["My value"]; }
+        /// This property is not in use! <see cref="ISharedCultureLocalizer"/>
         /// </summary>
+        [Obsolete("This property is not in use and will be removed in a feature release. Use an implemetation of ISharedCultureLocalizer instead.")]
         public Func<string, string> TextLocalizerDelegate { get; set; }
+
+        /// <summary>
+        /// Initialize a new instance of SelectEnum taghelper
+        /// </summary>
+        /// <param name="provider"></param>
+        public SelectEnumTagHelper(IServiceProvider provider)
+        {
+            var loc = provider.GetService(typeof(ISharedCultureLocalizer));
+            
+            if (loc == null)
+                throw new NullReferenceException(Resources.LocalizationServiceNull);
+
+            _loc = (ISharedCultureLocalizer)loc;
+        }
 
         /// <summary>
         /// start creating select-enum tag helper
@@ -42,7 +61,7 @@ namespace LazZiya.TagHelpers
 
                 op.Attributes.Add("value", $"{e}");
 
-                var displayText = TextLocalizerDelegate == null 
+                var displayText = _loc == null
                     ? GetEnumFieldDisplayName(e)
                     : GetEnumFieldLocalizedDisplayName(e);
 
@@ -59,7 +78,7 @@ namespace LazZiya.TagHelpers
         {
             // get enum field name
             var fieldName = Enum.GetName(EnumType, value);
-     
+
             //get Display(Name = "Field name")
             var displayName = EnumType.GetField(fieldName).GetCustomAttributes(false).OfType<DisplayAttribute>().SingleOrDefault()?.Name;
 
@@ -70,7 +89,7 @@ namespace LazZiya.TagHelpers
         {
             var text = GetEnumFieldDisplayName(value);
 
-            return TextLocalizerDelegate(text);
+            return _loc[text];
         }
     }
 }

@@ -14,12 +14,12 @@
     <PackageReleaseNotes>
       New :
       - Ajax support for PagingTagHelper
-      
-      IMPORTANT BREAKING CHANGE :
-      - LanguageNavTagHelper and LocalizationValdiationScriptsTagHelper moved to another nuget
-      - See LazZiya.ExpressLocalization in https://lazziya.github.io/ExpressLocalization/
+      - LocalizeTagHelper: use html tag or attributes to localize views
+      - SelectEnumTagHelper: ISharedCultureLocalizer is used for localizing enum dropdown
+      Change :
+      - LocalizationValdiationScriptsTagHelper needs manually installation in startup
     </PackageReleaseNotes>
-    <Version>4.0.0-beta10</Version>
+    <Version>4.0.0-preview6</Version>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <FileVersion>4.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -28,9 +28,13 @@
     <RepositoryUrl>https://github.com/LazZiya/TagHelpers</RepositoryUrl>
   </PropertyGroup>
 
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug' OR '$(Configuration)'=='Release'">
     <DocumentationFile>LazZiya.TagHelpers.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LazZiya.Common" Version="1.0.0-preview1" Exclude="Build,Analyzers" />
+  </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0' OR '$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2'">
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0" Exclude="build,analyzers" />
@@ -60,7 +64,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

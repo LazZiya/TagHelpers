@@ -1,0 +1,34 @@
+﻿<!-- cldr scripts (needed for globalize) -->
+<script src="/lib/cldr/dist/cldr.min.js"></script>
+<script src="/lib/cldr/dist/cldr/event.min.js"></script>
+<script src="/lib/cldr/dist/cldr/supplemental.min.js"></script>
+
+<!-- globalize scripts -->
+<script src="/lib/globalize/dist/globalize.min.js"></script>
+<script src="/lib/globalize/dist/globalize/number.min.js"></script>
+<script src="/lib/globalize/dist/globalize/date.min.js"></script>
+<script src="/lib/globalize/dist/globalize/currency.min.js"></script>
+
+<!-- jquery valdiation globalize -->
+<script src="https://cdn.jsdelivr.net/gh/johnnyreilly/jquery-validation-globalize@1.0.0/jquery.validate.globalize.min.js"></script>
+
+<script type="text/javascript">
+    $.when(
+        $.get("/lib/cldr-data/supplemental/likelySubtags.json"),
+        $.get("/lib/cldr-data/main/{culture}/numbers.json"),
+        $.get("/lib/cldr-data/main/{culture}/currencies.json"),
+        $.get("/lib/cldr-data/supplemental/numberingSystems.json"),
+        $.get("/lib/cldr-data/main/{culture}/ca-gregorian.json"),
+        $.get("/lib/cldr-data/main/{culture}/timeZoneNames.json"),
+        $.get("/lib/cldr-data/supplemental/timeData.json"),
+        $.get("/lib/cldr-data/supplemental/weekData.json"),
+    ).then(function () {
+        // Normalize $.get results, we only need the JSON, not the request statuses.
+        return [].slice.apply(arguments, [0]).map(function (result) {
+            return result[0];
+        });
+    }).then(Globalize.load).then(function () {
+        Globalize.locale("{culture}");
+    });
+</script>
+
