@@ -403,9 +403,15 @@
             Choose render mode: classis for regular dropdown list, Bootstrap4 for HTML5 div with Bootstrap4 style.
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.CultureCookieHandlerUrl">
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.CookieHandlerUrl">
             <summary>
             Set the handler url for setting culture cookie on language change
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.CookieHandlerCultureParam">
+            <summary>
+            Set the name of the culture paramter for cookie handler. 
+            default: "cltr"
             </summary>
         </member>
         <member name="F:LazZiya.TagHelpers.LanguageNavTagHelper._ops">

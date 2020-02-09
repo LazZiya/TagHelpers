@@ -66,7 +66,13 @@ namespace LazZiya.TagHelpers
         /// <summary>
         /// Set the handler url for setting culture cookie on language change
         /// </summary>
-        public string CultureCookieHandlerUrl { get; set; }
+        public string CookieHandlerUrl { get; set; }
+
+        /// <summary>
+        /// Set the name of the culture paramter for cookie handler. 
+        /// default: "cltr"
+        /// </summary>
+        public string CookieHandlerCultureParam { get; set; } = "cltr";
 
         /// <summary>
         /// required for listing supported cultures
@@ -207,9 +213,9 @@ namespace LazZiya.TagHelpers
                 
                 var url = TargetUrl(_routeData);
 
-                if (!string.IsNullOrWhiteSpace(CultureCookieHandlerUrl))
+                if (!string.IsNullOrWhiteSpace(CookieHandlerUrl))
                 {
-                    url = $"{CultureCookieHandlerUrl}&cltr={cul.Name}&returnUrl={url}";
+                    url = $"{CookieHandlerUrl}&{CookieHandlerCultureParam}={cul.Name}&returnUrl={url}";
                 }
 
                 var label = GetLanguageLabel(cul);
