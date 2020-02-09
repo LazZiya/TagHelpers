@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -44,7 +45,13 @@ namespace LazZiya.TagHelpers
         /// optional: specify where to redirect when the language is changed
         /// <para>default value: RedirectTo.SamePage</para>
         /// </summary>
+        [Obsolete("This property is deprected. Use RedirectToUrl instead.")]
         public RedirectTo RedirectTo { get; set; } = RedirectTo.SamePage;
+
+        /// <summary>
+        /// Set the url to redirect to when culture is changed
+        /// </summary>
+        public string RedirectToUrl { get; set; }
 
         /// <summary>
         /// optinal: name of the home page to redirect to when RedirectTo is HomePage
@@ -196,6 +203,10 @@ namespace LazZiya.TagHelpers
 
             // if we are redirecting to the home page, then we need
             // only culture paramter and home page name in route values
+            
+            // .....
+            // Think of a way to use RedirectToUrl instead of RedirectTo.....
+            // .....
             if (RedirectTo == RedirectTo.HomePage)
             {
                 ViewContext.RouteData.Values.Clear();
