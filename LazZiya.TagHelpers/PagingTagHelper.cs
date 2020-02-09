@@ -1,4 +1,4 @@
-﻿using LazZiya.Common.Text;
+﻿using LazZiya.TagHelpers.Utilities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -82,24 +82,22 @@ namespace LazZiya.TagHelpers
 
         #region Page size navigation
         /// <summary>
-        /// Form submit method when selecting different page size option
-        /// <para>default: get</para>
-        /// <para>options: get, post</para>
+        /// This property is deprected. Use PageSizeDropdownItems instead
         /// </summary>
-        [Obsolete("This item has no more functionality and will be removed in a feature release.")]
-        public string PageSizeNavFormMethod { get; set; }
-
-        /// <summary>
-        /// The minimum block size to populate all possible page sizes for dropdown list
-        /// <para>default: 10</para>
-        /// </summary>
+        [Obsolete("This property is deprected. Use PageSizeDropdownItems instead")]
         public int PageSizeNavBlockSize { get; set; }
 
         /// <summary>
-        /// maximum nmber of items to show in the page size navigation menu
-        /// <para>default: 3</para>
+        /// This property is deprected. Use PageSizeDropdownItems instead
         /// </summary>
+        //[Obsolete("This property is deprected. Use PageSizeDropdownItems instead")]
         public int PageSizeNavMaxItems { get; set; }
+
+        /// <summary>
+        /// A list of dash delimitted numbers for page size dropdown. 
+        /// default: "10-25-50"
+        /// </summary>
+        public string PageSizeDropdownItems { get; set; }
 
         /// <summary>
         /// action to take when page size dropdown changes
@@ -230,7 +228,7 @@ namespace LazZiya.TagHelpers
 
         /// <summary>
         /// The number display format for page numbers. Use a list of numbers splitted by space e.g. "0 1 2 3 4 5 6 7 8 9" or use one from a pre-defined numbers formats in :
-        /// <see cref="LazZiya.Common.Text.NumberFormats"/>
+        /// <see cref="LazZiya.TagHelpers.Utilities.NumberFormats"/>
         /// </summary>
         public string NumberFormat { get; set; }
         #endregion
@@ -413,11 +411,12 @@ namespace LazZiya.TagHelpers
                     if (string.IsNullOrWhiteSpace(AjaxUrl))
                         throw new ArgumentNullException(nameof(AjaxUrl));
 
-                    AjaxAttributes = new AttributeDictionary();
-
-                    AjaxAttributes.Add("data-ajax", "true");
-                    AjaxAttributes.Add("data-ajax-mode", $"{AjaxMode}");
-                    AjaxAttributes.Add("data-ajax-update", AjaxUpdate);
+                    AjaxAttributes = new AttributeDictionary
+                    {
+                        { "data-ajax", "true" },
+                        { "data-ajax-mode", $"{AjaxMode}" },
+                        { "data-ajax-update", AjaxUpdate }
+                    };
 
                     if (!string.IsNullOrWhiteSpace(AjaxBegin))
                         AjaxAttributes.Add("data-ajax-begin", AjaxBegin);
@@ -576,13 +575,7 @@ namespace LazZiya.TagHelpers
             GapSize = GapSize > 0 ? GapSize :
                 int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:gap-size"], out int _gap) ? _gap : 3;
 
-            //PageSizeNavFormMethod = PageSizeNavFormMethod ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-nav-form-method"] ?? "get";
-
-            PageSizeNavBlockSize = PageSizeNavBlockSize > 0 ? PageSizeNavBlockSize :
-                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-nav-block-size"], out int _bs) ? _bs : 10;
-
-            PageSizeNavMaxItems = PageSizeNavMaxItems > 0 ? PageSizeNavMaxItems :
-                int.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-nav-max-items"], out int _mi) ? _mi : 3;
+            PageSizeDropdownItems = PageSizeDropdownItems ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-dropdown-items"] ?? "10-25-50";
 
             PageSizeNavOnChange = PageSizeNavOnChange ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:page-size-nav-on-change"] ?? "window.location.href=this.value";
 
@@ -661,7 +654,7 @@ namespace LazZiya.TagHelpers
         {
             var span = new TagBuilder("span");
             span.AddCssClass($"{cssClassName}");
-            span.InnerHtml.AppendHtml($"{count.ToString("N0")} {itemName}");
+            span.InnerHtml.AppendHtml($"{count.ToNumberFormat(NumberFormat)} {itemName}");
 
             return span;
         }
@@ -670,7 +663,7 @@ namespace LazZiya.TagHelpers
         {
             int _start, _end;
 
-            var _gap = (int)Math.Ceiling(maxDisplayedPages / 2.0);
+            int _gap = (int)Math.Ceiling(maxDisplayedPages / 2.0);
 
             if (maxDisplayedPages > totalPages)
                 maxDisplayedPages = totalPages;
@@ -714,9 +707,7 @@ namespace LazZiya.TagHelpers
             // use the actual page number
             if (string.IsNullOrWhiteSpace(textSr))
             {
-                var pageNoText = NumberFormat == NumberFormats.Default
-                    ? targetPageNo.ToString()
-                    : targetPageNo.ToNumberFormat(NumberFormat);
+                var pageNoText = targetPageNo.ToNumberFormat(NumberFormat);
 
                 aTag.InnerHtml.Append($"{pageNoText}");
             }
@@ -764,23 +755,28 @@ namespace LazZiya.TagHelpers
             dropDownBtn.Attributes.Add("id", "pagingDropDownMenuBtn");
             dropDownBtn.Attributes.Add("data-toggle", "dropdown");
             dropDownBtn.Attributes.Add("aria-haspopup", "true");
-            dropDownBtn.Attributes.Add("ara-expanded", "false");
-            dropDownBtn.InnerHtml.Append(TextPageSize ?? $"{PageSize}");
+            dropDownBtn.Attributes.Add("aria-expanded", "false");
+            dropDownBtn.InnerHtml.Append(TextPageSize ?? $"{PageSize.ToNumberFormat(NumberFormat)}");
 
             var dropDownMenu = new TagBuilder("div");
             dropDownMenu.AddCssClass("dropdown-menu dropdown-menu-right");
             dropDownMenu.Attributes.Add("aria-labelledby", "pagingDropDownMenuBtn");
 
-            for (int i = 1; i <= PageSizeNavMaxItems; i++)
+            var pageSizeDropdownItems = PageSizeDropdownItems.Split("-", StringSplitOptions.RemoveEmptyEntries);
+
+            for (int i = 0; i < pageSizeDropdownItems.Length; i++)
             {
-                var pageUrl = $"{CreateUrlTemplate(1, i * PageSizeNavBlockSize)}";
+                var n = int.Parse(pageSizeDropdownItems[i]);
+
+                var pageUrl = $"{CreateUrlTemplate(1, n)}";
 
                 var option = new TagBuilder("a");
                 option.AddCssClass("dropdown-item");
                 option.Attributes.Add("href", pageUrl);
-                option.InnerHtml.Append($"{i * PageSizeNavBlockSize}");
+                
+                option.InnerHtml.Append($"{n.ToNumberFormat(NumberFormat)}");
 
-                if ((i * PageSizeNavBlockSize) == PageSize)
+                if (n == PageSize)
                     option.AddCssClass("active");
 
                 if (Ajax)

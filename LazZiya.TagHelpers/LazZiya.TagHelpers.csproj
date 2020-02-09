@@ -7,18 +7,20 @@
     <Company>Ziyad.info</Company>
     <Description>Collection of tag helpers for ASP.NET Core web applications, like Paging, SelectEnum and LanguageNav dropdown tag helpers for MVC and Razor Pages.</Description>
     <Copyright>Ziyad.info</Copyright>
-    <PackageProjectUrl>http://www.ziyad.info/en/articles/27-LazZiya_TagHelpers</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/LazZiya/TagHelpers/wiki</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>
       New :
-      - PagingTagHelper : Ajax support
-      - PagingTagHelper: Display page numbers in different cultures number formats
-      - LocalizeTagHelper: use html tag or attributes to localize views
-      - SelectEnumTagHelper: ISharedCultureLocalizer is used for localizing enum dropdown
+      - PagingTagHelper: Ajax support
+      - PagingTagHelper: Number formats (decimal, hex, roman, arabic, hindi, ..etc)
+      - PagingTagHelper: PageSizeDropdownItems can be specified as a dash delimitted array "10-25-50"
       Change :
-      - LocalizationValdiationScriptsTagHelper needs manually installation in startup
+      - Localization-Validation-Scripts: TagHelper component requires manually registration in startsup.
+      Deprected :
+      - PagingTagHelper: PageSizeNavBlockSize and PageSizeNavMaxItems are deprected, use PageSizeDropdownItems instead.
+      - SelectEnumTagHelper: Deprected due to unnecessity, use default select for enum dropdown, and use [Display] att for localizing enum values.
     </PackageReleaseNotes>
     <Version>4.0.0-preview8</Version>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
@@ -32,10 +34,6 @@
   <PropertyGroup Condition="'$(Configuration)'=='Debug' OR '$(Configuration)'=='Release'">
     <DocumentationFile>LazZiya.TagHelpers.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="LazZiya.Common" Version="1.0.0-preview2" Exclude="Build,Analyzers" />
-  </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0' OR '$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2'">
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0" Exclude="build,analyzers" />
@@ -53,7 +51,7 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
     <FrameworkReference Include="Microsoft.AspNetCore.App" Version="3.1.0" Exclude="Build,Analyzers" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <None Update="files\icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -63,7 +61,7 @@
     </None>
     <None Include="files\license.txt" Pack="true" PackagePath="" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -71,7 +69,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-
+  
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

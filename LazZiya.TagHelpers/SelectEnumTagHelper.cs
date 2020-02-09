@@ -1,6 +1,4 @@
-﻿using LazZiya.Common;
-using LazZiya.TagHelpers.Properties;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,9 +10,9 @@ namespace LazZiya.TagHelpers
     /// <summary>
     /// creates a dropdown list from custom enum with supports for localization
     /// </summary>
+    [Obsolete("This tag helper is deprected and will not be maintained. To have localized enum dropdown values, use [Display(Name=\"xxx\")] attribute on the enum members")]
     public class SelectEnumTagHelper : TagHelper
     {
-        private readonly ISharedCultureLocalizer _loc;
         private readonly ILogger _log;
 
         /// <summary>
@@ -28,7 +26,7 @@ namespace LazZiya.TagHelpers
         public Type EnumType { get; set; }
 
         /// <summary>
-        /// This property is not in use! <see cref="ISharedCultureLocalizer"/>
+        /// This property is not in use and will be removed in a feature release. Use an implemetation of ISharedCultureLocalizer instead.
         /// </summary>
         [Obsolete("This property is not in use and will be removed in a feature release. Use an implemetation of ISharedCultureLocalizer instead.")]
         public Func<string, string> TextLocalizerDelegate { get; set; }
@@ -36,18 +34,11 @@ namespace LazZiya.TagHelpers
         /// <summary>
         /// Initialize a new instance of SelectEnum taghelper
         /// </summary>
-        /// <param name="provider"></param>
         /// <param name="log"></param>
-        public SelectEnumTagHelper(IServiceProvider provider, ILogger<SelectEnumTagHelper> log)
+        [Obsolete("This tag helper is deprected and will not be maintained. To have localized enum dropdown values, use [Display(Name=\"xxx\")] attribute on the enum members")]
+        public SelectEnumTagHelper(ILogger<SelectEnumTagHelper> log)
         {
             _log = log;
-
-            var loc = provider.GetService(typeof(ISharedCultureLocalizer));
-            if (loc != null)
-                _loc = (ISharedCultureLocalizer)loc;
-            else
-                _log.LogWarning(Resources.LocalizationServiceNotInUse);
-
         }
 
         /// <summary>
@@ -65,7 +56,7 @@ namespace LazZiya.TagHelpers
 
                 op.Attributes.Add("value", $"{e}");
 
-                var displayText = _loc == null
+                var displayText = TextLocalizerDelegate == null
                     ? GetEnumFieldDisplayName(e)
                     : GetEnumFieldLocalizedDisplayName(e);
 
@@ -93,7 +84,7 @@ namespace LazZiya.TagHelpers
         {
             var text = GetEnumFieldDisplayName(value);
 
-            return _loc[text];
+            return TextLocalizerDelegate(text);
         }
     }
 }

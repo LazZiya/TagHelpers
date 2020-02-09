@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Razor.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Logging;
+using System;
 
-namespace LazZiya.TagHelpers.Localization
+namespace LazZiya.ExpressLocalization.TagHelpers
 {
     /// <summary>
     /// defines location to load localization valdiation scripts
@@ -21,7 +22,7 @@ namespace LazZiya.TagHelpers.Localization
     }
 
     /// <summary>
-    /// creates localization validation scripts tag to place client side validiation scripts inside
+    /// Tag helper for client side localized validation scripts.
     /// </summary>
     [HtmlTargetElement("localization-validation-scripts")]
     public class LocalizationValidationScriptsTagHelperComponentTagHelper : TagHelperComponentTagHelper
@@ -41,7 +42,7 @@ namespace LazZiya.TagHelpers.Localization
         public string CldrVersion { get; set; } = "35.1.0";
 
         /// <summary>
-        /// creates localization validation scripts tag to place client side validiation scripts inside
+        /// Tag helper for client side localized validation scripts.
         /// </summary>
         public LocalizationValidationScriptsTagHelperComponentTagHelper(ITagHelperComponentManager manager, ILoggerFactory loggerFactory) : base(manager, loggerFactory)
         {

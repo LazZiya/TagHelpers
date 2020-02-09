@@ -64,6 +64,11 @@ namespace LazZiya.TagHelpers
         public RenderMode RenderMode { get; set; } = RenderMode.Bootstrap;
 
         /// <summary>
+        /// Set the handler url for setting culture cookie on language change
+        /// </summary>
+        public string CultureCookieHandlerUrl { get; set; }
+
+        /// <summary>
         /// required for listing supported cultures
         /// </summary>
         private readonly IOptions<RequestLocalizationOptions> _ops;
@@ -193,38 +198,49 @@ namespace LazZiya.TagHelpers
             }
 
             var dic = new List<LanguageItem>();
-            var urlHelper = new UrlHelper(ViewContext);
             var cultures = GetSupportedCultures();
 
             foreach (var cul in cultures)
             {
                 //replace culture value with the relevant one for dropdown list
                 _routeData[CultureKeyName] = cul.Name;
+                
+                var url = TargetUrl(_routeData);
 
-                var urlRoute = new UrlRouteContext { Values = _routeData };
+                if (!string.IsNullOrWhiteSpace(CultureCookieHandlerUrl))
+                {
+                    url = $"{CultureCookieHandlerUrl}&culture={cul.Name}&returnUrl={url}";
+                }
 
-                string url;
-
-#if NETCOREAPP2_2
-                // DotNetCore 2.2 uses EndPointRouting, 
-                // so we need to use the link generator to generate url
-                url = _lg.GetPathByRouteValues(httpContext: ViewContext.HttpContext, "", _routeData);
-#elif NETCOREAPP3_0 || NETCOREAPP3_1
-                // DotNetCore 3.0 has optional value to use EndPointRouting
-                // First check if EndPointRouting is enabled
-                // Or use generic urlHelper to generate url
-                url = _mvcOps.Value.EnableEndpointRouting
-                    ? _lg.GetPathByRouteValues(httpContext: ViewContext.HttpContext, "", _routeData)
-                    : urlHelper.RouteUrl(urlRoute);
-#else
-                // DotNetCore versions before 2.2 uses generic url herlper
-                url = urlHelper.RouteUrl(urlRoute);
-#endif
                 var label = GetLanguageLabel(cul);
                 dic.Add(new LanguageItem { Name = cul.Name, DisplayText = label, Url = url });
             }
 
             return dic;
+        }
+
+        private string TargetUrl(Dictionary<string, object> routeData)
+        {
+            string url = string.Empty;
+            var urlHelper = new UrlHelper(ViewContext);
+            var urlRoute = new UrlRouteContext { Values = routeData };
+
+#if NETCOREAPP2_2
+                // DotNetCore 2.2 uses EndPointRouting, 
+                // so we need to use the link generator to generate url
+                url = _lg.GetPathByRouteValues(httpContext: ViewContext.HttpContext, "", urlRoute.Values);
+#elif NETCOREAPP3_0 || NETCOREAPP3_1
+            // DotNetCore 3.0 has optional value to use EndPointRouting
+            // First check if EndPointRouting is enabled
+            // Or use generic urlHelper to generate url
+            url = _mvcOps.Value.EnableEndpointRouting
+                    ? _lg.GetPathByRouteValues(httpContext: ViewContext.HttpContext, "", urlRoute.Values)
+                    : urlHelper.RouteUrl(urlRoute);
+#else
+            // DotNetCore versions before 2.2 uses generic url herlper
+            url = urlHelper.RouteUrl(urlRoute);
+#endif
+            return url;
         }
 
         /// <summary>
@@ -249,7 +265,7 @@ namespace LazZiya.TagHelpers
                 {
                     foreach (var q in ViewContext.HttpContext.Request.Query)
                     {
-                        _routeData.Add(q.Key, q.Value);
+                        _routeData.TryAdd(q.Key, q.Value);
                     }
                 }
             }

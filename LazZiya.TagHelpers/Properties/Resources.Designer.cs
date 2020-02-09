@@ -61,24 +61,6 @@ namespace LazZiya.TagHelpers.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Localization service is not registered or null. SelectEnum dropdown will not localize values. Install LazZiya.ExpessLocalization or implement a localization service of type ISharedCultureLocalizer.
-        /// </summary>
-        internal static string LocalizationServiceNotInUse {
-            get {
-                return ResourceManager.GetString("LocalizationServiceNotInUse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Localization service is not registered or null.  Install LazZiya.ExpessLocalization or implement a localization service of type ISharedCultureLocalizer.
-        /// </summary>
-        internal static string LocalizationServiceNull {
-            get {
-                return ResourceManager.GetString("LocalizationServiceNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to &lt;!-- cldr scripts (needed for globalize) --&gt;
         ///&lt;script src=&quot;https://cdn.jsdelivr.net/gh/rxaviers/cldrjs@0.5.1/dist/cldr.js&quot;&gt;&lt;/script&gt;
         ///&lt;script src=&quot;https://cdn.jsdelivr.net/gh/rxaviers/cldrjs@0.5.1/dist/cldr/event.js&quot;&gt;&lt;/script&gt;

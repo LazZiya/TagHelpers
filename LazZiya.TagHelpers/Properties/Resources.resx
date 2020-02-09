@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LocalizationServiceNotInUse" xml:space="preserve">
-    <value>Localization service is not registered or null. SelectEnum dropdown will not localize values. Install LazZiya.ExpessLocalization or implement a localization service of type ISharedCultureLocalizer</value>
-  </data>
-  <data name="LocalizationServiceNull" xml:space="preserve">
-    <value>Localization service is not registered or null.  Install LazZiya.ExpessLocalization or implement a localization service of type ISharedCultureLocalizer</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="LocalizationValidationScripts_jsdeliver" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\files\templates\localizationvalidationscripts_jsdeliver.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>

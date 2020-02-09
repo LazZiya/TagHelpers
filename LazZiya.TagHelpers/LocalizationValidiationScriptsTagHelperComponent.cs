@@ -5,10 +5,10 @@ using System;
 using System.Globalization;
 using System.IO;
 
-namespace LazZiya.TagHelpers.Localization
+namespace LazZiya.ExpressLocalization.TagHelpers
 {
     /// <summary>
-    /// inserts all client side localizaiton validation scripts into relevant tag
+    /// Tag helper component for client side localized validation scripts.
     /// </summary>
     public class LocalizationValidationScriptsTagHelperComponent : TagHelperComponent
     {
@@ -29,7 +29,7 @@ namespace LazZiya.TagHelpers.Localization
         private readonly IHostingEnvironment _hosting;
 
         /// <summary>
-        /// inserts all localizaiton validation scripts into relevant tag
+        /// Tag helper component for client side localized validation scripts.
         /// </summary>
         /// <param name="hosting"></param>
         public LocalizationValidationScriptsTagHelperComponent(IHostingEnvironment hosting)
