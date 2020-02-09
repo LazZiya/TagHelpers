@@ -22,7 +22,7 @@
       - PagingTagHelper: PageSizeNavBlockSize and PageSizeNavMaxItems are deprected, use PageSizeDropdownItems instead.
       - SelectEnumTagHelper: Deprected due to unnecessity, use default select for enum dropdown, and use [Display] att for localizing enum values.
     </PackageReleaseNotes>
-    <Version>4.0.0-preview8</Version>
+    <Version>4.0.0-prv2</Version>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <FileVersion>4.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
