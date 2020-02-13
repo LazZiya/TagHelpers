@@ -10,7 +10,6 @@ namespace LazZiya.TagHelpers
     /// <summary>
     /// creates a dropdown list from custom enum with supports for localization
     /// </summary>
-    [Obsolete("This tag helper is deprected and will not be maintained. To have localized enum dropdown values, use [Display(Name=\"xxx\")] attribute on the enum members")]
     public class SelectEnumTagHelper : TagHelper
     {
         private readonly ILogger _log;
@@ -26,16 +25,14 @@ namespace LazZiya.TagHelpers
         public Type EnumType { get; set; }
 
         /// <summary>
-        /// This property is not in use and will be removed in a feature release. Use an implemetation of ISharedCultureLocalizer instead.
+        /// A delegate function for getting locaized value.
         /// </summary>
-        [Obsolete("This property is not in use and will be removed in a feature release. Use an implemetation of ISharedCultureLocalizer instead.")]
         public Func<string, string> TextLocalizerDelegate { get; set; }
 
         /// <summary>
         /// Initialize a new instance of SelectEnum taghelper
         /// </summary>
         /// <param name="log"></param>
-        [Obsolete("This tag helper is deprected and will not be maintained. To have localized enum dropdown values, use [Display(Name=\"xxx\")] attribute on the enum members")]
         public SelectEnumTagHelper(ILogger<SelectEnumTagHelper> log)
         {
             _log = log;

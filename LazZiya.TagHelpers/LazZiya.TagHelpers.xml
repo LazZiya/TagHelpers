@@ -613,6 +613,12 @@
             <para>options: true, false</para>
             </summary>
         </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowGap">
+            <summary>
+            Show a three dots after first page or before last page 
+            when there is a gap in pages at the beginnig or end
+            </summary>
+        </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowFirstLast">
             <summary>
             Show/hide First-Last buttons
@@ -935,7 +941,7 @@
         </member>
         <member name="P:LazZiya.TagHelpers.SelectEnumTagHelper.TextLocalizerDelegate">
             <summary>
-            This property is not in use and will be removed in a feature release. Use an implemetation of ISharedCultureLocalizer instead.
+            A delegate function for getting locaized value.
             </summary>
         </member>
         <member name="M:LazZiya.TagHelpers.SelectEnumTagHelper.#ctor(Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.SelectEnumTagHelper})">
