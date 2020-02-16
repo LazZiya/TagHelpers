@@ -70,13 +70,9 @@ namespace LazZiya.TagHelpers
         public string CookieHandlerUrl { get; set; }
 
         /// <summary>
-        /// Set the name of the culture paramter for cookie handler. 
-        /// default: "cltr"
-        /// </summary>
-        public string CookieHandlerCultureParam { get; set; } = "cltr";
-
-        /// <summary>
-        /// required for listing supported cultures
+        /// required for listing supported cultures. 
+        /// The handler must contain two place holders for culture name and return url. 
+        /// e.g.: <![CDATA[SetCookieCulture?cltr={0}&returnUrl={1}]]>
         /// </summary>
         private readonly IOptions<RequestLocalizationOptions> _ops;
 
@@ -216,7 +212,7 @@ namespace LazZiya.TagHelpers
 
                 if (!string.IsNullOrWhiteSpace(CookieHandlerUrl))
                 {
-                    url = $"{CookieHandlerUrl}?{CookieHandlerCultureParam}={cul.Name}&returnUrl={url}";
+                    url = string.Format(Uri.UnescapeDataString(CookieHandlerUrl), cul.Name, url);
                 }
 
                 var label = GetLanguageLabel(cul);
