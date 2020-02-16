@@ -216,7 +216,7 @@ namespace LazZiya.TagHelpers
 
                 if (!string.IsNullOrWhiteSpace(CookieHandlerUrl))
                 {
-                    url = $"{CookieHandlerUrl}&{CookieHandlerCultureParam}={cul.Name}&returnUrl={url}";
+                    url = $"{CookieHandlerUrl}?{CookieHandlerCultureParam}={cul.Name}&returnUrl={url}";
                 }
 
                 var label = GetLanguageLabel(cul);
