@@ -1,4 +1,6 @@
-﻿namespace LazZiya.TagHelpers
+﻿using System;
+
+namespace LazZiya.TagHelpers
 {
     /// <summary>
     /// The label to display for language dropdown list on language names
@@ -34,6 +36,7 @@
     /// <summary>
     /// Defines where to redirect when language is changes
     /// </summary>
+    [Obsolete("This property is deprected. Use redirect-to-url instead.")]
     public enum RedirectTo
     {
         /// <summary>

@@ -408,6 +408,27 @@
             Set the handler url for setting culture cookie on language change
             </summary>
         </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.RedirectToUrl">
+            <summary>
+            The url to redirect to on langugae change. 
+            The url must have at one place holder for culture value. 
+            e.g. /{0}/Home
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.Flags">
+            <summary>
+            Show relevant country flag for specific culture. 
+            Flags will be shown only if the culture is country specific. 
+            e.g. "tr" will not render any flag, but "tr-sy" will render Turkish flag. 
+            Required reference to flag-icon-css
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.FlagsSquared">
+            <summary>
+            true: Show flags in squared images, 
+            false: Show flags in rounded images, 
+            </summary>
+        </member>
         <member name="F:LazZiya.TagHelpers.LanguageNavTagHelper._ops">
             <summary>
             required for listing supported cultures. 
@@ -415,13 +436,11 @@
             e.g.: <![CDATA[SetCookieCulture?cltr={0}&returnUrl={1}]]>
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions},Microsoft.AspNetCore.Routing.LinkGenerator,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Mvc.MvcOptions})">
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions})">
             <summary>
             creates a language navigation menu, depends on supported cultures
             </summary>
-            <param name="ops">Request localization options</param>
-            <param name="lg">link generator</param>
-            <param name="mvcOps">MvcOptions</param>
+            <param name="ops"></param>
         </member>
         <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
             <summary>
@@ -455,12 +474,6 @@
             <para>Value: Navigation URL</para>
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateRouteDataDictionary">
-            <summary>
-            Get route data values for the current route,
-            then save all values to _routeData dictionary
-            </summary>
         </member>
         <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.GetSupportedCultures">
             <summary>

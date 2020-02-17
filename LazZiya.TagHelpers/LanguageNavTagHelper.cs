@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Options;
@@ -8,11 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-
-#if NETCOREAPP2_2 || NETCOREAPP3_0 || NETCOREAPP3_1
-using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.Mvc;
-#endif
 
 namespace LazZiya.TagHelpers
 {
@@ -25,6 +19,7 @@ namespace LazZiya.TagHelpers
         /// optional: route data key name for culture, default "culture"
         /// default: cultute
         /// </summary>
+        [Obsolete("This property is deprected. Use redirect-to-url instead.")]
         public string CultureKeyName { get; set; } = "culture";
 
         /// <summary>
@@ -45,11 +40,13 @@ namespace LazZiya.TagHelpers
         /// optional: specify where to redirect when the language is changed
         /// <para>default value: RedirectTo.SamePage</para>
         /// </summary>
+        [Obsolete("This property is deprected. Use redirect-to-url instead.")]
         public RedirectTo RedirectTo { get; set; } = RedirectTo.SamePage;
 
         /// <summary>
         /// optinal: name of the home page to redirect to when RedirectTo is HomePage
         /// </summary>
+        [Obsolete("This property is deprected. Use redirect-to-url instead.")]
         public string HomePageName { get; set; } = "Index";
 
         /// <summary>
@@ -70,29 +67,33 @@ namespace LazZiya.TagHelpers
         public string CookieHandlerUrl { get; set; }
 
         /// <summary>
+        /// The url to redirect to on langugae change. 
+        /// The url must have at one place holder for culture value. 
+        /// e.g. /{0}/Home
+        /// </summary>
+        public string RedirectToUrl { get; set; }
+
+        /// <summary>
+        /// Show relevant country flag for specific culture. 
+        /// Flags will be shown only if the culture is country specific. 
+        /// e.g. "tr" will not render any flag, but "tr-sy" will render Turkish flag. 
+        /// Required reference to flag-icon-css
+        /// </summary>
+        public bool Flags { get; set; } = false;
+
+        /// <summary>
+        /// true: Show flags in squared images, 
+        /// false: Show flags in rounded images, 
+        /// </summary>
+        public bool FlagsSquared { get; set; } = false;
+
+        /// <summary>
         /// required for listing supported cultures. 
         /// The handler must contain two place holders for culture name and return url. 
         /// e.g.: <![CDATA[SetCookieCulture?cltr={0}&returnUrl={1}]]>
         /// </summary>
         private readonly IOptions<RequestLocalizationOptions> _ops;
 
-#if NETCOREAPP2_2 || NETCOREAPP3_0 || NETCOREAPP3_1
-        private readonly IOptions<MvcOptions> _mvcOps;
-        private readonly LinkGenerator _lg;
-
-        /// <summary>
-        /// creates a language navigation menu, depends on supported cultures
-        /// </summary>
-        /// <param name="ops">Request localization options</param>
-        /// <param name="lg">link generator</param>
-        /// <param name="mvcOps">MvcOptions</param>
-        public LanguageNavTagHelper(IOptions<RequestLocalizationOptions> ops, LinkGenerator lg, IOptions<MvcOptions> mvcOps)
-        {
-            _ops = ops;
-            _lg = lg;
-            _mvcOps = mvcOps;
-        }
-#else
         /// <summary>
         /// creates a language navigation menu, depends on supported cultures
         /// </summary>
@@ -101,7 +102,7 @@ namespace LazZiya.TagHelpers
         {
             _ops = ops;
         }
-#endif
+
         /// <summary>
         /// start creating the language navigation dropdown
         /// </summary>
@@ -131,6 +132,8 @@ namespace LazZiya.TagHelpers
         private void CreateClassicItems(ref TagHelperOutput output, List<LanguageItem> langDictionary)
         {
             output.TagName = "select";
+            output.Attributes.Add("onchange", "this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);");
+
             foreach (var lang in langDictionary.OrderBy(x => x.DisplayText))
             {
                 var option = new TagBuilder("option");
@@ -164,9 +167,24 @@ namespace LazZiya.TagHelpers
 
             foreach (var lang in langDictionary.Where(x => x.Name != CultureInfo.CurrentCulture.Name).OrderBy(x => x.DisplayText))
             {
+
                 var a = new TagBuilder("a");
                 a.AddCssClass("dropdown-item small");
                 a.Attributes.Add("href", lang.Url);
+
+                if (Flags)
+                {
+                    var flagName = lang.Name.Split('-');
+                    if (flagName.Length == 2)
+                    {
+
+                        if (FlagsSquared)
+                            a.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLower()} flag-icon-squared\"></span>&nbsp;");
+                        else
+                            a.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLower()}\"></span>&nbsp;");
+                    }
+                }
+
                 a.InnerHtml.Append(lang.DisplayText);
 
                 div.InnerHtml.AppendHtml(a);
@@ -189,26 +207,14 @@ namespace LazZiya.TagHelpers
         /// <returns></returns>
         private List<LanguageItem> CreateNavDictionary()
         {
-            var _routeData = CreateRouteDataDictionary();
-
-            // if we are redirecting to the home page, then we need
-            // only culture paramter and home page name in route values
-            if (RedirectTo == RedirectTo.HomePage)
-            {
-                ViewContext.RouteData.Values.Clear();
-                ViewContext.RouteData.Values.Add(CultureKeyName, CultureInfo.CurrentCulture.Name);
-                ViewContext.RouteData.Values.Add("page", $"/{HomePageName}");
-            }
-
             var dic = new List<LanguageItem>();
             var cultures = GetSupportedCultures();
 
             foreach (var cul in cultures)
             {
-                //replace culture value with the relevant one for dropdown list
-                _routeData[CultureKeyName] = cul.Name;
-                
-                var url = TargetUrl(_routeData);
+                var redUrl = RedirectToUrl ?? "{0}";
+
+                var url = string.Format(Uri.UnescapeDataString(redUrl), cul.Name);
 
                 if (!string.IsNullOrWhiteSpace(CookieHandlerUrl))
                 {
@@ -220,60 +226,6 @@ namespace LazZiya.TagHelpers
             }
 
             return dic;
-        }
-
-        private string TargetUrl(Dictionary<string, object> routeData)
-        {
-            string url = string.Empty;
-            var urlHelper = new UrlHelper(ViewContext);
-            var urlRoute = new UrlRouteContext { Values = routeData };
-
-#if NETCOREAPP2_2
-                // DotNetCore 2.2 uses EndPointRouting, 
-                // so we need to use the link generator to generate url
-                url = _lg.GetPathByRouteValues(httpContext: ViewContext.HttpContext, "", urlRoute.Values);
-#elif NETCOREAPP3_0 || NETCOREAPP3_1
-            // DotNetCore 3.0 has optional value to use EndPointRouting
-            // First check if EndPointRouting is enabled
-            // Or use generic urlHelper to generate url
-            url = _mvcOps.Value.EnableEndpointRouting
-                    ? _lg.GetPathByRouteValues(httpContext: ViewContext.HttpContext, "", urlRoute.Values)
-                    : urlHelper.RouteUrl(urlRoute);
-#else
-            // DotNetCore versions before 2.2 uses generic url herlper
-            url = urlHelper.RouteUrl(urlRoute);
-#endif
-            return url;
-        }
-
-        /// <summary>
-        /// Get route data values for the current route,
-        /// then save all values to _routeData dictionary
-        /// </summary>
-        private Dictionary<string, object> CreateRouteDataDictionary()
-        {
-            var _routeData = new Dictionary<string, object>();
-
-            if (RedirectTo == RedirectTo.HomePage)
-                _routeData.Add(CultureKeyName, CultureInfo.CurrentCulture.Name);
-            else
-            {
-                //redirect to same page or same page without query string
-                foreach (var r in ViewContext.RouteData.Values)
-                {
-                    _routeData.Add(r.Key, r.Value);
-                }
-
-                if (RedirectTo == RedirectTo.SamePage)
-                {
-                    foreach (var q in ViewContext.HttpContext.Request.Query)
-                    {
-                        _routeData.TryAdd(q.Key, q.Value);
-                    }
-                }
-            }
-
-            return _routeData;
         }
 
         /// <summary>
@@ -321,8 +273,21 @@ namespace LazZiya.TagHelpers
             toggle.Attributes.Add("aria-haspopup", "true");
             toggle.Attributes.Add("aria-expanded", "false");
 
-            var label = GetLanguageLabel(CultureInfo.CurrentCulture);
-            toggle.InnerHtml.Append(label);
+            var labelTxt = GetLanguageLabel(CultureInfo.CurrentCulture);
+
+            if (Flags)
+            {
+                var flagName = CultureInfo.CurrentCulture.Name.Split('-');
+                if (flagName.Length == 2)
+                {
+                    if (FlagsSquared)
+                        toggle.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLower()} flag-icon-squared\"></span>&nbsp;");
+                    else
+                        toggle.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLower()}\"></span>&nbsp;");
+                }
+            }
+
+            toggle.InnerHtml.AppendHtml(labelTxt);
 
             return toggle;
         }
