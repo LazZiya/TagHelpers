@@ -5,6 +5,25 @@ VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LazZiya.TagHelpers", "LazZiya.TagHelpers\LazZiya.TagHelpers.csproj", "{080D63B6-33A9-47D5-99FF-F636542694EB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScreenShots", "ScreenShots", "{9230D28A-09FD-4303-9D0C-ED8311B06CFA}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Ziya\Pictures\upwork\alert-taghelper-all-front-end.PNG = C:\Users\Ziya\Pictures\upwork\alert-taghelper-all-front-end.PNG
+		C:\Users\Ziya\Pictures\upwork\alert-taghelper-html-content.PNG = C:\Users\Ziya\Pictures\upwork\alert-taghelper-html-content.PNG
+		C:\Users\Ziya\Pictures\upwork\alert-taghelper-multiple-alerts.PNG = C:\Users\Ziya\Pictures\upwork\alert-taghelper-multiple-alerts.PNG
+		C:\Users\Ziya\Pictures\upwork\alert-taghelper-no-dismiss.PNG = C:\Users\Ziya\Pictures\upwork\alert-taghelper-no-dismiss.PNG
+		C:\Users\Ziya\Pictures\upwork\alert-taghelper-primary-front-end.PNG = C:\Users\Ziya\Pictures\upwork\alert-taghelper-primary-front-end.PNG
+		C:\Users\Ziya\Pictures\upwork\alert-taghelper-success.PNG = C:\Users\Ziya\Pictures\upwork\alert-taghelper-success.PNG
+		C:\Users\Ziya\Pictures\upwork\alert-taghelper-with-header.PNG = C:\Users\Ziya\Pictures\upwork\alert-taghelper-with-header.PNG
+		C:\Users\Ziya\Pictures\upwork\languagenav-taghelper-default.PNG = C:\Users\Ziya\Pictures\upwork\languagenav-taghelper-default.PNG
+		C:\Users\Ziya\Pictures\upwork\languagenav-taghelper-with-flags.PNG = C:\Users\Ziya\Pictures\upwork\languagenav-taghelper-with-flags.PNG
+		C:\Users\Ziya\Pictures\upwork\localization-validiation-scripts-number-en.PNG = C:\Users\Ziya\Pictures\upwork\localization-validiation-scripts-number-en.PNG
+		C:\Users\Ziya\Pictures\upwork\localization-validiation-scripts-number-es.PNG = C:\Users\Ziya\Pictures\upwork\localization-validiation-scripts-number-es.PNG
+		C:\Users\Ziya\Pictures\upwork\localization-validiation-scripts-number.PNG = C:\Users\Ziya\Pictures\upwork\localization-validiation-scripts-number.PNG
+		C:\Users\Ziya\Pictures\upwork\paging-tag-helper-full.PNG = C:\Users\Ziya\Pictures\upwork\paging-tag-helper-full.PNG
+		C:\Users\Ziya\Pictures\upwork\paging-tag-helper-number-formats.PNG = C:\Users\Ziya\Pictures\upwork\paging-tag-helper-number-formats.PNG
+		C:\Users\Ziya\Pictures\upwork\paging-tag-helper-samples.PNG = C:\Users\Ziya\Pictures\upwork\paging-tag-helper-samples.PNG
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,7 +39,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {ED31C13F-823E-406C-87BA-4BC36A23816A}
 		BuildVersion_StartDate = 2000/1/1
+		SolutionGuid = {ED31C13F-823E-406C-87BA-4BC36A23816A}
 	EndGlobalSection
 EndGlobal
