@@ -4,7 +4,7 @@
 A collection of useful TagHelpers for any ASP.NET Core project.
 
 ## Documentation :
-See all documentation in [wiki space][https://github.com/LazZiya/TagHelpers/wiki].
+See all documentation in [wiki space][5].
 
 ### [Paging TagHelper][1]
 Create a pagination control _styled with bootstrap 4.x_ using simple html tag.
@@ -49,3 +49,4 @@ http://demo.ziyad.info/en/
 [2]:https://github.com/LazZiya/TagHelpers/wiki/Alerts-TagHelper-Front-end-Alerts
 [3]:https://github.com/LazZiya/TagHelpers/wiki/LanguageNav-TagHelper-Setup
 [4]:https://github.com/LazZiya/TagHelpers/wiki/LocalizationValidationScripts-TagHelper-Setup
+[5]:https://github.com/LazZiya/TagHelpers/wiki
