@@ -212,7 +212,7 @@ namespace LazZiya.TagHelpers
 
             foreach (var cul in cultures)
             {
-                var redUrl = RedirectToUrl ?? "{0}";
+                var redUrl = RedirectToUrl ?? "/{0}";
 
                 var url = string.Format(Uri.UnescapeDataString(redUrl), cul.Name);
 
