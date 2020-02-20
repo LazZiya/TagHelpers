@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.Extensions.Logging;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace LazZiya.TagHelpers
     /// </summary>
     public class SelectEnumTagHelper : TagHelper
     {
+        private readonly ILogger _log;
+
         /// <summary>
         /// (int)MyEnum.ValueName
         /// </summary>
@@ -22,10 +25,18 @@ namespace LazZiya.TagHelpers
         public Type EnumType { get; set; }
 
         /// <summary>
-        /// localization method as delegate
-        /// e.g. delegate(string s) { return _localizaer["My value"]; }
+        /// A delegate function for getting locaized value.
         /// </summary>
         public Func<string, string> TextLocalizerDelegate { get; set; }
+
+        /// <summary>
+        /// Initialize a new instance of SelectEnum taghelper
+        /// </summary>
+        /// <param name="log"></param>
+        public SelectEnumTagHelper(ILogger<SelectEnumTagHelper> log)
+        {
+            _log = log;
+        }
 
         /// <summary>
         /// start creating select-enum tag helper
@@ -42,7 +53,7 @@ namespace LazZiya.TagHelpers
 
                 op.Attributes.Add("value", $"{e}");
 
-                var displayText = TextLocalizerDelegate == null 
+                var displayText = TextLocalizerDelegate == null
                     ? GetEnumFieldDisplayName(e)
                     : GetEnumFieldLocalizedDisplayName(e);
 
@@ -59,7 +70,7 @@ namespace LazZiya.TagHelpers
         {
             // get enum field name
             var fieldName = Enum.GetName(EnumType, value);
-     
+
             //get Display(Name = "Field name")
             var displayName = EnumType.GetField(fieldName).GetCustomAttributes(false).OfType<DisplayAttribute>().SingleOrDefault()?.Name;
 
