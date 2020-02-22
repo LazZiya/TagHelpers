@@ -1,176 +1,52 @@
 # LazZiya.TagHelpers
-Collection of helpful TagHelpers for any ASP.NET Core project. 
 
-## Latest release
+## What is it?
+A collection of useful TagHelpers for any ASP.NET Core project.
 
-13 January 2020
-- v3.1.2
-- ##### PagingTagHelper
-  - Hotfix for issue [#8](https://github.com/LazZiya/TagHelpers/issues/8)
-  - Deprected: "PageSizeNavFormMethod" property is no more required, will be removed in a feature release
-  - "Items per page" renamed to "Page size"
+## Documentation :
+See all documentation in [wiki space][5].
 
+### [Paging TagHelper][1]
+Create a pagination control _styled with bootstrap 4.x_ using simple html tag.
 
-### Notice
-Starting from v3.1.0 all opitons are on by default, can be turned off manually if not needed. See [Demo page](http://demo.ziyad.info/en/paging) for more details about all options.
-
-## Contents
-- LocalizeTagHelper ([Repository](https://github.com/lazziya/TagHelpers.Localize), [Demo](http://demo.ziyad.info/en/Localize), [Tutorial](http://www.ziyad.info/en/articles/36-Develop_Multi_Cultural_Web_Application_Using_ExpressLocalization))
-- AlertTagHelper ([Docs](http://www.ziyad.info/en/articles/37-Alert_TagHelpers), [Demo](http://demo.ziyad.info/en/Alerts))
-- LocalizationValidationScriptsTagHelper ([Docs](http://www.ziyad.info/en/articles/34-Localization_Validation_Scripts), [Demo](http://demo.ziyad.info/en/Trips))
-- LanguageNavTagHelper ([Docs](http://www.ziyad.info/en/articles/32-Language_Navigation_TagHelper), [Demo](http://demo.ziyad.info/en/LanguageNav))
-- SelectEnumTagHelper ([Docs](http://www.ziyad.info/en/articles/28-Select_Enum_TagHelper), [Demo](http://demo.ziyad.info/en/SelectEnum))
-- PagingTagHelper ([Docs](http://www.ziyad.info/en/articles/21-Paging_TagHelper_for_ASP_NET_Core), [Demo](http://demo.ziyad.info/en/Paging), [Tutorial](http://www.ziyad.info/en/articles/38-How_to_build_an_efficient_pagination_system))
-- EmailTagHelper
-- PhoneNumberTagHelper
-
-## Installation:
-
-Install via nuget :
-
-````
-Install-Package LazZiya.TagHelpers
-````
-
-add tag helper to _ViewImports.cshtml:
-
-````razor
-@addTagHelper *, LazZiya.TagHelpers
-````
-
-# Code Samples
-
-## Paging TagHelper
-
-Only few parameters are required to fireup the agination control
-
-- version >= 3.1.0
-````razor
-<paging total-records="Model.TotalRecords"
-        page-no="Model.PageNo">
+````html
+<paging page-no="Model.PageNo" 
+        page-size="Model.PageSize"
+        total-records="Model.TotalRecords">
 </paging>
 ````
+[![PagingTagHelper default](https://github.com/LazZiya/WebXRObjects/raw/master/Shared/Images/LazZiya.TagHelpers/paging-tag-helper-full.PNG)][1]
 
-- version <= 3.0.2
-````razor
-<paging total-records="Model.TotalRecords"
-        page-no="Model.PageNo"
-        query-string-value="@(Request.QueryString.Value)">
-</paging>
+### [Alert TagHelper ][2]
+Create bootstrap alerts using very simple html tag.
+
+````html
+<alert-success>
+    My alert text ...
+</alert>
 ````
+[![AlertTagHelper - success](https://github.com/LazZiya/WebXRObjects/blob/master/Shared/Images/LazZiya.TagHelpers/alert-taghelper-success.PNG)][2]
 
-it is important to add `query-string-value` for versions before 3.1.0.
+### [Language Navigation TagHelper][3]
+Create a language dropdown navigation for websites. Supported cultures will be used to create the navigation items.
 
-For more details :
-- [Docs](http://www.ziyad.info/en/articles/21-Paging_TagHelper_for_ASP_NET_Core)
-- [Demo](http://demo.ziyad.info/en/Paging)
-- [Step-by-step tutorial to build an efficient pagination system](http://www.ziyad.info/en/articles/38-How_to_build_an_efficient_pagination_system)
-
-## Localize TagHelper
-Use simple html tag to localize text/html in razor views
-````razor
-<localize>Hellow world!</localize>
+````html
+<language-nav flags="true"></language-nav>
 ````
-_Requires [LazZiya.TagHelpers.Localization](https://github.com/lazziya/TagHelpers.Localize) and [LazZiya.ExpressLocalization](https://github.com/lazziya/ExpressLocalization) nuget packages._
+[![LanguageNavTagHelper with flags](https://github.com/LazZiya/WebXRObjects/blob/master/Shared/Images/LazZiya.TagHelpers/languagenav-taghelper-with-flags.PNG)][3]
 
-Read more: 
-- [Demo](http://demo.ziyad.info/en/Localize)
-- [Repository](https://github.com/lazziya/TagHelpers.Localization)
-- [LazZiya.ExpressLocalization](https://github.com/lazziya/ExpressLocalization)
-- [Step-by-step tutorial to develop multi-cultural Asp.Net Core 2.2 web app](http://www.ziyad.info/en/articles/36-Develop_Multi_Cultural_Web_Application_Using_ExpressLocalization)
-
-## Alert TagHelper
-Easily create bootstrap 4.x alerts from c# backend or razor pages using html codes.
-All bootstrap alerts can be created from both ends (Primary, Secondary, Success, Info, Warning, Danger, Light, Dark).
-
-### Create alert from razor page using HTML
-````razor
-<alert-success>Congratulations! you have done the job!</alert-success>
+### [Localization Validation Scripts TagHelper][4]
+Add all client side scripts that are required for validating localized inputs like decimal numbers, dates, ..etc.
+````html
+<localization-validation-scripts></localization-validation-scripts>
 ````
+[![Localization number es](https://github.com/LazZiya/WebXRObjects/blob/master/Shared/Images/LazZiya.TagHelpers/localization-validiation-scripts-number-es.PNG)][4]
 
-### Create alert from c# backend
-Alert are TempData items, so they will be disposed once they are fetched.
-You can create alerts from the c# backend by the provided extension methods for TempData as below:
-````cs
-using LazZiya.TagHelpers.Alerts
-
-TempData.Danger("Ooopps! something went wrong with the code, please contact support.");
-````
-
-Then use alert tag helepr on razor side to render the alerts:
-
-- version >= 3.0.1
-````razor
-<alert></alert>
-````
-
-- version <= 3.0.0
-````razor
-<alert view-context="ViewContext"></alert>
-````
-Read more : 
-- [Docs](http://ziyad.info/en/articles/37-Alert_TagHelper)
-- [Demo](http://demo.ziyad.info/en/Alerts)
-
-
-## LangaugeNav TagHelper
-
-- version >= 3.0.1
-````razor
-<language-nav></language-nav>
-````
-
-- version <= 3.0.0
-````cshtml
-<language-nav view-context="ViewContext"></language-nav>
-````
-For more details :
-- [Docs](http://www.ziyad.info/en/articles/32-Language_Navigation_TagHelper)
-- [Demo](http://demo.ziyad.info/en/LanguageNav)
-
-
-## LocalizationValidationScripts TagHelper
-will add all required js files and code to validate localized input fields like numbers, date and currency. These scripts will help to validate localized decimal numbers with comma or dot format (e.g. EN culture: 1.2 - TR culture: 1,2).
-
- 1- Register tag helper component in startup. Don't apply this step if you are using [ExpressLocalization](https://github.com/LazZiya/ExpressLocalization) it will be done automatically
- ````cs
- services.AddTransient<ITagHelperComponent, LocalizationValidationScriptsTagHelperComponent>()
- ````
- 
- 2- Add this code to the scripts section in the page:
- ````cshtml
- <localization-validation-scripts></localization-validation-scripts>
- ````
- For more details :
- - [Docs](http://www.ziyad.info/en/articles/34-Client_Side_Localization_Validation_Scripts)
- - [Demo](http://demo.ziyad.info/en/Trips)
-
-
-## SelectEnum TagHelper
-
-Sample enum :
-````cs
-public enum WeekDays { MON, TUE, WED, THU, FRI, SAT, SUN }
-````
-
-create the related select list dropdown in razor page :
-````razor
-<select-enum 
-        enum-type="typeof(WeekDays)" 
-        name="weekDay">
-</select-enum>
-````
-For more details :
-- [Docs](http://www.ziyad.info/en/articles/28-Select_Enum_TagHelper)
-- [Demo](http://demo.ziyad.info/en/SelectEnum)
-
-## Project site:
-http://ziyad.info/en/articles/27-LazZiya_TagHelpers
-
-## Live Demos :
+## Live demos:
 http://demo.ziyad.info/en/
 
-## License
-https://github.com/LazZiya/TagHelpers/blob/master/LICENSE
-
-[1]: https://github.com/LazZiya/TagHelpers/tree/TagHelpersCore3
+[1]:https://github.com/LazZiya/TagHelpers/wiki/Paging-TagHelper-Basic-Setup
+[2]:https://github.com/LazZiya/TagHelpers/wiki/Alerts-TagHelper-Front-end-Alerts
+[3]:https://github.com/LazZiya/TagHelpers/wiki/LanguageNav-TagHelper-Setup
+[4]:https://github.com/LazZiya/TagHelpers/wiki/LocalizationValidationScripts-TagHelper-Setup
+[5]:https://github.com/LazZiya/TagHelpers/wiki

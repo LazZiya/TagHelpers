@@ -403,18 +403,44 @@
             Choose render mode: classis for regular dropdown list, Bootstrap4 for HTML5 div with Bootstrap4 style.
             </summary>
         </member>
-        <member name="F:LazZiya.TagHelpers.LanguageNavTagHelper._ops">
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.CookieHandlerUrl">
             <summary>
-            required for listing supported cultures
+            Set the handler url for setting culture cookie on language change
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions},Microsoft.AspNetCore.Routing.LinkGenerator,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Mvc.MvcOptions})">
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.RedirectToUrl">
+            <summary>
+            The url to redirect to on langugae change. 
+            The url must have at one place holder for culture value. 
+            e.g. /{0}/Home
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.Flags">
+            <summary>
+            Show relevant country flag for specific culture. 
+            Flags will be shown only if the culture is country specific. 
+            e.g. "tr" will not render any flag, but "tr-sy" will render Turkish flag. 
+            Required reference to flag-icon-css
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.FlagsSquared">
+            <summary>
+            true: Show flags in squared images, 
+            false: Show flags in rounded images, 
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.LanguageNavTagHelper._ops">
+            <summary>
+            required for listing supported cultures. 
+            The handler must contain two place holders for culture name and return url. 
+            e.g.: <![CDATA[SetCookieCulture?cltr={0}&returnUrl={1}]]>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.RequestLocalizationOptions})">
             <summary>
             creates a language navigation menu, depends on supported cultures
             </summary>
-            <param name="ops">Request localization options</param>
-            <param name="lg">link generator</param>
-            <param name="mvcOps">MvcOptions</param>
+            <param name="ops"></param>
         </member>
         <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
             <summary>
@@ -449,87 +475,54 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateRouteDataDictionary">
-            <summary>
-            Get route data values for the current route,
-            then save all values to _routeData dictionary
-            </summary>
-        </member>
         <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.GetSupportedCultures">
             <summary>
             private list of supported CultureInfo,
             </summary>
         </member>
-        <member name="T:LazZiya.TagHelpers.ScriptSource">
+        <member name="T:LazZiya.TagHelpers.PagingAjaxMode">
             <summary>
-            defines location to load localization valdiation scripts
+            ajax update modes
             </summary>
         </member>
-        <member name="F:LazZiya.TagHelpers.ScriptSource.Local">
+        <member name="F:LazZiya.TagHelpers.PagingAjaxMode.before">
             <summary>
-            valdiation scripts are located under wwwroot/lib folder
+            update before target content
             </summary>
         </member>
-        <member name="F:LazZiya.TagHelpers.ScriptSource.JsDeliver">
+        <member name="F:LazZiya.TagHelpers.PagingAjaxMode.after">
             <summary>
-            valdiation scripts will be loaded from jsdelivr
+            update after target content
             </summary>
         </member>
-        <member name="T:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper">
+        <member name="F:LazZiya.TagHelpers.PagingAjaxMode.replace">
             <summary>
-            creates localization validation scripts tag to place client side validiation scripts inside
+            replace target content
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.Source">
+        <member name="T:LazZiya.TagHelpers.AjaxMethod">
             <summary>
-            (optional) define where to load scripts from, Local or JsDelivr.
-            <para>Default: JsDelivr</para>
+            The http request method
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.CldrVersion">
+        <member name="F:LazZiya.TagHelpers.AjaxMethod.get">
             <summary>
-            (optional) set cldr version to load.
-            <para>Default: 35.1</para>
+            get request
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.#ctor(Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager,Microsoft.Extensions.Logging.ILoggerFactory)">
+        <member name="F:LazZiya.TagHelpers.AjaxMethod.post">
             <summary>
-            creates localization validation scripts tag to place client side validiation scripts inside
+            post request
             </summary>
-        </member>
-        <member name="T:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent">
-            <summary>
-            inserts all client side localizaiton validation scripts into relevant tag
-            </summary>
-        </member>
-        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
-            <summary>
-            inserts all localizaiton validation scripts into relevant tag
-            </summary>
-            <param name="hosting"></param>
-        </member>
-        <member name="P:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.Order">
-            <summary>
-            default order is 0
-            </summary>
-        </member>
-        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
-            <summary>
-            generate the taghelper
-            </summary>
-            <param name="context"></param>
-            <param name="output"></param>
-        </member>
-        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.GetCultureName">
-            <summary>
-            find json files related to the current culture, if not found return parent culture, if not found return default culture.
-            see ClientSideValidationScripts.html for how to configure paths
-            </summary>
-            <returns>culture name e.g. tr</returns>
         </member>
         <member name="T:LazZiya.TagHelpers.PagingTagHelper">
             <summary>
             Creates a pagination control
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxAttributes">
+            <summary>
+            Dictonary object to hold all ajax attributes
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ViewContext">
@@ -581,23 +574,20 @@
             <param>default: "default"</param>
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavFormMethod">
-            <summary>
-            Form submit method when selecting different page size option
-            <para>default: get</para>
-            <para>options: get, post</para>
-            </summary>
-        </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavBlockSize">
             <summary>
-            The minimum block size to populate all possible page sizes for dropdown list
-            <para>default: 10</para>
+            This property is deprected. Use PageSizeDropdownItems instead
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavMaxItems">
             <summary>
-            maximum nmber of items to show in the page size navigation menu
-            <para>default: 3</para>
+            This property is deprected. Use PageSizeDropdownItems instead
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeDropdownItems">
+            <summary>
+            A list of dash delimitted numbers for page size dropdown. 
+            default: "10-25-50"
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavOnChange">
@@ -630,6 +620,12 @@
             Show drop down list for different page size options
             <para>default: true</para>
             <para>options: true, false</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowGap">
+            <summary>
+            Show a three dots after first page or before last page 
+            when there is a gap in pages at the beginnig or end
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowFirstLast">
@@ -714,6 +710,12 @@
             <para>default: records</para>
             </summary>
         </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.NumberFormat">
+            <summary>
+            The number display format for page numbers. Use a list of numbers splitted by space e.g. "0 1 2 3 4 5 6 7 8 9" or use one from a pre-defined numbers formats in :
+            <see cref="T:LazZiya.TagHelpers.Utilities.NumberFormats"/>
+            </summary>
+        </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.SrTextFirst">
             <summary>
             Text for screen readers only
@@ -785,6 +787,61 @@
             <summary>
             css class for total pages info
             <para>default: badge badge-light</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.Ajax">
+            <summary>
+            Set to true to use ajax pagination
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxConfirm">
+            <summary>
+            The message to display in a confirmation window before a request is submitted.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxMode">
+            <summary>
+             The mode that specifies how to insert the response into the target DOM element. Valid values are before, after and replace. Default is replace
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxLoadingDuration">
+            <summary>
+            A value, in milliseconds, that controls the duration of the animation when showing or hiding the loading element.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxLoading">
+            <summary>
+            The id attribute of an HTML element that is displayed while the Ajax function is loading. Default is #loading-spinner
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxBegin">
+            <summary>
+            The name of the JavaScript function to call immediately before the page is updated.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxComplete">
+            <summary>
+            The JavaScript function to call when response data has been instantiated but before the page is updated.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxFailure">
+            <summary>
+            The JavaScript function to call if the page update fails.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxSuccess">
+            <summary>
+            The JavaScript function to call after the page is successfully updated.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxUpdate">
+            <summary>
+            The ID of the DOM element to update by using the response from the server.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxUrl">
+            <summary>
+            The URL to make the request to.
             </summary>
         </member>
         <member name="M:LazZiya.TagHelpers.PagingTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
@@ -893,9 +950,14 @@
         </member>
         <member name="P:LazZiya.TagHelpers.SelectEnumTagHelper.TextLocalizerDelegate">
             <summary>
-            localization method as delegate
-            e.g. delegate(string s) { return _localizaer["My value"]; }
+            A delegate function for getting locaized value.
             </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.SelectEnumTagHelper.#ctor(Microsoft.Extensions.Logging.ILogger{LazZiya.TagHelpers.SelectEnumTagHelper})">
+            <summary>
+            Initialize a new instance of SelectEnum taghelper
+            </summary>
+            <param name="log"></param>
         </member>
         <member name="M:LazZiya.TagHelpers.SelectEnumTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
             <summary>
@@ -927,6 +989,301 @@
             <param name="tempData"></param>
             <param name="key"></param>
             <returns></returns>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Utilities.NumberFormats">
+            <summary>
+            Number formats for different cultures.
+            <para>https://github.com/unicode-cldr/cldr-core/blob/master/supplemental/numberingSystems.json</para>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Utilities.NumberFormats.ToNumberFormat(System.Int32,System.String)">
+            <summary>
+            Receives a number in system format, and converts it to any other format.
+            See <see cref="T:LazZiya.TagHelpers.Utilities.NumberFormats"/>
+            </summary>
+            <param name="number"></param>
+            <param name="targetFormat"></param>
+            <returns></returns>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Default">
+            <summary>
+            System default numbering format
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Arabic">
+            <summary>
+            0123456789
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Hex">
+            <summary>
+            Use hexadecimal numbering system
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Roman">
+            <summary>
+            I II III IV V VI
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Hindi">
+            <summary>
+            ٠١٢٣٤٥٦٧٨٩
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Brah">
+            <summary>
+            𑁦𑁧𑁨𑁩𑁪𑁫𑁬𑁭𑁮𑁯
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Beng">
+            <summary>
+            ০১২৩৪৫৬৭৮৯
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Deva">
+            <summary>
+            ०१२३४५६७८९
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Farsi">
+            <summary>
+            ۰۱۲۳۴۵۶۷۸۹
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Fullwide">
+            <summary>
+            ０１２３４５６７８９
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Knda">
+            <summary>
+            ೦೧೨೩೪೫೬೭೮೯
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Gujr">
+            <summary>
+            ૦૧૨૩૪૫૬૭૮૯
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Guru">
+            <summary>
+            ੦੧੨੩੪੫੬੭੮੯
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Hanidec">
+            <summary>
+            〇一二三四五六七八九
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Java">
+            <summary>
+            ꧐꧑꧒꧓꧔꧕꧖꧗꧘꧙
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Khmr">
+            <summary>
+            ០១២៣៤៥៦៧៨៩
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Laoo">
+            <summary>
+            ໐໑໒໓໔໕໖໗໘໙
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Latin">
+            <summary>
+            0123456789
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Mathbold">
+            <summary>
+            𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Mathborder">
+            <summary>
+            𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Mathmono">
+            <summary>
+            𝟶𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Mathanb">
+            <summary>
+            𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Mathsans">
+            <summary>
+            𝟢𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Mlym">
+            <summary>
+            ൦൧൨൩൪൫൬൭൮൯
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Mong">
+            <summary>
+            ᠐᠑᠒᠓᠔᠕᠖᠗᠘᠙
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Mymr">
+            <summary>
+            ၀၁၂၃၄၅၆၇၈၉
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Mymrshan">
+            <summary>
+            ႐႑႒႓႔႕႖႗႘႙
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Mymtlng">
+            <summary>
+            ꧰꧱꧲꧳꧴꧵꧶꧷꧸꧹
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Nkoo">
+            <summary>
+            ߀߁߂߃߄߅߆߇߈߉
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Olck">
+            <summary>
+            ᱐᱑᱒᱓᱔᱕᱖᱗᱘᱙
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Orya">
+            <summary>
+            ୦୧୨୩୪୫୬୭୮୯
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Osma">
+            <summary>
+            𐒠𐒡𐒢𐒣𐒤𐒥𐒦𐒧𐒨𐒩
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Sinh">
+            <summary>
+            ෦෧෨෩෪෫෬෭෮෯
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Talu">
+            <summary>
+            ᧐᧑᧒᧓᧔᧕᧖᧗᧘᧙
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Tamldec">
+            <summary>
+            ௦௧௨௩௪௫௬௭௮௯
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Telu">
+            <summary>
+            ౦౧౨౩౪౫౬౭౮౯
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Thai">
+            <summary>
+            ๐๑๒๓๔๕๖๗๘๙
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Tibt">
+            <summary>
+            ༠༡༢༣༤༥༦༧༨༩
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.NumberFormats.Vaii">
+            <summary>
+            ꘠꘡꘢꘣꘤꘥꘦꘧꘨꘩
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.Utilities.RomanNumerals">
+            <summary>
+            Convert decimals to roman numerals
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Utilities.RomanNumerals.RomanNumbers">
+            <summary>
+            Dictionary of roman numbers and their equavilant decimals
+            <!-- https://stackoverflow.com/a/60134781/5519026 -->
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.Utilities.RomanNumerals.ToRoman(System.UInt32)">
+            <summary>
+            Convert decimal number to roman number
+            </summary>
+            <param name="number">unsigned number</param>
+            <returns>Roman number</returns>
+        </member>
+        <member name="T:LazZiya.ExpressLocalization.TagHelpers.ScriptSource">
+            <summary>
+            defines location to load localization valdiation scripts
+            </summary>
+        </member>
+        <member name="F:LazZiya.ExpressLocalization.TagHelpers.ScriptSource.Local">
+            <summary>
+            valdiation scripts are located under wwwroot/lib folder
+            </summary>
+        </member>
+        <member name="F:LazZiya.ExpressLocalization.TagHelpers.ScriptSource.JsDeliver">
+            <summary>
+            valdiation scripts will be loaded from jsdelivr
+            </summary>
+        </member>
+        <member name="T:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper">
+            <summary>
+            Tag helper for client side localized validation scripts.
+            </summary>
+        </member>
+        <member name="P:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.Source">
+            <summary>
+            (optional) define where to load scripts from, Local or JsDelivr.
+            <para>Default: JsDelivr</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.CldrVersion">
+            <summary>
+            (optional) set cldr version to load.
+            <para>Default: 35.1</para>
+            </summary>
+        </member>
+        <member name="M:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.#ctor(Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            Tag helper for client side localized validation scripts.
+            </summary>
+        </member>
+        <member name="T:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponent">
+            <summary>
+            Tag helper component for client side localized validation scripts.
+            </summary>
+        </member>
+        <member name="M:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Tag helper component for client side localized validation scripts.
+            </summary>
+            <param name="hosting"></param>
+        </member>
+        <member name="P:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponent.Order">
+            <summary>
+            default order is 0
+            </summary>
+        </member>
+        <member name="M:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponent.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            generate the taghelper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="M:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponent.GetCultureName">
+            <summary>
+            find json files related to the current culture, if not found return parent culture, if not found return default culture.
+            see ClientSideValidationScripts.html for how to configure paths
+            </summary>
+            <returns>culture name e.g. tr</returns>
         </member>
     </members>
 </doc>

@@ -119,9 +119,9 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="LocalizationValidationScripts_jsdeliver" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\localizationvalidationscripts_jsdeliver.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\files\templates\localizationvalidationscripts_jsdeliver.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="LocalizationValidationScripts_local" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\localizationvalidationscripts_local.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\files\templates\localizationvalidationscripts_local.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
