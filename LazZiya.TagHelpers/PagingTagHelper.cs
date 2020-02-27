@@ -442,7 +442,7 @@ namespace LazZiya.TagHelpers
                     var numTag = CreatePagingLink(PageNo, null, null, ClassActivePage);
                     pagingControl.InnerHtml.AppendHtml(numTag);
                 }
-                else if (MaxDisplayedPages >= 1)
+                else if (MaxDisplayedPages > 1)
                 {
                     // Boundaries are the start-end currently displayed pages
                     var boundaries = CalculateBoundaries(PageNo, TotalPages, MaxDisplayedPages.Value);
@@ -662,6 +662,13 @@ namespace LazZiya.TagHelpers
             return infoDiv;
         }
 
+        /// <summary>
+        /// Calculate the boundaries of the currently rendered page numbers
+        /// </summary>
+        /// <param name="currentPageNo"></param>
+        /// <param name="totalPages"></param>
+        /// <param name="maxDisplayedPages"></param>
+        /// <returns></returns>
         private Boundaries CalculateBoundaries(int currentPageNo, int totalPages, int maxDisplayedPages)
         {
             int _start, _end;
@@ -671,8 +678,12 @@ namespace LazZiya.TagHelpers
             if (maxDisplayedPages > totalPages)
                 maxDisplayedPages = totalPages;
 
+            if(totalPages == 1)
+            {
+                _start = _end = 1;
+            }
             // << < 1 2 (3) 4 5 6 7 8 9 10 > >>
-            if (currentPageNo < maxDisplayedPages)
+            else if (currentPageNo < maxDisplayedPages)
             {
                 _start = 1;
                 _end = maxDisplayedPages;

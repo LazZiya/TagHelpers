@@ -13,39 +13,11 @@
     <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
     <PackageReleaseNotes>
       Improvements :
-      - PagingTagHelper : Precise max-displayed-pages values (can set to 0, 1, 3 ...)
-      - LanguageTagHelper : Performance imrovements and bug fix for classic dropdown redirecting.
+      - PagingTagHelper : Fixed an issue where the end-gap was showing when total pages is 1.
 
-      New in PagingTagHelper:
-      -- Ajax support
-      -- number-format: Display numbers in different formats (decimal, hex, roman, arabic, hindi, ..etc)
-      -- page-size-dropdown-items: Specify items for page size dropdown as a dash delimitted array "10-25-50"
-
-      New in LanguageNavTagHelper:
-      -- Specify handler url to save current culture value in a cookie
-      -- redirect-to-url: use any url to redirect to on language change
-      -- Show country flags. Requires reference to flag-icon-css. See https://github.com/lipis/flag-icon-css
-
-      Change :
-      - Localization-Validation-Scripts: TagHelper component requires manually registration in startsup.
-
-      Deprected :
-      Below items are deprected in PagingTagHelper :
-      -- page-size-nav-block-size : use page-size-dropdown-items instead
-      -- page-size-nav-max-items : use page-size-dropdown-items instead
-      -- show-first-numbered-page : use show-gap instead
-      -- show-last-numbered-page : use show-gap instead
-      -- gap-size : use show-gap instead
-      -- query-string-value : -
-      -- page-size-nav-on-change : -
-      
-      Below items are deprected in LanguageTagHelper :
-      -- culture-key-name : not required any more.
-      -- redirect-to : use redirect-to-url instead.
-      -- home-page-name : use redirect-to-url instead
-      
+      See all release notes in https://github.com/LazZiya/TagHelpers/releases
     </PackageReleaseNotes>
-    <Version>4.0.0-preview1</Version>
+    <Version>4.0.0-preview2</Version>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <FileVersion>4.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

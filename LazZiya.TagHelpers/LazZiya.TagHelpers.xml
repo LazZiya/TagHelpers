@@ -859,6 +859,15 @@
             3- Hard coded default value in code
             </summary>
         </member>
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.CalculateBoundaries(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Calculate the boundaries of the currently rendered page numbers
+            </summary>
+            <param name="currentPageNo"></param>
+            <param name="totalPages"></param>
+            <param name="maxDisplayedPages"></param>
+            <returns></returns>
+        </member>
         <member name="M:LazZiya.TagHelpers.PagingTagHelper.CreatePageSizeControl">
             <summary>
             dropdown list for changing page size (items per page)
@@ -1260,9 +1269,9 @@
             Tag helper component for client side localized validation scripts.
             </summary>
         </member>
-        <member name="M:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+        <member name="M:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
-            Tag helper component for client side localized validation scripts.
+            inserts all localizaiton validation scripts into relevant tag
             </summary>
             <param name="hosting"></param>
         </member>
