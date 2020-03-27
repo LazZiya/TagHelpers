@@ -480,6 +480,73 @@
             private list of supported CultureInfo,
             </summary>
         </member>
+        <member name="T:LazZiya.TagHelpers.ScriptSource">
+            <summary>
+            defines location to load localization valdiation scripts
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.ScriptSource.Local">
+            <summary>
+            valdiation scripts are located under wwwroot/lib folder
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.ScriptSource.JsDeliver">
+            <summary>
+            valdiation scripts will be loaded from jsdelivr
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper">
+            <summary>
+            Tag helper for client side localized validation scripts.
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.Source">
+            <summary>
+            (optional) define where to load scripts from, Local or JsDelivr.
+            <para>Default: JsDelivr</para>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.CldrVersion">
+            <summary>
+            (optional) set cldr version to load.
+            <para>Default: 35.1</para>
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.#ctor(Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            Tag helper for client side localized validation scripts.
+            </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent">
+            <summary>
+            Tag helper component for client side localized validation scripts.
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Tag helper component for client side localized validation scripts.
+            </summary>
+            <param name="hosting"></param>
+        </member>
+        <member name="P:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.Order">
+            <summary>
+            default order is 0
+            </summary>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            generate the taghelper
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.GetCultureName">
+            <summary>
+            find json files related to the current culture, if not found return parent culture, if not found return default culture.
+            see ClientSideValidationScripts.html for how to configure paths
+            </summary>
+            <returns>culture name e.g. tr</returns>
+        </member>
         <member name="T:LazZiya.TagHelpers.PagingAjaxMode">
             <summary>
             ajax update modes
@@ -1226,73 +1293,6 @@
             </summary>
             <param name="number">unsigned number</param>
             <returns>Roman number</returns>
-        </member>
-        <member name="T:LazZiya.ExpressLocalization.TagHelpers.ScriptSource">
-            <summary>
-            defines location to load localization valdiation scripts
-            </summary>
-        </member>
-        <member name="F:LazZiya.ExpressLocalization.TagHelpers.ScriptSource.Local">
-            <summary>
-            valdiation scripts are located under wwwroot/lib folder
-            </summary>
-        </member>
-        <member name="F:LazZiya.ExpressLocalization.TagHelpers.ScriptSource.JsDeliver">
-            <summary>
-            valdiation scripts will be loaded from jsdelivr
-            </summary>
-        </member>
-        <member name="T:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper">
-            <summary>
-            Tag helper for client side localized validation scripts.
-            </summary>
-        </member>
-        <member name="P:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.Source">
-            <summary>
-            (optional) define where to load scripts from, Local or JsDelivr.
-            <para>Default: JsDelivr</para>
-            </summary>
-        </member>
-        <member name="P:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.CldrVersion">
-            <summary>
-            (optional) set cldr version to load.
-            <para>Default: 35.1</para>
-            </summary>
-        </member>
-        <member name="M:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponentTagHelper.#ctor(Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager,Microsoft.Extensions.Logging.ILoggerFactory)">
-            <summary>
-            Tag helper for client side localized validation scripts.
-            </summary>
-        </member>
-        <member name="T:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponent">
-            <summary>
-            Tag helper component for client side localized validation scripts.
-            </summary>
-        </member>
-        <member name="M:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
-            <summary>
-            inserts all localizaiton validation scripts into relevant tag
-            </summary>
-            <param name="hosting"></param>
-        </member>
-        <member name="P:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponent.Order">
-            <summary>
-            default order is 0
-            </summary>
-        </member>
-        <member name="M:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponent.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
-            <summary>
-            generate the taghelper
-            </summary>
-            <param name="context"></param>
-            <param name="output"></param>
-        </member>
-        <member name="M:LazZiya.ExpressLocalization.TagHelpers.LocalizationValidationScriptsTagHelperComponent.GetCultureName">
-            <summary>
-            find json files related to the current culture, if not found return parent culture, if not found return default culture.
-            see ClientSideValidationScripts.html for how to configure paths
-            </summary>
-            <returns>culture name e.g. tr</returns>
         </member>
     </members>
 </doc>

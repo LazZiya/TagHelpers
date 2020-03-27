@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace LazZiya.ExpressLocalization.TagHelpers
+namespace LazZiya.TagHelpers
 {
     /// <summary>
     /// defines location to load localization valdiation scripts

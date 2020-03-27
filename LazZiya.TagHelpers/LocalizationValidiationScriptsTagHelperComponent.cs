@@ -5,7 +5,7 @@ using System;
 using System.Globalization;
 using System.IO;
 
-namespace LazZiya.ExpressLocalization.TagHelpers
+namespace LazZiya.TagHelpers
 {
     /// <summary>
     /// Tag helper component for client side localized validation scripts.
