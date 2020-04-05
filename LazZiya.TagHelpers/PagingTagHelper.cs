@@ -832,7 +832,10 @@ namespace LazZiya.TagHelpers
         /// <returns></returns>
         private string CreateUrlTemplate(int pageNo, int pageSize)
         {
-            var urlPath = ViewContext.HttpContext.Request.QueryString.Value.Replace($"{AjaxUrl}&", "");
+            var urlPath = ViewContext.HttpContext.Request.QueryString.Value;
+            
+            if(!string.IsNullOrWhiteSpace(AjaxUrl))
+                urlPath = urlPath.Replace($"{AjaxUrl}&", "");
 
             _logger.LogDebug($"----> Page No '{pageNo}', Page Size '{pageSize}', URL Path '{urlPath}'");
 
