@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LazZiya.TagHelpers
@@ -21,6 +22,13 @@ namespace LazZiya.TagHelpers
         /// Dictonary object to hold all ajax attributes
         /// </summary>
         private AttributeDictionary AjaxAttributes { get; set; }
+
+        /// <summary>
+        /// A URL template for paging buttons
+        /// e.g. 
+        /// <![CDATA[?p={0}&s={1}&q=test]]>
+        /// </summary>
+        private string UrlTemplate { get; set; }
 
         /// <summary>
         /// <para>ViewContext property is not required to be passed as parameter, it will be assigned automatically by the tag helper.</para>
@@ -424,6 +432,8 @@ namespace LazZiya.TagHelpers
                     ShowFirstLast = true;
                 }
 
+                UrlTemplate = CreatePagingUrlTemplate();
+
                 if (ShowFirstLast == true)
                 {
                     var first = CreatePagingLink(1, TextFirst, SrTextFirst, ClassDisabledJumpingButton);
@@ -722,7 +732,7 @@ namespace LazZiya.TagHelpers
             var liTag = new TagBuilder("li");
             liTag.AddCssClass("page-item");
 
-            var pageUrl = CreateUrlTemplate(targetPageNo, PageSize);
+            var pageUrl = CreatePagingUrl(targetPageNo, PageSize);
 
             var aTag = new TagBuilder("a");
             aTag.AddCssClass("page-link");
@@ -793,7 +803,7 @@ namespace LazZiya.TagHelpers
             {
                 var n = int.Parse(pageSizeDropdownItems[i]);
 
-                var pageUrl = $"{CreateUrlTemplate(1, n)}";
+                var pageUrl = $"{CreatePagingUrl(1, n)}";
 
                 var option = new TagBuilder("a");
                 option.AddCssClass("dropdown-item");
@@ -830,9 +840,11 @@ namespace LazZiya.TagHelpers
         /// <param name="pageNo"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        private string CreateUrlTemplate(int pageNo, int pageSize)
+        private string CreatePagingUrl(int pageNo, int pageSize)
         {
-            var urlPath = ViewContext.HttpContext.Request.QueryString.Value;
+            return string.Format(UrlTemplate, pageNo, pageSize);
+
+            /*var urlPath = ViewContext.HttpContext.Request.QueryString.Value;
             
             if(!string.IsNullOrWhiteSpace(AjaxUrl))
                 urlPath = urlPath.Replace($"{AjaxUrl}&", "");
@@ -863,7 +875,43 @@ namespace LazZiya.TagHelpers
             if (!urlTemplate.Any(x => x == s))
                 urlTemplate.Add(s);
 
-            return "?" + string.Join("&", urlTemplate);
+            return "?" + string.Join("&", urlTemplate);*/
+        }
+
+
+        /// <summary>
+        /// edit the url for each page, so it navigates to its target page number
+        /// </summary>
+        /// <returns>a string with placeholders for page no and page size</returns>
+        private string CreatePagingUrlTemplate()
+        {
+            var urlPath = ViewContext.HttpContext.Request.QueryString.Value;
+
+            if (!string.IsNullOrWhiteSpace(AjaxUrl))
+                urlPath = urlPath.Replace($"{AjaxUrl}&", "");
+
+            var urlTemplate = string.IsNullOrWhiteSpace(urlPath)
+                ? $"{QueryStringKeyPageNo}=1&{QueryStringKeyPageSize}={PageSize}".Split('&').ToList()
+                : urlPath.TrimStart('?').Split('&').ToList();
+
+            var qDic = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+            urlTemplate.ForEach(x => qDic.Add(x.Split('=')[0], x.Split('=')[1]));
+
+            // Remove xml request parameters from url list
+            qDic.Remove("X-Requested-With");
+            qDic.Remove("_");
+
+            if(!qDic.ContainsKey(QueryStringKeyPageNo))
+                qDic.Add(QueryStringKeyPageNo, "{0}");
+            else
+                qDic[QueryStringKeyPageNo] = "{0}";
+
+            if(!qDic.ContainsKey(QueryStringKeyPageSize))
+                qDic.Add(QueryStringKeyPageSize, "{1}");
+            else
+                qDic[QueryStringKeyPageSize] = "{1}";
+
+            return "?" + string.Join("&", qDic.Select(q=>q.Key + "=" + q.Value));
         }
     }
 }

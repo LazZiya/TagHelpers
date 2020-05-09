@@ -592,6 +592,13 @@
             Dictonary object to hold all ajax attributes
             </summary>
         </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.UrlTemplate">
+            <summary>
+            A URL template for paging buttons
+            e.g. 
+            <![CDATA[?p={0}&s={1}&q=test]]>
+            </summary>
+        </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ViewContext">
             <summary>
             <para>ViewContext property is not required to be passed as parameter, it will be assigned automatically by the tag helper.</para>
@@ -941,12 +948,18 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:LazZiya.TagHelpers.PagingTagHelper.CreateUrlTemplate(System.Int32,System.Int32)">
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.CreatePagingUrl(System.Int32,System.Int32)">
             <summary>
             edit the url for each page, so it navigates to its target page number
             </summary>
             <param name="pageNo"></param>
             <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LazZiya.TagHelpers.PagingTagHelper.CreatePagingUrlTemplate">
+            <summary>
+            edit the url for each page, so it navigates to its target page number
+            </summary>
             <returns></returns>
         </member>
         <member name="T:LazZiya.TagHelpers.PhoneNumberTagHelper">
