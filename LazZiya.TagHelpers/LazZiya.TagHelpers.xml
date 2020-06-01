@@ -139,7 +139,7 @@
         </member>
         <member name="T:LazZiya.TagHelpers.Alerts.Alert">
             <summary>
-            Alert item that can be created in the backend manually for pushing alert to themp data
+            Alert item that can be created in the backend manually for pushing alert to the temp data
             </summary>
         </member>
         <member name="F:LazZiya.TagHelpers.Alerts.Alert.TempDataKey">
@@ -258,6 +258,11 @@
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.Dismissable">
             <summary>
             Show closing button, default is true
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.AlertTagHelper.Localizer">
+            <summary>
+            Parse localizer instance to localize alert message
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.ViewContext">
@@ -522,9 +527,9 @@
             Tag helper component for client side localized validation scripts.
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
             <summary>
-            inserts all localizaiton validation scripts into relevant tag
+            Tag helper component for client side localized validation scripts.
             </summary>
             <param name="hosting"></param>
         </member>
@@ -960,7 +965,7 @@
             <summary>
             edit the url for each page, so it navigates to its target page number
             </summary>
-            <returns></returns>
+            <returns>a string with placeholders for page no and page size</returns>
         </member>
         <member name="T:LazZiya.TagHelpers.PhoneNumberTagHelper">
             <summary>
