@@ -34,28 +34,6 @@ namespace LazZiya.TagHelpers
     }
 
     /// <summary>
-    /// Defines where to redirect when language is changes
-    /// </summary>
-    [Obsolete("This property is deprected. Use redirect-to-url instead.")]
-    public enum RedirectTo
-    {
-        /// <summary>
-        /// redirects to home page in the project root
-        /// </summary>
-        HomePage,
-
-        /// <summary>
-        /// redirects to the same page and keep all filter like search
-        /// </summary>
-        SamePage,
-
-        /// <summary>
-        /// redirect to the same page and clear all filters (QueryString) values
-        /// </summary>
-        SamePageNoQueryString
-    }
-
-    /// <summary>
     /// choose render mode style,
     /// <para>classic: regular dropdown select list</para>
     /// <para>Bootstrap4: HTML5 div with Bootstrap4 support</para>
@@ -70,7 +48,12 @@ namespace LazZiya.TagHelpers
         /// <summary>
         /// HTML5 div with Bootstrap 4 support
         /// </summary>
-        Bootstrap
+        Bootstrap,
+
+        /// <summary>
+        /// Render as form control
+        /// </summary>
+        FormControl
     }
 
     internal class LanguageItem

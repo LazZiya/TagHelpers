@@ -75,13 +75,6 @@ namespace LazZiya.TagHelpers
         public int? MaxDisplayedPages { get; set; }
 
         /// <summary>
-        /// Gap size to start show first/last numbered page
-        /// <para>default: 3</para>
-        /// </summary>
-        [Obsolete("This property is deprected. Use ShowGap instead.")]
-        public int GapSize { get; set; }
-
-        /// <summary>
         /// name of the settings section in appSettings.json
         /// <param>default: "default"</param>
         /// </summary>
@@ -91,29 +84,10 @@ namespace LazZiya.TagHelpers
 
         #region Page size navigation
         /// <summary>
-        /// This property is deprected. Use PageSizeDropdownItems instead
-        /// </summary>
-        [Obsolete("This property is deprected. Use PageSizeDropdownItems instead")]
-        public int PageSizeNavBlockSize { get; set; }
-
-        /// <summary>
-        /// This property is deprected. Use PageSizeDropdownItems instead
-        /// </summary>
-        [Obsolete("This property is deprected. Use PageSizeDropdownItems instead")]
-        public int PageSizeNavMaxItems { get; set; }
-
-        /// <summary>
         /// A list of dash delimitted numbers for page size dropdown. 
         /// default: "10-25-50"
         /// </summary>
         public string PageSizeDropdownItems { get; set; }
-
-        /// <summary>
-        /// action to take when page size dropdown changes
-        /// <para>default: this.form.submit();</para>
-        /// </summary>
-        [Obsolete("This property is deprected. No onchange event. Just urls")]
-        public string PageSizeNavOnChange { get; set; }
 
         #endregion
 
@@ -132,12 +106,6 @@ namespace LazZiya.TagHelpers
         /// <para>example: s=25</para>
         /// </summary>
         public string QueryStringKeyPageSize { get; set; }
-
-        /// <summary>
-        /// query-string-value is obsolte and will be removed in a future release.
-        /// </summary>
-        [Obsolete("query-string-value is obsolte and will be removed in a future release")]
-        public string QueryStringValue { get; set; }
 
         #endregion
 
@@ -179,21 +147,6 @@ namespace LazZiya.TagHelpers
         /// <para>default: true</para>
         /// </summary>
         public bool? ShowTotalRecords { get; set; }
-
-        /// <summary>
-        /// Show last numbered page when total pages count is larger than max displayed pages
-        /// <para>default: true</para>
-        /// </summary>
-        [Obsolete("This property is deprected. Use ShowGap instead.")]
-        public bool? ShowLastNumberedPage { get; set; }
-
-        /// <summary>
-        /// Show first numbered page when total pages count is larger than max displayed pages
-        /// <para>default: true</para>
-        /// </summary>
-        [Obsolete("This property is deprected. Use ShowGap instead.")]
-        public bool? ShowFirstNumberedPage { get; set; }
-
         #endregion
 
         #region Texts
@@ -341,13 +294,6 @@ namespace LazZiya.TagHelpers
         /// The message to display in a confirmation window before a request is submitted.
         /// </summary>
         public string AjaxConfirm { get; set; }
-
-        /*
-        /// <summary>
-        /// The HTTP request method ("Get" or "Post").
-        /// </summary>
-        public AjaxMethod AjaxMethod { get; set; } = AjaxMethod.get;
-        */
 
         /// <summary>
         ///  The mode that specifies how to insert the response into the target DOM element. Valid values are before, after and replace. Default is replace
@@ -843,39 +789,6 @@ namespace LazZiya.TagHelpers
         private string CreatePagingUrl(int pageNo, int pageSize)
         {
             return string.Format(UrlTemplate, pageNo, pageSize);
-
-            /*var urlPath = ViewContext.HttpContext.Request.QueryString.Value;
-            
-            if(!string.IsNullOrWhiteSpace(AjaxUrl))
-                urlPath = urlPath.Replace($"{AjaxUrl}&", "");
-
-            _logger.LogDebug($"----> Page No '{pageNo}', Page Size '{pageSize}', URL Path '{urlPath}'");
-
-            string p = $"{QueryStringKeyPageNo}={pageNo}"; // CurrentPageNo query string parameter, default: p
-            string s = $"{QueryStringKeyPageSize}={pageSize}"; // PageSize query string parameter, default: s
-
-            var urlTemplate = urlPath.TrimStart('?').Split('&').ToList();
-
-            // Remove xml request parameters from url list
-            urlTemplate.Remove(urlTemplate.FirstOrDefault(x => x.StartsWith("X-Requested-With=")));
-            urlTemplate.Remove(urlTemplate.FirstOrDefault(x => x.StartsWith("_=")));
-
-            for (int i = 0; i < urlTemplate.Count; i++)
-            {
-                var q = urlTemplate[i];
-                urlTemplate[i] =
-                    q.StartsWith($"{QueryStringKeyPageNo}=", StringComparison.OrdinalIgnoreCase) ? p :
-                    q.StartsWith($"{QueryStringKeyPageSize}=", StringComparison.OrdinalIgnoreCase) ? s :
-                    q;
-            }
-
-            if (!urlTemplate.Any(x => x == p))
-                urlTemplate.Add(p);
-
-            if (!urlTemplate.Any(x => x == s))
-                urlTemplate.Add(s);
-
-            return "?" + string.Join("&", urlTemplate);*/
         }
 
 

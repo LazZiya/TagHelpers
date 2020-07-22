@@ -324,26 +324,6 @@
             Two letter ISO language name
             </summary>
         </member>
-        <member name="T:LazZiya.TagHelpers.RedirectTo">
-            <summary>
-            Defines where to redirect when language is changes
-            </summary>
-        </member>
-        <member name="F:LazZiya.TagHelpers.RedirectTo.HomePage">
-            <summary>
-            redirects to home page in the project root
-            </summary>
-        </member>
-        <member name="F:LazZiya.TagHelpers.RedirectTo.SamePage">
-            <summary>
-            redirects to the same page and keep all filter like search
-            </summary>
-        </member>
-        <member name="F:LazZiya.TagHelpers.RedirectTo.SamePageNoQueryString">
-            <summary>
-            redirect to the same page and clear all filters (QueryString) values
-            </summary>
-        </member>
         <member name="T:LazZiya.TagHelpers.RenderMode">
             <summary>
             choose render mode style,
@@ -361,15 +341,14 @@
             HTML5 div with Bootstrap 4 support
             </summary>
         </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.FormControl">
+            <summary>
+            Render as form control
+            </summary>
+        </member>
         <member name="T:LazZiya.TagHelpers.LanguageNavTagHelper">
             <summary>
             creates a language navigation menu, depends on supported cultures
-            </summary>
-        </member>
-        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.CultureKeyName">
-            <summary>
-            optional: route data key name for culture, default "culture"
-            default: cultute
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.SupportedCultures">
@@ -384,17 +363,6 @@
             <summary>
             optional: what to display as label for language dropdown
             default: LanguageLabel.EnglishName
-            </summary>
-        </member>
-        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.RedirectTo">
-            <summary>
-            optional: specify where to redirect when the language is changed
-            <para>default value: RedirectTo.SamePage</para>
-            </summary>
-        </member>
-        <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.HomePageName">
-            <summary>
-            optinal: name of the home page to redirect to when RedirectTo is HomePage
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.LanguageNavTagHelper.ViewContext">
@@ -457,6 +425,15 @@
         <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateClassicItems(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput@,System.Collections.Generic.List{LazZiya.TagHelpers.LanguageItem})">
             <summary>
             create classic list items list
+            <example><![CDATA[<option value="/en-US/Index">English</option>]]></example>
+            </summary>
+            <param name="langDictionary">language name-URL dictionary</param>
+            <param name="output">reference to TagHelperOuput</param>
+            <returns></returns>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateFormControlItems(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput@,System.Collections.Generic.List{LazZiya.TagHelpers.LanguageItem})">
+            <summary>
+            create a dropdown form control
             <example><![CDATA[<option value="/en-US/Index">English</option>]]></example>
             </summary>
             <param name="langDictionary">language name-URL dictionary</param>
@@ -527,9 +504,9 @@
             Tag helper component for client side localized validation scripts.
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
-            Tag helper component for client side localized validation scripts.
+            inserts all localizaiton validation scripts into relevant tag
             </summary>
             <param name="hosting"></param>
         </member>
@@ -631,7 +608,7 @@
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.TotalRecords">
             <summary>
-            Total count of records in the db
+            Total count of records in the  the db
             <para>default: 0</para>
             </summary>
         </member>
@@ -641,38 +618,16 @@
             <para>default: 10</para>
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.PagingTagHelper.GapSize">
-            <summary>
-            Gap size to start show first/last numbered page
-            <para>default: 3</para>
-            </summary>
-        </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.SettingsJson">
             <summary>
             name of the settings section in appSettings.json
             <param>default: "default"</param>
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavBlockSize">
-            <summary>
-            This property is deprected. Use PageSizeDropdownItems instead
-            </summary>
-        </member>
-        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavMaxItems">
-            <summary>
-            This property is deprected. Use PageSizeDropdownItems instead
-            </summary>
-        </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeDropdownItems">
             <summary>
             A list of dash delimitted numbers for page size dropdown. 
             default: "10-25-50"
-            </summary>
-        </member>
-        <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeNavOnChange">
-            <summary>
-            action to take when page size dropdown changes
-            <para>default: this.form.submit();</para>
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.QueryStringKeyPageNo">
@@ -687,11 +642,6 @@
             Query string parameter name for page size
             <para>default: s</para>
             <para>example: s=25</para>
-            </summary>
-        </member>
-        <member name="P:LazZiya.TagHelpers.PagingTagHelper.QueryStringValue">
-            <summary>
-            query-string-value is obsolte and will be removed in a future release.
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowPageSizeNav">
@@ -728,18 +678,6 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowTotalRecords">
             <summary>
             Show or hide total records count
-            <para>default: true</para>
-            </summary>
-        </member>
-        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowLastNumberedPage">
-            <summary>
-            Show last numbered page when total pages count is larger than max displayed pages
-            <para>default: true</para>
-            </summary>
-        </member>
-        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowFirstNumberedPage">
-            <summary>
-            Show first numbered page when total pages count is larger than max displayed pages
             <para>default: true</para>
             </summary>
         </member>
@@ -1028,7 +966,7 @@
              </summary>
         </member>
         <member name="T:LazZiya.TagHelpers.SelectEnumTagHelper">
-            <summary>
+       <summary>
             creates a dropdown list from custom enum with supports for localization
             </summary>
         </member>
@@ -1314,3 +1252,4 @@
         </member>
     </members>
 </doc>
+oc>

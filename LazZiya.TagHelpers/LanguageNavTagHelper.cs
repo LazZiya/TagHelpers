@@ -16,13 +16,6 @@ namespace LazZiya.TagHelpers
     public class LanguageNavTagHelper : TagHelper
     {
         /// <summary>
-        /// optional: route data key name for culture, default "culture"
-        /// default: cultute
-        /// </summary>
-        [Obsolete("This property is deprected. Use redirect-to-url instead.")]
-        public string CultureKeyName { get; set; } = "culture";
-
-        /// <summary>
         /// optional: manually specify list of supported cultures
         /// <example>
         /// en-US,tr, ar
@@ -35,19 +28,6 @@ namespace LazZiya.TagHelpers
         /// default: LanguageLabel.EnglishName
         /// </summary>
         public LanguageLabel LanguageLabel { get; set; } = LanguageLabel.EnglishName;
-
-        /// <summary>
-        /// optional: specify where to redirect when the language is changed
-        /// <para>default value: RedirectTo.SamePage</para>
-        /// </summary>
-        [Obsolete("This property is deprected. Use redirect-to-url instead.")]
-        public RedirectTo RedirectTo { get; set; } = RedirectTo.SamePage;
-
-        /// <summary>
-        /// optinal: name of the home page to redirect to when RedirectTo is HomePage
-        /// </summary>
-        [Obsolete("This property is deprected. Use redirect-to-url instead.")]
-        public string HomePageName { get; set; } = "Index";
 
         /// <summary>
         /// <para>ViewContext property is not required to be passed as parameter, it will be auto assigned by the tag helpoer.</para>
@@ -112,13 +92,17 @@ namespace LazZiya.TagHelpers
         {
             var langDictionary = CreateNavDictionary();
 
-            if (RenderMode == RenderMode.Bootstrap)
+            switch(RenderMode)
             {
-                CreateBootstrapItems(ref output, langDictionary);
-            }
-            else
-            {
-                CreateClassicItems(ref output, langDictionary);
+                case RenderMode.Bootstrap:
+                    CreateBootstrapItems(ref output, langDictionary);
+                    break;
+                case RenderMode.Classic:
+                    CreateClassicItems(ref output, langDictionary);
+                    break;
+                case RenderMode.FormControl:
+                    CreateFormControlItems(ref output, langDictionary);
+                    break;
             }
         }
 
@@ -138,6 +122,30 @@ namespace LazZiya.TagHelpers
             {
                 var option = new TagBuilder("option");
                 option.Attributes.Add("value", lang.Url);
+                option.InnerHtml.AppendHtml(lang.DisplayText);
+
+                if (CultureInfo.CurrentCulture.Name == lang.Name)
+                    option.Attributes.Add("selected", "selected");
+
+                output.Content.AppendHtml(option);
+            }
+        }
+
+        /// <summary>
+        /// create a dropdown form control
+        /// <example><![CDATA[<option value="/en-US/Index">English</option>]]></example>
+        /// </summary>
+        /// <param name="langDictionary">language name-URL dictionary</param>
+        /// <param name="output">reference to TagHelperOuput</param>
+        /// <returns></returns>
+        private void CreateFormControlItems(ref TagHelperOutput output, List<LanguageItem> langDictionary)
+        {
+            output.TagName = "select";
+
+            foreach (var lang in langDictionary.OrderBy(x => x.DisplayText))
+            {
+                var option = new TagBuilder("option");
+                option.Attributes.Add("value", lang.Name);
                 option.InnerHtml.AppendHtml(lang.DisplayText);
 
                 if (CultureInfo.CurrentCulture.Name == lang.Name)
