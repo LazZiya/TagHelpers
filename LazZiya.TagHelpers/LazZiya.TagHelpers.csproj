@@ -14,11 +14,11 @@
 		<PackageReleaseNotes>
 			- .net5 support
 			- Localization support for AlertTagHelper
-			- Performance improvments for creating urls in paging taghelper
+			- Performance improvments while creating urls in paging taghelper
 			- New render mode for LanguageNav: "FormControl" renders the language nav as a form control. This helps to use the culture navigation control as a dropdown inside any form.
 			- See all release notes in https://github.com/LazZiya/TagHelpers/releases
 		</PackageReleaseNotes>
-		<Version>5.0.0-prv1</Version>
+		<Version>5.0.0-preview1</Version>
 		<AssemblyVersion>5.0.0.0</AssemblyVersion>
 		<FileVersion>5.0.0.0</FileVersion>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

@@ -608,7 +608,7 @@
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.TotalRecords">
             <summary>
-            Total count of records in the  the db
+            Total count of records in the db
             <para>default: 0</para>
             </summary>
         </member>
@@ -966,7 +966,7 @@
              </summary>
         </member>
         <member name="T:LazZiya.TagHelpers.SelectEnumTagHelper">
-       <summary>
+            <summary>
             creates a dropdown list from custom enum with supports for localization
             </summary>
         </member>
@@ -1252,4 +1252,3 @@
         </member>
     </members>
 </doc>
-oc>
