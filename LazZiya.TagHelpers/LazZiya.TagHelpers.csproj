@@ -7,18 +7,19 @@
 		<Company>Ziyad.info</Company>
 		<Description>Collection of tag helpers for ASP.NET Core web applications, like Paging, SelectEnum and LanguageNav dropdown tag helpers for MVC and Razor Pages.</Description>
 		<Copyright>Ziyad.info</Copyright>
-		<PackageProjectUrl>https://github.com/LazZiya/TagHelpers/wiki</PackageProjectUrl>
+		<PackageProjectUrl>https://docs.ziyad.info/LazZiya.TagHelpers</PackageProjectUrl>
 		<PackageIcon>icon.png</PackageIcon>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
 		<PackageReleaseNotes>
 			- .net5 support
+			- PagingTagHelper: Improved styling as adding styles that fits into dark or light themes
 			- Localization support for AlertTagHelper
 			- Performance improvments while creating urls in paging taghelper
 			- New render mode for LanguageNav: "FormControl" renders the language nav as a form control. This helps to use the culture navigation control as a dropdown inside any form.
 			- See all release notes in https://github.com/LazZiya/TagHelpers/releases
 		</PackageReleaseNotes>
-		<Version>5.0.0-preview1</Version>
+		<Version>5.0.0-preview2</Version>
 		<AssemblyVersion>5.0.0.0</AssemblyVersion>
 		<FileVersion>5.0.0.0</FileVersion>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

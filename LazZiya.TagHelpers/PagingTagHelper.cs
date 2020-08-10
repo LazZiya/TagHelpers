@@ -282,6 +282,11 @@ namespace LazZiya.TagHelpers
         /// </summary>
         public string ClassTotalPages { get; set; }
 
+        /// <summary>
+        /// css class for page link, use for styling bg and text colors
+        /// </summary>
+        public string ClassPageLink { get; set; }
+
         #endregion
 
         #region Ajax
@@ -588,6 +593,8 @@ namespace LazZiya.TagHelpers
             ClassTotalPages = ClassTotalPages ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-total-pages"] ?? "badge badge-light";
 
             ClassTotalRecords = ClassTotalRecords ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-total-records"] ?? "badge badge-dark";
+            
+            ClassPageLink = ClassPageLink ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-page-link"] ?? "";
 
             _logger.LogInformation($"----> PagingTagHelper - " +
                 $"{nameof(PageNo)}: {PageNo}, " +
@@ -681,7 +688,7 @@ namespace LazZiya.TagHelpers
             var pageUrl = CreatePagingUrl(targetPageNo, PageSize);
 
             var aTag = new TagBuilder("a");
-            aTag.AddCssClass("page-link");
+            aTag.AddCssClass($"page-link {ClassPageLink}");
             aTag.Attributes.Add("href", pageUrl);
 
             // If no text provided for screen readers
@@ -703,6 +710,8 @@ namespace LazZiya.TagHelpers
             {
                 liTag.AddCssClass($"{pClass}");
                 aTag.Attributes.Add("tabindex", "-1");
+                aTag.Attributes.Remove("class");
+                aTag.AddCssClass($"page-link {pClass}");
                 aTag.Attributes.Remove("href");
             }
 

@@ -806,6 +806,11 @@
             <para>default: badge badge-light</para>
             </summary>
         </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ClassPageLink">
+            <summary>
+            css class for page link, use for styling bg and text colors
+            </summary>
+        </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.Ajax">
             <summary>
             Set to true to use ajax pagination
