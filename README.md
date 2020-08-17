@@ -25,7 +25,7 @@ Create bootstrap alerts using very simple html tag.
     My alert text ...
 </alert>
 ````
-[![AlertTagHelper - success](https://github.com/LazZiya/WebXRObjects/blob/master/Shared/Images/LazZiya.TagHelpers/alert-taghelper-success.PNG)][2]
+[![AlertTagHelper - success](https://github.com/LazZiya/WebXRObjects/blob/master/Shared/Images/LazZiya.TagHelpers/alert-taghelper-success.PNG)][1]
 
 ### [Language Navigation TagHelper][1]
 Create a language dropdown navigation for websites. Supported cultures will be used to create the navigation items.
@@ -33,14 +33,14 @@ Create a language dropdown navigation for websites. Supported cultures will be u
 ````html
 <language-nav flags="true"></language-nav>
 ````
-[![LanguageNavTagHelper with flags](https://github.com/LazZiya/WebXRObjects/blob/master/Shared/Images/LazZiya.TagHelpers/languagenav-taghelper-with-flags.PNG)][3]
+[![LanguageNavTagHelper with flags](https://github.com/LazZiya/WebXRObjects/blob/master/Shared/Images/LazZiya.TagHelpers/languagenav-taghelper-with-flags.PNG)][1]
 
 ### [Localization Validation Scripts TagHelper][1]
 Add all client side scripts that are required for validating localized inputs like decimal numbers, dates, ..etc.
 ````html
 <localization-validation-scripts></localization-validation-scripts>
 ````
-[![Localization number es](https://github.com/LazZiya/WebXRObjects/blob/master/Shared/Images/LazZiya.TagHelpers/localization-validiation-scripts-number-es.PNG)][4]
+[![Localization number es](https://github.com/LazZiya/WebXRObjects/blob/master/Shared/Images/LazZiya.TagHelpers/localization-validiation-scripts-number-es.PNG)][1]
 
 ## Live demos:
 http://demo.ziyad.info/en/
