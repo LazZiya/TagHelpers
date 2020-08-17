@@ -4,7 +4,7 @@
 A collection of useful TagHelpers for any ASP.NET Core project.
 
 ## Documentation :
-See all documentation in [wiki space][5].
+See all documentation in [DOCS.Ziyad.info][5].
 
 ### [Paging TagHelper][1]
 Create a pagination control _styled with bootstrap 4.x_ using simple html tag.
@@ -17,7 +17,7 @@ Create a pagination control _styled with bootstrap 4.x_ using simple html tag.
 ````
 [![PagingTagHelper default](https://github.com/LazZiya/WebXRObjects/raw/master/Shared/Images/LazZiya.TagHelpers/paging-tag-helper-full.PNG)][1]
 
-### [Alert TagHelper ][2]
+### [Alert TagHelper ][1]
 Create bootstrap alerts using very simple html tag.
 
 ````html
@@ -27,7 +27,7 @@ Create bootstrap alerts using very simple html tag.
 ````
 [![AlertTagHelper - success](https://github.com/LazZiya/WebXRObjects/blob/master/Shared/Images/LazZiya.TagHelpers/alert-taghelper-success.PNG)][2]
 
-### [Language Navigation TagHelper][3]
+### [Language Navigation TagHelper][1]
 Create a language dropdown navigation for websites. Supported cultures will be used to create the navigation items.
 
 ````html
@@ -35,7 +35,7 @@ Create a language dropdown navigation for websites. Supported cultures will be u
 ````
 [![LanguageNavTagHelper with flags](https://github.com/LazZiya/WebXRObjects/blob/master/Shared/Images/LazZiya.TagHelpers/languagenav-taghelper-with-flags.PNG)][3]
 
-### [Localization Validation Scripts TagHelper][4]
+### [Localization Validation Scripts TagHelper][1]
 Add all client side scripts that are required for validating localized inputs like decimal numbers, dates, ..etc.
 ````html
 <localization-validation-scripts></localization-validation-scripts>
@@ -45,8 +45,4 @@ Add all client side scripts that are required for validating localized inputs li
 ## Live demos:
 http://demo.ziyad.info/en/
 
-[1]:https://github.com/LazZiya/TagHelpers/wiki/Paging-TagHelper-Basic-Setup
-[2]:https://github.com/LazZiya/TagHelpers/wiki/Alerts-TagHelper-Front-end-Alerts
-[3]:https://github.com/LazZiya/TagHelpers/wiki/LanguageNav-TagHelper-Setup
-[4]:https://github.com/LazZiya/TagHelpers/wiki/LocalizationValidationScripts-TagHelper-Setup
-[5]:https://github.com/LazZiya/TagHelpers/wiki
+[1]:https://docs.ziyad.info
