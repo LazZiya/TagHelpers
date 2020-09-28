@@ -14,6 +14,7 @@
 		<PackageReleaseNotes>
 			- .net5 support
 			- PagingTagHelper: Improved styling as adding styles that fits into dark or light themes
+			- PagingTagHelper: New page size label with string format support
 			- Localization support for AlertTagHelper
 			- Performance improvments while creating urls in paging taghelper
 			- New render mode for LanguageNav: "FormControl" renders the language nav as a form control. This helps to use the culture navigation control as a dropdown inside any form.

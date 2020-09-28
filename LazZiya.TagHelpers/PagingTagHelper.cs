@@ -746,7 +746,11 @@ namespace LazZiya.TagHelpers
             dropDownBtn.Attributes.Add("data-toggle", "dropdown");
             dropDownBtn.Attributes.Add("aria-haspopup", "true");
             dropDownBtn.Attributes.Add("aria-expanded", "false");
-            dropDownBtn.InnerHtml.Append(TextPageSize ?? $"{PageSize.ToNumberFormat(NumberFormat)}");
+
+            var psText = string.IsNullOrWhiteSpace(TextPageSize)
+                ? $"{PageSize.ToNumberFormat(NumberFormat)}"
+                : string.Format(TextPageSize, $"{PageSize.ToNumberFormat(NumberFormat)}");
+            dropDownBtn.InnerHtml.Append(psText);
 
             var dropDownMenu = new TagBuilder("div");
             dropDownMenu.AddCssClass("dropdown-menu dropdown-menu-right");
