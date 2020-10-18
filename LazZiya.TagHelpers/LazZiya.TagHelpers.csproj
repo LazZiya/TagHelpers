@@ -18,9 +18,12 @@
 			- Localization support for AlertTagHelper
 			- Performance improvments while creating urls in paging taghelper
 			- New render mode for LanguageNav: "FormControl" renders the language nav as a form control. This helps to use the culture navigation control as a dropdown inside any form.
+			- Bug fixe for alert-info
 			- See all release notes in https://github.com/LazZiya/TagHelpers/releases
 		</PackageReleaseNotes>
-		<Version>5.0.0-preview2</Version>
+		<TotalSeconds>$([System.DateTime]::UtcNow.TimeOfDay.TotalSeconds)</TotalSeconds>
+		<VersionPrefix>5.0.0</VersionPrefix>
+		<VersionSuffix>preview.$([System.DateTime]::UtcNow.ToString(yy)).$([System.DateTime]::UtcNow.DayOfYear).$([System.Math]::Ceiling($(TotalSeconds)))</VersionSuffix>
 		<AssemblyVersion>5.0.0.0</AssemblyVersion>
 		<FileVersion>5.0.0.0</FileVersion>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

@@ -504,9 +504,9 @@
             Tag helper component for client side localized validation scripts.
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
             <summary>
-            inserts all localizaiton validation scripts into relevant tag
+            Tag helper component for client side localized validation scripts.
             </summary>
             <param name="hosting"></param>
         </member>
