@@ -78,7 +78,7 @@
 		</EmbeddedResource>
 	</ItemGroup>
 
-	<Target Name="CopyPackage" AfterTargets="Pack">
-		<Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(MyNugetsOutput)\$(PackageId).$(PackageVersion).nupkg" />
+	<Target Name="AfterPack" AfterTargets="Pack">
+		<Exec Command="dotnet nuget push $(PackageOutputPath)*.nupkg --source Local" />
 	</Target>
 </Project>
