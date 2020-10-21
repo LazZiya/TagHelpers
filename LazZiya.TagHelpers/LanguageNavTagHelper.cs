@@ -187,9 +187,9 @@ namespace LazZiya.TagHelpers
                     {
 
                         if (FlagsSquared)
-                            a.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLower()} flag-icon-squared\"></span>&nbsp;");
+                            a.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLowerInvariant()} flag-icon-squared\"></span>&nbsp;");
                         else
-                            a.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLower()}\"></span>&nbsp;");
+                            a.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLowerInvariant()}\"></span>&nbsp;");
                     }
                 }
 
@@ -289,9 +289,9 @@ namespace LazZiya.TagHelpers
                 if (flagName.Length == 2)
                 {
                     if (FlagsSquared)
-                        toggle.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLower()} flag-icon-squared\"></span>&nbsp;");
+                        toggle.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLowerInvariant()} flag-icon-squared\"></span>&nbsp;");
                     else
-                        toggle.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLower()}\"></span>&nbsp;");
+                        toggle.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLowerInvariant()}\"></span>&nbsp;");
                 }
             }
 

@@ -811,7 +811,7 @@
             css class for page link, use for styling bg and text colors
             </summary>
         </member>
-     ember name="P:LazZiya.TagHelpers.PagingTagHelper.Ajax">
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.Ajax">
             <summary>
             Set to true to use ajax pagination
             </summary>
@@ -1257,4 +1257,3 @@
         </member>
     </members>
 </doc>
-oc>

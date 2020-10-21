@@ -81,7 +81,7 @@ namespace LazZiya.TagHelpers
         {
             var _alert = new TagBuilder("div");
 
-            var alertStyle = Enum.GetName(typeof(AlertStyle), alert.AlertStyle).ToLower(new System.Globalization.CultureInfo("en"));
+            var alertStyle = Enum.GetName(typeof(AlertStyle), alert.AlertStyle).ToLowerInvariant();
             _alert.AddCssClass($"alert alert-{alertStyle}");
             _alert.Attributes.Add("role", "alert");
 
