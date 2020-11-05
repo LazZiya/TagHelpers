@@ -6,6 +6,7 @@ using LazZiya.TagHelpers.Alerts;
 using System.Threading.Tasks;
 using LazZiya.TagHelpers.Utilities;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.Extensions.Localization;
 
 namespace LazZiya.TagHelpers
 {
@@ -26,6 +27,11 @@ namespace LazZiya.TagHelpers
         /// Show closing button, default is true
         /// </summary>
         public bool Dismissable { get; set; } = true;
+
+        /// <summary>
+        /// Parse localizer instance to localize alert message
+        /// </summary>
+        public IStringLocalizer Localizer { get; set; }
 
         /// <summary>
         /// <para>ViewContext property is not required to be passed as parameter, it will be assigned automatically by the tag helper.</para>
@@ -75,7 +81,7 @@ namespace LazZiya.TagHelpers
         {
             var _alert = new TagBuilder("div");
 
-            var alertStyle = Enum.GetName(typeof(AlertStyle), alert.AlertStyle).ToLower();
+            var alertStyle = Enum.GetName(typeof(AlertStyle), alert.AlertStyle).ToLowerInvariant();
             _alert.AddCssClass($"alert alert-{alertStyle}");
             _alert.Attributes.Add("role", "alert");
 
@@ -86,12 +92,14 @@ namespace LazZiya.TagHelpers
 
             if (!string.IsNullOrWhiteSpace(alert.AlertHeading))
             {
-                _alert.InnerHtml.AppendHtml($"<h4 class='alert-heading'>{alert.AlertHeading}</h4>");
+                var heading = Localizer == null ? alert.AlertHeading : Localizer[alert.AlertHeading];
+                _alert.InnerHtml.AppendHtml($"<h4 class='alert-heading'>{heading}</h4>");
             }
 
             if (!string.IsNullOrWhiteSpace(alert.AlertMessage))
             {
-                _alert.InnerHtml.AppendHtml($"<p class='mb-0'>{alert.AlertMessage}</p>");
+                var msg = Localizer == null ? alert.AlertMessage : Localizer[alert.AlertMessage];
+                _alert.InnerHtml.AppendHtml($"<p class='mb-0'>{msg}</p>");
             }
 
             return _alert;

@@ -1,69 +1,83 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
-    <ApplicationIcon>files\icon.ico</ApplicationIcon>
-    <Authors>Ziya Mollamahmut</Authors>
-    <Company>Ziyad.info</Company>
-    <Description>Collection of tag helpers for ASP.NET Core web applications, like Paging, SelectEnum and LanguageNav dropdown tag helpers for MVC and Razor Pages.</Description>
-    <Copyright>Ziyad.info</Copyright>
-    <PackageProjectUrl>https://github.com/LazZiya/TagHelpers/wiki</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
-    <PackageReleaseNotes>
-      - Performance improvments for creating urls in paging taghelper
-      - See all release notes in https://github.com/LazZiya/TagHelpers/releases
-    </PackageReleaseNotes>
-    <Version>4.1.0</Version>
-    <AssemblyVersion>4.1.0.0</AssemblyVersion>
-    <FileVersion>4.1.0.0</FileVersion>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageIconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</PackageIconUrl>
-    <RepositoryUrl>https://github.com/LazZiya/TagHelpers</RepositoryUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;net5.0</TargetFrameworks>
+		<ApplicationIcon>files\icon.ico</ApplicationIcon>
+		<Authors>Ziya Mollamahmut</Authors>
+		<Company>Ziyad.info</Company>
+		<Description>Collection of tag helpers for ASP.NET Core web applications, like Paging, SelectEnum and LanguageNav dropdown tag helpers for MVC and Razor Pages.</Description>
+		<Copyright>Ziyad.info</Copyright>
+		<PackageProjectUrl>https://docs.ziyad.info/en/LazZiya.TagHelpers/v5.0/index.md</PackageProjectUrl>
+		<PackageIcon>icon.png</PackageIcon>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
+		<PackageReleaseNotes>
+			- .net5 support
+			- PagingTagHelper: Improved styling as adding styles that fits into dark or light themes
+			- PagingTagHelper: New page size label with string format support
+			- Localization support for AlertTagHelper
+			- Performance improvments while creating urls in paging taghelper
+			- New render mode for LanguageNav: "FormControl" renders the language nav as a form control. This helps to use the culture navigation control as a dropdown inside any form.
+			- Bug fixe for alert-info
+			- See all release notes in https://github.com/LazZiya/TagHelpers/releases
+		</PackageReleaseNotes>
+		<VersionPrefix>5.0.0</VersionPrefix>
+		<VersionSuffix>rc.1</VersionSuffix>
+		<AssemblyVersion>5.0.0.0</AssemblyVersion>
+		<FileVersion>5.0.0.0</FileVersion>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</PackageIconUrl>
+		<RepositoryUrl>https://github.com/LazZiya/TagHelpers</RepositoryUrl>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Debug' OR '$(Configuration)'=='Release'">
-    <DocumentationFile>LazZiya.TagHelpers.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Debug' OR '$(Configuration)'=='Release'">
+		<DocumentationFile>LazZiya.TagHelpers.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0' OR '$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2'">
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0" Exclude="build,analyzers" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.0.0" Exclude="build,analyzers" />
-  </ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0' OR '$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2'">
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0" Exclude="build,analyzers" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.0.0" Exclude="build,analyzers" />
+	</ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
-    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="3.0.0" Exclude="Build,Analyzers" />
-  </ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
+		<FrameworkReference Include="Microsoft.AspNetCore.App" Version="3.0.0" Exclude="Build,Analyzers" />
+	</ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-    <FrameworkReference Include="Microsoft.AspNetCore.App" Version="3.1.0" Exclude="Build,Analyzers" />
-  </ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+		<FrameworkReference Include="Microsoft.AspNetCore.App" Version="3.1.0" Exclude="Build,Analyzers" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="files\icon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="files\icon.png" Pack="true" PackagePath="">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="files\license.txt" Pack="true" PackagePath="" />
-  </ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+		<FrameworkReference Include="Microsoft.AspNetCore.App" Version="5.0.0" Exclude="Build,Analyzers" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="files\icon.ico">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Include="files\icon.png" Pack="true" PackagePath="">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Include="files\license.txt" Pack="true" PackagePath="" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<Target Name="AfterPack" AfterTargets="Pack">
+		<Exec Command="dotnet nuget push $(PackageOutputPath)*.nupkg --source Local" />
+	</Target>
 </Project>

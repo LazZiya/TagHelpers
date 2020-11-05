@@ -46,7 +46,7 @@
     }
 
     /// <summary>
-    /// Alert item that can be created in the backend manually for pushing alert to themp data
+    /// Alert item that can be created in the backend manually for pushing alert to the temp data
     /// </summary>
     internal class Alert
     {
