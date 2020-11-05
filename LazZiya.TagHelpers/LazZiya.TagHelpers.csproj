@@ -7,7 +7,7 @@
 		<Company>Ziyad.info</Company>
 		<Description>Collection of tag helpers for ASP.NET Core web applications, like Paging, SelectEnum and LanguageNav dropdown tag helpers for MVC and Razor Pages.</Description>
 		<Copyright>Ziyad.info</Copyright>
-		<PackageProjectUrl>https://docs.ziyad.info/LazZiya.TagHelpers</PackageProjectUrl>
+		<PackageProjectUrl>https://docs.ziyad.info/en/LazZiya.TagHelpers/v5.0/index.md</PackageProjectUrl>
 		<PackageIcon>icon.png</PackageIcon>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
@@ -21,9 +21,8 @@
 			- Bug fixe for alert-info
 			- See all release notes in https://github.com/LazZiya/TagHelpers/releases
 		</PackageReleaseNotes>
-		<TotalSeconds>$([System.DateTime]::UtcNow.TimeOfDay.TotalSeconds)</TotalSeconds>
 		<VersionPrefix>5.0.0</VersionPrefix>
-		<VersionSuffix>preview.$([System.DateTime]::UtcNow.ToString(yy)).$([System.DateTime]::UtcNow.DayOfYear).$([System.Math]::Ceiling($(TotalSeconds)))</VersionSuffix>
+		<VersionSuffix>rc.1</VersionSuffix>
 		<AssemblyVersion>5.0.0.0</AssemblyVersion>
 		<FileVersion>5.0.0.0</FileVersion>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
