@@ -13,19 +13,7 @@ namespace LazZiya.TagHelpers
     public class LocalizationValidationScriptsTagHelperComponent : TagHelperComponent
     {
 
-#if NETCOREAPP3_0 || NETCOREAPP3_1
-        private readonly IWebHostEnvironment _hosting;
-
-        /// <summary>
-        /// inserts all localizaiton validation scripts into relevant tag
-        /// </summary>
-        /// <param name="hosting"></param>
-        public LocalizationValidationScriptsTagHelperComponent(IWebHostEnvironment hosting)
-        {
-            _hosting = hosting;
-        }
-
-#else
+#if NETCOREAPP2_0 || NETCOREAPP2_1 || NETCOREAPP2_2
         private readonly IHostingEnvironment _hosting;
 
         /// <summary>
@@ -33,6 +21,17 @@ namespace LazZiya.TagHelpers
         /// </summary>
         /// <param name="hosting"></param>
         public LocalizationValidationScriptsTagHelperComponent(IHostingEnvironment hosting)
+        {
+            _hosting = hosting;
+        }
+#else
+        private readonly IWebHostEnvironment _hosting;
+
+        /// <summary>
+        /// inserts all localizaiton validation scripts into relevant tag
+        /// </summary>
+        /// <param name="hosting"></param>
+        public LocalizationValidationScriptsTagHelperComponent(IWebHostEnvironment hosting)
         {
             _hosting = hosting;
         }
