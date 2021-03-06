@@ -29,6 +29,22 @@ namespace LazZiya.TagHelpers
         public bool Dismissable { get; set; } = true;
 
         /// <summary>
+        /// Show multiple alerts as slides
+        /// </summary>
+        public bool SlideAlerts { get; set; } = true;
+
+        /// <summary>
+        /// Show alert icons from fontawesome.
+        /// Requires fontawesome css
+        /// </summary>
+        public bool ShowIcons { get; set; } = true;
+
+        /// <summary>
+        /// Choose where to get icons source from. "Bootstrap" or "FontAwesome".
+        /// </summary>
+        public IconsSource IconsSource { get; set; } = IconsSource.Bootstrap;
+
+        /// <summary>
         /// Parse localizer instance to localize alert message
         /// </summary>
         public IStringLocalizer Localizer { get; set; }
@@ -50,12 +66,17 @@ namespace LazZiya.TagHelpers
             if (ViewContext != null)
             {
                 var alerts = ViewContext.TempData.ContainsKey(Alert.TempDataKey)
-                    //? JsonConvert.DeserializeObject<List<Alert>>(ViewContext.TempData[Alert.TempDataKey].ToString())
-                    //? (List<Alert>)ViewContext.TempData[Alert.TempDataKey]
                     ? ViewContext.TempData.Get<List<Alert>>(Alert.TempDataKey)
                     : new List<Alert>();
 
-                alerts.ForEach(x => output.Content.AppendHtml(AddAlert(x)));
+                if (SlideAlerts)
+                {
+                    output.Content.AppendHtml(AddAlertCarousel(alerts));
+                }
+                else
+                {
+                    alerts.ForEach(a => output.Content.AppendHtml(AddAlert(a)));
+                }
 
                 ViewContext.TempData.Remove(Alert.TempDataKey);
             }
@@ -81,6 +102,16 @@ namespace LazZiya.TagHelpers
         {
             var _alert = new TagBuilder("div");
 
+            string alertIcon;
+            switch (alert.AlertStyle)
+            {
+                case AlertStyle.Success: alertIcon = IconsSource == IconsSource.Bootstrap ? BootstrapIcons.Success : FontAwesomeIcons.Success; break;
+                case AlertStyle.Warning: alertIcon = IconsSource == IconsSource.Bootstrap ? BootstrapIcons.Warning : FontAwesomeIcons.Warning; break;
+                case AlertStyle.Info: alertIcon =  IconsSource == IconsSource.Bootstrap ? BootstrapIcons.Info : FontAwesomeIcons.Info; break;
+                case AlertStyle.Danger: alertIcon = IconsSource == IconsSource.Bootstrap ? BootstrapIcons.Danger : FontAwesomeIcons.Danger; break;
+                default: alertIcon = IconsSource == IconsSource.Bootstrap ? BootstrapIcons.Default : FontAwesomeIcons.Default; break;
+            }
+
             var alertStyle = Enum.GetName(typeof(AlertStyle), alert.AlertStyle).ToLowerInvariant();
             _alert.AddCssClass($"alert alert-{alertStyle}");
             _alert.Attributes.Add("role", "alert");
@@ -99,10 +130,63 @@ namespace LazZiya.TagHelpers
             if (!string.IsNullOrWhiteSpace(alert.AlertMessage))
             {
                 var msg = Localizer == null ? alert.AlertMessage : Localizer[alert.AlertMessage];
-                _alert.InnerHtml.AppendHtml($"<p class='mb-0'>{msg}</p>");
+                var icon = ShowIcons ? $"<i class='bi {alertIcon}'></i>&nbsp;" : string.Empty;
+                _alert.InnerHtml.AppendHtml($"<p class='mb-0'>{icon}{msg}</p>");
             }
 
             return _alert;
+        }
+
+        private TagBuilder AddAlertCarousel(List<Alert> alerts)
+        {
+            var carouselId = "alertCarouselControls";
+
+            var indic = new TagBuilder("ol");
+            indic.AddCssClass("carousel-indicators");
+
+            for (int i = 0; i < alerts.Count; i++)
+            {
+                var indicItem = new TagBuilder("li");
+                indicItem.Attributes.Add("data-target", $"#{carouselId}");
+                indicItem.Attributes.Add("data-slide-to", $"{i}");
+                if (i == 0)
+                    indicItem.AddCssClass("active");
+                indic.InnerHtml.AppendHtml(indicItem);
+            }
+
+            var carouselInner = new TagBuilder("div");
+            carouselInner.AddCssClass("carousel-inner");
+            for (int i = 0; i < alerts.Count; i++)
+            {
+                var slide = new TagBuilder("div");
+                if (i == 0)
+                    slide.AddCssClass("carousel-item active");
+                else
+                    slide.AddCssClass("carousel-item");
+
+                // remove dismissabel property from inner alerts
+                // only the most outer alert will have dismissable property
+                alerts[i].Dismissable = false;
+                slide.InnerHtml.AppendHtml(AddAlert(alerts[i]));
+
+                carouselInner.InnerHtml.AppendHtml(slide);
+            }
+
+            var carouselDiv = new TagBuilder("div");
+            carouselDiv.AddCssClass("carousel slide");
+            carouselDiv.Attributes.Add("id", carouselId);
+            carouselDiv.Attributes.Add("data-ride", "carousel");
+            carouselDiv.InnerHtml.AppendHtml(indic);
+            carouselDiv.InnerHtml.AppendHtml(carouselInner);
+
+            // This is the main alert that will hold the alerts carousel
+            var mainAlert = new TagBuilder("div");
+            mainAlert.AddCssClass("alert alert-dismissible p-0");
+            mainAlert.Attributes.Add("role", "alert");
+            mainAlert.InnerHtml.AppendHtml(carouselDiv);
+            mainAlert.InnerHtml.AppendHtml("<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>");
+
+            return mainAlert;
         }
     }
 }
