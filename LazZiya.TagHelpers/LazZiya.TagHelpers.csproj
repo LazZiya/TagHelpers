@@ -18,7 +18,7 @@
       - See all release notes in https://github.com/LazZiya/TagHelpers/releases
     </PackageReleaseNotes>
 		<VersionPrefix>5.1.0</VersionPrefix>
-		<VersionSuffix>beta3</VersionSuffix>
+		<VersionSuffix>beta5</VersionSuffix>
 		<AssemblyVersion>5.1.0.0</AssemblyVersion>
 		<FileVersion>5.1.0.0</FileVersion>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

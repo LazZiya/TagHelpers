@@ -655,6 +655,14 @@
             <param>default: "default"</param>
             </summary>
         </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.FixUrlPath">
+            <summary>
+            Force adding url path to the navigation url
+            in some scenarios when the page is under some area/subFolder
+            The navigation links are pointing to the home page.
+            To force adding url path enable this property
+            </summary>
+        </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeDropdownItems">
             <summary>
             A list of dash delimitted numbers for page size dropdown. 
@@ -700,7 +708,7 @@
             <para>default: true</para>
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowTotalPages">
+        <member name="P:LazZiya.TagHelpers.Pags.PagingTagHelper.ShowTotalPages">
             <summary>
             Show or hide total pages count
             <para>default: true</para>
@@ -895,8 +903,7 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxUrl">
             <summary>
             The URL to make the request to.
-            </summary>
-        </member>
+            </summa        </member>
         <member name="M:LazZiya.TagHelpers.PagingTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
             <summary>
             process creating paging tag helper
@@ -1288,3 +1295,4 @@
         </member>
     </members>
 </doc>
+oc>
