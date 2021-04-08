@@ -86,7 +86,7 @@ namespace LazZiya.TagHelpers
         /// The navigation links are pointing to the home page.
         /// To force adding url path enable this property
         /// </summary>
-        public bool? FixUrlPath { get; set; } = false;
+        public bool? FixUrlPath { get; set; } = true;
 
         #endregion
 

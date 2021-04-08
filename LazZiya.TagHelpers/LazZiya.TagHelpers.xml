@@ -708,7 +708,7 @@
             <para>default: true</para>
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.Pags.PagingTagHelper.ShowTotalPages">
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.ShowTotalPages">
             <summary>
             Show or hide total pages count
             <para>default: true</para>
@@ -903,7 +903,8 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.AjaxUrl">
             <summary>
             The URL to make the request to.
-            </summa        </member>
+            </summary>
+        </member>
         <member name="M:LazZiya.TagHelpers.PagingTagHelper.Process(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
             <summary>
             process creating paging tag helper
@@ -1295,4 +1296,3 @@
         </member>
     </members>
 </doc>
-oc>
