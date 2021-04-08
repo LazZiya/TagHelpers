@@ -850,7 +850,7 @@ namespace LazZiya.TagHelpers
 
             var path = ViewContext.HttpContext.Request.Path;
             
-            return FixUrlPath ?? false
+            return FixUrlPath ?? true
                 ? path + "?" + string.Join("&", qDic.Select(q=>q.Key + "=" + q.Value))
                 : "?" + string.Join("&", qDic.Select(q => q.Key + "=" + q.Value));
         }

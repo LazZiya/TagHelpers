@@ -15,10 +15,11 @@
       - New: Alert icons
       - New: Alert slider, slide between multiple alerts
       - Fix #16 https://github.com/LazZiya/TagHelpers/issues/16
+	  - New property added for PagingTagHelper: fix-url-path (add docs link)
       - See all release notes in https://github.com/LazZiya/TagHelpers/releases
     </PackageReleaseNotes>
 		<VersionPrefix>5.1.0</VersionPrefix>
-		<VersionSuffix>beta5</VersionSuffix>
+		<VersionSuffix>beta6</VersionSuffix>
 		<AssemblyVersion>5.1.0.0</AssemblyVersion>
 		<FileVersion>5.1.0.0</FileVersion>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
