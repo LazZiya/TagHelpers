@@ -346,6 +346,11 @@
             Render as form control
             </summary>
         </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.Bootstrap5">
+            <summary>
+            HTML5 div with Bootstrap 5 support
+            </summary>
+        </member>
         <member name="T:LazZiya.TagHelpers.LanguageNavTagHelper">
             <summary>
             creates a language navigation menu, depends on supported cultures
@@ -441,6 +446,15 @@
             <returns></returns>
         </member>
         <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateBootstrapItems(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput@,System.Collections.Generic.List{LazZiya.TagHelpers.LanguageItem})">
+            <summary>
+            create classic list items list
+            <example><![CDATA[<a href="/en-US/Index" class="itemxyz">English</a>]]></example>
+            </summary>
+            <param name="langDictionary">language name-URL dictionary</param>
+            <param name="output">reference to TagHelperOuput</param>
+            <returns></returns>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateBootstrap5Items(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput@,System.Collections.Generic.List{LazZiya.TagHelpers.LanguageItem})">
             <summary>
             create classic list items list
             <example><![CDATA[<a href="/en-US/Index" class="itemxyz">English</a>]]></example>

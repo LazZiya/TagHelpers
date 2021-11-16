@@ -53,7 +53,11 @@ namespace LazZiya.TagHelpers
         /// <summary>
         /// Render as form control
         /// </summary>
-        FormControl
+        FormControl,
+        /// <summary>
+        /// HTML5 div with Bootstrap 5 support
+        /// </summary>
+        Bootstrap5
     }
 
     internal class LanguageItem
