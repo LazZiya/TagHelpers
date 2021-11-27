@@ -92,10 +92,13 @@ namespace LazZiya.TagHelpers
         {
             var langDictionary = CreateNavDictionary();
 
-            switch(RenderMode)
+            switch (RenderMode)
             {
                 case RenderMode.Bootstrap:
                     CreateBootstrapItems(ref output, langDictionary);
+                    break;
+                case RenderMode.Bootstrap5:
+                    CreateBootstrap5Items(ref output, langDictionary);
                     break;
                 case RenderMode.Classic:
                     CreateClassicItems(ref output, langDictionary);
@@ -208,6 +211,57 @@ namespace LazZiya.TagHelpers
         }
 
         /// <summary>
+        /// create classic list items list
+        /// <example><![CDATA[<a href="/en-US/Index" class="itemxyz">English</a>]]></example>
+        /// </summary>
+        /// <param name="langDictionary">language name-URL dictionary</param>
+        /// <param name="output">reference to TagHelperOuput</param>
+        /// <returns></returns>
+        private void CreateBootstrap5Items(ref TagHelperOutput output, List<LanguageItem> langDictionary)
+        {
+            var ul = new TagBuilder("ul");
+
+            if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                ul.AddCssClass("dropdown-menu dropdown-menu-left");
+            else
+                ul.AddCssClass("dropdown-menu dropdown-menu-right");
+
+            ul.Attributes.Add("aria-labeledby", "dropdownlang");
+
+            foreach (var lang in langDictionary.Where(x => x.Name != CultureInfo.CurrentCulture.Name).OrderBy(x => x.DisplayText))
+            {
+                var li = new TagBuilder("li");
+                var a = new TagBuilder("a");
+                a.AddCssClass("dropdown-item small");
+                a.Attributes.Add("href", lang.Url);
+
+                if (Flags)
+                {
+                    var flagName = lang.Name.Split('-');
+                    if (flagName.Length == 2)
+                    {
+                        if (FlagsSquared)
+                            a.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLowerInvariant()} flag-icon-squared\"></span>&nbsp;");
+                        else
+                            a.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLowerInvariant()}\"></span>&nbsp;");
+                    }
+                }
+
+                a.InnerHtml.Append(lang.DisplayText);
+                li.InnerHtml.AppendHtml(a);
+                ul.InnerHtml.AppendHtml(li);
+            }
+
+            output.TagName = "div";
+            output.Attributes.Add("class", "dropdown");
+
+            var toggle = CreateToggle5();
+            output.Content.AppendHtml(toggle);
+
+            output.Content.AppendHtml(ul);
+        }
+
+        /// <summary>
         /// create dictonary for all supported cultures
         /// <para>Key: Language display name for label</para>
         /// <para>Value: Navigation URL</para>
@@ -278,6 +332,36 @@ namespace LazZiya.TagHelpers
             toggle.Attributes.Add("href", "#");
             toggle.Attributes.Add("role", "button");
             toggle.Attributes.Add("data-toggle", "dropdown");
+            toggle.Attributes.Add("aria-haspopup", "true");
+            toggle.Attributes.Add("aria-expanded", "false");
+
+            var labelTxt = GetLanguageLabel(CultureInfo.CurrentCulture);
+
+            if (Flags)
+            {
+                var flagName = CultureInfo.CurrentCulture.Name.Split('-');
+                if (flagName.Length == 2)
+                {
+                    if (FlagsSquared)
+                        toggle.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLowerInvariant()} flag-icon-squared\"></span>&nbsp;");
+                    else
+                        toggle.InnerHtml.AppendHtml($"<span class=\"flag-icon flag-icon-{flagName[1].ToLowerInvariant()}\"></span>&nbsp;");
+                }
+            }
+
+            toggle.InnerHtml.AppendHtml(labelTxt);
+
+            return toggle;
+        }
+
+        private TagBuilder CreateToggle5()
+        {
+            var toggle = new TagBuilder("a");
+            toggle.AddCssClass("btn-sm btn-default border border-secondary dropdown-toggle");
+            toggle.Attributes.Add("id", "dropdownLang");
+            toggle.Attributes.Add("href", "#");
+            toggle.Attributes.Add("role", "button");
+            toggle.Attributes.Add("data-bs-toggle", "dropdown");
             toggle.Attributes.Add("aria-haspopup", "true");
             toggle.Attributes.Add("aria-expanded", "false");
 
