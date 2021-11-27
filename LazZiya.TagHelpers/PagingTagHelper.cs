@@ -80,6 +80,14 @@ namespace LazZiya.TagHelpers
         /// </summary>
         public string SettingsJson { get; set; } = "default";
 
+        /// <summary>
+        /// Force adding url path to the navigation url
+        /// in some scenarios when the page is under some area/subFolder
+        /// The navigation links are pointing to the home page.
+        /// To force adding url path enable this property
+        /// </summary>
+        public bool? FixUrlPath { get; set; } = true;
+
         #endregion
 
         #region Page size navigation
@@ -601,6 +609,9 @@ namespace LazZiya.TagHelpers
 
             ClassPageLink = ClassPageLink ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-page-link"] ?? "";
 
+            FixUrlPath = FixUrlPath == null ?
+                bool.TryParse(Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:fix-url-path"], out bool _fPath) ? _fPath : true : FixUrlPath;
+
             _logger.LogInformation($"----> PagingTagHelper - " +
                 $"{nameof(PageNo)}: {PageNo}, " +
                 $"{nameof(PageSize)}: {PageSize}, " +
@@ -824,14 +835,14 @@ namespace LazZiya.TagHelpers
         /// <returns>a string with placeholders for page no and page size</returns>
         private string CreatePagingUrlTemplate()
         {
-            var urlPath = ViewContext.HttpContext.Request.QueryString.Value;
+            var queryString = ViewContext.HttpContext.Request.QueryString.Value;
 
             if (!string.IsNullOrWhiteSpace(AjaxUrl))
-                urlPath = urlPath.Replace($"{AjaxUrl}&", "");
+                queryString = queryString.Replace($"{AjaxUrl}&", "");
 
-            var urlTemplate = string.IsNullOrWhiteSpace(urlPath)
+            var urlTemplate = string.IsNullOrWhiteSpace(queryString)
                 ? $"{QueryStringKeyPageNo}=1&{QueryStringKeyPageSize}={PageSize}".Split('&').ToList()
-                : urlPath.TrimStart('?').Split('&').ToList();
+                : queryString.TrimStart('?').Split('&').ToList();
 
             var qDic = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
             urlTemplate.ForEach(x => qDic.Add(x.Split('=')[0], x.Split('=')[1]));
@@ -850,7 +861,11 @@ namespace LazZiya.TagHelpers
             else
                 qDic[QueryStringKeyPageSize] = "{1}";
 
-            return "?" + string.Join("&", qDic.Select(q => q.Key + "=" + q.Value));
+            var path = ViewContext.HttpContext.Request.Path;
+            
+            return FixUrlPath ?? true
+                ? path + "?" + string.Join("&", qDic.Select(q=>q.Key + "=" + q.Value))
+                : "?" + string.Join("&", qDic.Select(q => q.Key + "=" + q.Value));
         }
     }
 }

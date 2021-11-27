@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 
 namespace LazZiya.TagHelpers
 {
@@ -67,6 +68,13 @@ namespace LazZiya.TagHelpers
                 var culture = _scriptSource == ScriptSource.JsDeliver
                     ? CultureInfo.CurrentCulture.Name
                     : GetCultureName();
+
+                // Some cultures do not have scripts in jsDelivr e.g. en-us, es-es,
+                // so switch to parent culture
+                string[] nonSupportedCultres = { "en-us", "es-es" };
+                culture = nonSupportedCultres.Any(x => x.Equals(culture, StringComparison.OrdinalIgnoreCase))
+                            ? culture.Split('-')[0]
+                            : culture;
 
                 output.PostContent.AppendHtml(_script.Replace("{culture}", culture)
                                                      .Replace("{cldr-core-version}", cldrCoreVersion));

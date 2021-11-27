@@ -13,7 +13,11 @@
 		<PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
 		<PackageReleaseNotes>
 			- .net6 support
-			- bootstrap 5 support 
+			- bootstrap 5 support
+			- New: Alert icons
+			- New: Alert slider, slide between multiple alerts
+			- Fix #16 https://github.com/LazZiya/TagHelpers/issues/16
+			- New property added for PagingTagHelper: fix-url-path (add docs link)
 			- See all release notes in https://github.com/LazZiya/TagHelpers/releases
 		</PackageReleaseNotes>
 		<VersionPrefix>5.1.0</VersionPrefix>
