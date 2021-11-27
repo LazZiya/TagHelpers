@@ -260,6 +260,11 @@
             Show closing button, default is true
             </summary>
         </member>
+        <member name="P:LazZiya.TagHelpers.AlertTagHelper.RenderMode">
+            <summary>
+            Choose render mode: Bootstrap5 if your project is using bootstrap5, otherwise default is Bootstrap for earlier versions.
+            </summary>
+        </member>
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.Localizer">
             <summary>
             Parse localizer instance to localize alert message
@@ -322,33 +327,6 @@
         <member name="F:LazZiya.TagHelpers.LanguageLabel.TwoLetterISOLanguageName">
             <summary>
             Two letter ISO language name
-            </summary>
-        </member>
-        <member name="T:LazZiya.TagHelpers.RenderMode">
-            <summary>
-            choose render mode style,
-            <para>classic: regular dropdown select list</para>
-            <para>Bootstrap4: HTML5 div with Bootstrap4 support</para>
-            </summary>
-        </member>
-        <member name="F:LazZiya.TagHelpers.RenderMode.Classic">
-            <summary>
-            regular dropdown list
-            </summary>
-        </member>
-        <member name="F:LazZiya.TagHelpers.RenderMode.Bootstrap">
-            <summary>
-            HTML5 div with Bootstrap 4 support
-            </summary>
-        </member>
-        <member name="F:LazZiya.TagHelpers.RenderMode.FormControl">
-            <summary>
-            Render as form control
-            </summary>
-        </member>
-        <member name="F:LazZiya.TagHelpers.RenderMode.Bootstrap5">
-            <summary>
-            HTML5 div with Bootstrap 5 support
             </summary>
         </member>
         <member name="T:LazZiya.TagHelpers.LanguageNavTagHelper">
@@ -518,9 +496,9 @@
             Tag helper component for client side localized validation scripts.
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
             <summary>
-            inserts all localizaiton validation scripts into relevant tag
+            Tag helper component for client side localized validation scripts.
             </summary>
             <param name="hosting"></param>
         </member>
@@ -621,7 +599,7 @@
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.TotalRecords">
-            <summary>
+       <summary>
             Total count of records in the db
             <para>default: 0</para>
             </summary>
@@ -722,7 +700,7 @@
             <![CDATA[default: &rsaquo;]]></para>
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextPrevious">
+        <member name="P:LazZiya.TagHelpers.PagingTagHgTagHelper.TextPrevious">
             <summary>
             previous button text
             <para>
@@ -765,6 +743,11 @@
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.SrTextPrevious">
             <summary>
             text for screen readers only
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.RenderMode">
+            <summary>
+            Select bootstrap version
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.Class">
@@ -983,6 +966,33 @@
             &lt;script src=&quot;/lib/globalize/dist/globalize/date.min.js&quot;&gt;&lt;/script&gt;
             &lt;script src=&quot;/lib/globalize/dist/globalize/currency.min.js&quot;&gt;&lt;/s [rest of string was truncated]&quot;;.
              </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.RenderMode">
+            <summary>
+            choose render mode style,
+            <para>classic: regular dropdown select list</para>
+            <para>Bootstrap4: HTML5 div with Bootstrap4 support</para>
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.Classic">
+            <summary>
+            regular dropdown list
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.Bootstrap">
+            <summary>
+            HTML5 div with Bootstrap 4 support
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.FormControl">
+            <summary>
+            Render as form control
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.Bootstrap5">
+            <summary>
+            HTML5 div with Bootstrap 5 support
+            </summary>
         </member>
         <member name="T:LazZiya.TagHelpers.SelectEnumTagHelper">
             <summary>

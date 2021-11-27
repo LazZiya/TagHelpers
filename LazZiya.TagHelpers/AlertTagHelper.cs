@@ -29,6 +29,11 @@ namespace LazZiya.TagHelpers
         public bool Dismissable { get; set; } = true;
 
         /// <summary>
+        /// Choose render mode: Bootstrap5 if your project is using bootstrap5, otherwise default is Bootstrap for earlier versions.
+        /// </summary>
+        public RenderMode RenderMode { get; set; } = RenderMode.Bootstrap;
+
+        /// <summary>
         /// Parse localizer instance to localize alert message
         /// </summary>
         public IStringLocalizer Localizer { get; set; }
@@ -50,8 +55,6 @@ namespace LazZiya.TagHelpers
             if (ViewContext != null)
             {
                 var alerts = ViewContext.TempData.ContainsKey(Alert.TempDataKey)
-                    //? JsonConvert.DeserializeObject<List<Alert>>(ViewContext.TempData[Alert.TempDataKey].ToString())
-                    //? (List<Alert>)ViewContext.TempData[Alert.TempDataKey]
                     ? ViewContext.TempData.Get<List<Alert>>(Alert.TempDataKey)
                     : new List<Alert>();
 
@@ -87,7 +90,13 @@ namespace LazZiya.TagHelpers
 
             if (alert.Dismissable)
             {
-                _alert.InnerHtml.AppendHtml("<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>");
+                if (RenderMode == RenderMode.Bootstrap5)
+                {
+                    _alert.AddCssClass("alert-dismissible fade show");
+                    _alert.InnerHtml.AppendHtml("<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>");
+                }
+                else
+                    _alert.InnerHtml.AppendHtml("<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>");
             }
 
             if (!string.IsNullOrWhiteSpace(alert.AlertHeading))

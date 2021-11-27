@@ -255,7 +255,7 @@ namespace LazZiya.TagHelpers
             output.TagName = "div";
             output.Attributes.Add("class", "dropdown");
 
-            var toggle = CreateToggle5();
+            var toggle = CreateToggle();
             output.Content.AppendHtml(toggle);
 
             output.Content.AppendHtml(ul);
@@ -331,7 +331,12 @@ namespace LazZiya.TagHelpers
             toggle.Attributes.Add("id", "dropdownLang");
             toggle.Attributes.Add("href", "#");
             toggle.Attributes.Add("role", "button");
-            toggle.Attributes.Add("data-toggle", "dropdown");
+
+            if(RenderMode == RenderMode.Bootstrap5)
+                toggle.Attributes.Add("data-bs-toggle", "dropdown");
+            else
+                toggle.Attributes.Add("data-toggle", "dropdown");
+
             toggle.Attributes.Add("aria-haspopup", "true");
             toggle.Attributes.Add("aria-expanded", "false");
 
@@ -353,7 +358,7 @@ namespace LazZiya.TagHelpers
 
             return toggle;
         }
-
+        /*
         private TagBuilder CreateToggle5()
         {
             var toggle = new TagBuilder("a");
@@ -382,6 +387,6 @@ namespace LazZiya.TagHelpers
             toggle.InnerHtml.AppendHtml(labelTxt);
 
             return toggle;
-        }
+        }*/
     }
 }
