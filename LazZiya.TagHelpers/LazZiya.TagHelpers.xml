@@ -147,6 +147,11 @@
             Bootstrap
             </summary>
         </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.IconsSource.Bootstrap5">
+            <summary>
+            Bootstrap5
+            </summary>
+        </member>
         <member name="F:LazZiya.TagHelpers.Alerts.IconsSource.FontAwesome">
             <summary>
             FontAwesome
@@ -283,7 +288,7 @@
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.ShowIcons">
             <summary>
             Show alert icons from fontawesome.
-            Requires fontawesome css
+            Requires fontawesome css or bootstrap
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.IconsSource">
@@ -527,9 +532,9 @@
             Tag helper component for client side localized validation scripts.
             </summary>
         </member>
-        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+        <member name="M:LazZiya.TagHelpers.LocalizationValidationScriptsTagHelperComponent.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
-            Tag helper component for client side localized validation scripts.
+            inserts all localizaiton validation scripts into relevant tag
             </summary>
             <param name="hosting"></param>
         </member>
@@ -630,7 +635,7 @@
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.TotalRecords">
-       <summary>
+            <summary>
             Total count of records in the db
             <para>default: 0</para>
             </summary>
@@ -739,7 +744,7 @@
             <![CDATA[default: &rsaquo;]]></para>
             </summary>
         </member>
-        <member name="P:LazZiya.TagHelpers.PagingTagHgTagHelper.TextPrevious">
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.TextPrevious">
             <summary>
             previous button text
             <para>
