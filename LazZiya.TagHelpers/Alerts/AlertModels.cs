@@ -46,6 +46,40 @@
     }
 
     /// <summary>
+    /// Choose where to get alert icons from
+    /// </summary>
+    public enum IconsSource
+    {
+        /// <summary>
+        /// Bootstrap
+        /// </summary>
+        Bootstrap,
+
+        /// <summary>
+        /// FontAwesome
+        /// </summary>
+        FontAwesome
+    }
+
+    internal struct BootstrapIcons
+    {
+        internal const string Success = "bi bi-check-circle-fill";
+        internal const string Warning = "bi bi-exclamation-triangle-fill";
+        internal const string Info = "bi bi-info-circle-fill";
+        internal const string Danger = "bi bi-x-circle-fill";
+        internal const string Default = "bi bi-info-circle";
+    }
+    
+    internal struct FontAwesomeIcons
+    {
+        internal const string Success = "fas fa-check-circle";
+        internal const string Warning = "fas fa-exclamation-triangle";
+        internal const string Info = "fas fa-info-circle";
+        internal const string Danger = "fas fa-times-circle";
+        internal const string Default = "fas fa-chevron-circle-right";
+    }
+
+    /// <summary>
     /// Alert item that can be created in the backend manually for pushing alert to the temp data
     /// </summary>
     internal class Alert

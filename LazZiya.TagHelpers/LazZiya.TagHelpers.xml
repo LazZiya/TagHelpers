@@ -137,6 +137,21 @@
             alert-dark
             </summary>
         </member>
+        <member name="T:LazZiya.TagHelpers.Alerts.IconsSource">
+            <summary>
+            Choose where to get alert icons from
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.IconsSource.Bootstrap">
+            <summary>
+            Bootstrap
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.IconsSource.FontAwesome">
+            <summary>
+            FontAwesome
+            </summary>
+        </member>
         <member name="T:LazZiya.TagHelpers.Alerts.Alert">
             <summary>
             Alert item that can be created in the backend manually for pushing alert to the temp data
@@ -258,6 +273,22 @@
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.Dismissable">
             <summary>
             Show closing button, default is true
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.AlertTagHelper.SlideAlerts">
+            <summary>
+            Show multiple alerts as slides
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.AlertTagHelper.ShowIcons">
+            <summary>
+            Show alert icons from fontawesome.
+            Requires fontawesome css
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.AlertTagHelper.IconsSource">
+            <summary>
+            Choose where to get icons source from. "Bootstrap" or "FontAwesome".
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.Localizer">
@@ -636,6 +667,14 @@
             <summary>
             name of the settings section in appSettings.json
             <param>default: "default"</param>
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.FixUrlPath">
+            <summary>
+            Force adding url path to the navigation url
+            in some scenarios when the page is under some area/subFolder
+            The navigation links are pointing to the home page.
+            To force adding url path enable this property
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.PageSizeDropdownItems">
