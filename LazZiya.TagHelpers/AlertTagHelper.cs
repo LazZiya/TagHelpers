@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using LazZiya.TagHelpers.Utilities;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Localization;
+using System.Linq;
 
 namespace LazZiya.TagHelpers
 {
@@ -68,7 +69,7 @@ namespace LazZiya.TagHelpers
                 var alerts = ViewContext.TempData.ContainsKey(Alert.TempDataKey)
                     ? ViewContext.TempData.Get<List<Alert>>(Alert.TempDataKey)
                     : new List<Alert>();
-
+                if(alerts.Any())
                 if (SlideAlerts)
                 {
                     output.Content.AppendHtml(AddAlertCarousel(alerts));
