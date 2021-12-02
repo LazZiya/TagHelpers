@@ -20,11 +20,23 @@ Create a pagination control _styled with bootstrap 4.x_ using simple html tag.
 ### [Alert TagHelper ][1]
 Create bootstrap alerts using very simple html tag.
 
+#### Front end alert
 ````html
 <alert-success>
     My alert text ...
 </alert>
 ````
+
+#### Backend alert
+````cs
+TempData.Success("My alert text ...")
+````
+
+Catch all backend alerts in frontend:
+````html
+<alert></alert>
+````
+
 [![AlertTagHelper - success](https://github.com/LazZiya/WebXRObjects/blob/master/Shared/Images/LazZiya.TagHelpers/alert-taghelper-success.PNG)][1]
 
 ### [Language Navigation TagHelper][1]
