@@ -17,7 +17,7 @@
 			- See all release notes in https://github.com/LazZiya/TagHelpers/releases
 		</PackageReleaseNotes>
 		<VersionPrefix>6.0.1</VersionPrefix>
-		<VersionSuffix>beta-1.0</VersionSuffix>
+		<VersionSuffix></VersionSuffix>
 		<AssemblyVersion>6.0.0.0</AssemblyVersion>
 		<FileVersion>6.0.0.0</FileVersion>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
