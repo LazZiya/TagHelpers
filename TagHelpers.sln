@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28729.10
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31903.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LazZiya.TagHelpers", "LazZiya.TagHelpers\LazZiya.TagHelpers.csproj", "{080D63B6-33A9-47D5-99FF-F636542694EB}"
 EndProject
@@ -20,7 +20,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_StartDate = 2000/1/1
 		SolutionGuid = {ED31C13F-823E-406C-87BA-4BC36A23816A}
+		BuildVersion_StartDate = 2000/1/1
 	EndGlobalSection
 EndGlobal

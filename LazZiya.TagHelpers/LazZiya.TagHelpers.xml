@@ -147,6 +147,11 @@
             Bootstrap
             </summary>
         </member>
+        <member name="F:LazZiya.TagHelpers.Alerts.IconsSource.Bootstrap5">
+            <summary>
+            Bootstrap5
+            </summary>
+        </member>
         <member name="F:LazZiya.TagHelpers.Alerts.IconsSource.FontAwesome">
             <summary>
             FontAwesome
@@ -283,12 +288,17 @@
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.ShowIcons">
             <summary>
             Show alert icons from fontawesome.
-            Requires fontawesome css
+            Requires fontawesome css or bootstrap
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.IconsSource">
             <summary>
             Choose where to get icons source from. "Bootstrap" or "FontAwesome".
+            </summary>
+        </member>
+        <member name="P:LazZiya.TagHelpers.AlertTagHelper.RenderMode">
+            <summary>
+            Choose render mode: Bootstrap5 if your project is using bootstrap5, otherwise default is Bootstrap for earlier versions.
             </summary>
         </member>
         <member name="P:LazZiya.TagHelpers.AlertTagHelper.Localizer">
@@ -353,28 +363,6 @@
         <member name="F:LazZiya.TagHelpers.LanguageLabel.TwoLetterISOLanguageName">
             <summary>
             Two letter ISO language name
-            </summary>
-        </member>
-        <member name="T:LazZiya.TagHelpers.RenderMode">
-            <summary>
-            choose render mode style,
-            <para>classic: regular dropdown select list</para>
-            <para>Bootstrap4: HTML5 div with Bootstrap4 support</para>
-            </summary>
-        </member>
-        <member name="F:LazZiya.TagHelpers.RenderMode.Classic">
-            <summary>
-            regular dropdown list
-            </summary>
-        </member>
-        <member name="F:LazZiya.TagHelpers.RenderMode.Bootstrap">
-            <summary>
-            HTML5 div with Bootstrap 4 support
-            </summary>
-        </member>
-        <member name="F:LazZiya.TagHelpers.RenderMode.FormControl">
-            <summary>
-            Render as form control
             </summary>
         </member>
         <member name="T:LazZiya.TagHelpers.LanguageNavTagHelper">
@@ -472,6 +460,15 @@
             <returns></returns>
         </member>
         <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateBootstrapItems(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput@,System.Collections.Generic.List{LazZiya.TagHelpers.LanguageItem})">
+            <summary>
+            create classic list items list
+            <example><![CDATA[<a href="/en-US/Index" class="itemxyz">English</a>]]></example>
+            </summary>
+            <param name="langDictionary">language name-URL dictionary</param>
+            <param name="output">reference to TagHelperOuput</param>
+            <returns></returns>
+        </member>
+        <member name="M:LazZiya.TagHelpers.LanguageNavTagHelper.CreateBootstrap5Items(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput@,System.Collections.Generic.List{LazZiya.TagHelpers.LanguageItem})">
             <summary>
             create classic list items list
             <example><![CDATA[<a href="/en-US/Index" class="itemxyz">English</a>]]></example>
@@ -792,6 +789,11 @@
             text for screen readers only
             </summary>
         </member>
+        <member name="P:LazZiya.TagHelpers.PagingTagHelper.RenderMode">
+            <summary>
+            Select bootstrap version
+            </summary>
+        </member>
         <member name="P:LazZiya.TagHelpers.PagingTagHelper.Class">
             <summary>
             add custom class to content div
@@ -1008,6 +1010,33 @@
             &lt;script src=&quot;/lib/globalize/dist/globalize/date.min.js&quot;&gt;&lt;/script&gt;
             &lt;script src=&quot;/lib/globalize/dist/globalize/currency.min.js&quot;&gt;&lt;/s [rest of string was truncated]&quot;;.
              </summary>
+        </member>
+        <member name="T:LazZiya.TagHelpers.RenderMode">
+            <summary>
+            choose render mode style,
+            <para>classic: regular dropdown select list</para>
+            <para>Bootstrap4: HTML5 div with Bootstrap4 support</para>
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.Classic">
+            <summary>
+            regular dropdown list
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.Bootstrap">
+            <summary>
+            HTML5 div with Bootstrap 4 support
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.FormControl">
+            <summary>
+            Render as form control
+            </summary>
+        </member>
+        <member name="F:LazZiya.TagHelpers.RenderMode.Bootstrap5">
+            <summary>
+            HTML5 div with Bootstrap 5 support
+            </summary>
         </member>
         <member name="T:LazZiya.TagHelpers.SelectEnumTagHelper">
             <summary>

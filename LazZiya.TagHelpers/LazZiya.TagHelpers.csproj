@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;net5.0</TargetFrameworks>
+		<TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
 		<ApplicationIcon>files\icon.ico</ApplicationIcon>
 		<Authors>Ziya Mollamahmut</Authors>
 		<Company>Ziyad.info</Company>
@@ -12,16 +12,13 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
 		<PackageReleaseNotes>
-      - New: Alert icons
-      - New: Alert slider, slide between multiple alerts
-      - Fix #16 https://github.com/LazZiya/TagHelpers/issues/16
-	  - New property added for PagingTagHelper: fix-url-path (add docs link)
-      - See all release notes in https://github.com/LazZiya/TagHelpers/releases
-    </PackageReleaseNotes>
-		<VersionPrefix>5.1.0</VersionPrefix>
-		<VersionSuffix>beta8</VersionSuffix>
-		<AssemblyVersion>5.1.0.0</AssemblyVersion>
-		<FileVersion>5.1.0.0</FileVersion>
+			- Fixed Total badges for Bootstrap5 #23 https://github.com/LazZiya/TagHelpers/pull/23
+			- See all release notes in https://github.com/LazZiya/TagHelpers/releases
+		</PackageReleaseNotes>
+		<VersionPrefix>6.0.1</VersionPrefix>
+		<VersionSuffix>beta-1.0</VersionSuffix>
+		<AssemblyVersion>6.0.0.0</AssemblyVersion>
+		<FileVersion>6.0.0.0</FileVersion>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</PackageIconUrl>
@@ -47,6 +44,10 @@
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
 		<FrameworkReference Include="Microsoft.AspNetCore.App" Version="5.0.0" Exclude="Build,Analyzers" />
+	</ItemGroup>
+	
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+		<FrameworkReference Include="Microsoft.AspNetCore.App" Version="6.0.0" Exclude="Build,Analyzers" />
 	</ItemGroup>
 
 	<ItemGroup>

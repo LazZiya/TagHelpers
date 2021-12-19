@@ -238,6 +238,11 @@ namespace LazZiya.TagHelpers
         #region Styling
 
         /// <summary>
+        /// Select bootstrap version
+        /// </summary>
+        public RenderMode RenderMode { get; set; } = RenderMode.Bootstrap;
+
+        /// <summary>
         /// add custom class to content div
         /// </summary>
         public string Class { get; set; }
@@ -598,10 +603,10 @@ namespace LazZiya.TagHelpers
 
             ClassPagingControl = ClassPagingControl ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-paging-control"] ?? "pagination";
 
-            ClassTotalPages = ClassTotalPages ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-total-pages"] ?? "badge badge-light";
+            ClassTotalPages = ClassTotalPages ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-total-pages"] ?? (RenderMode == RenderMode.Bootstrap ? "badge badge-light" : "badge bg-light text-dark");
 
-            ClassTotalRecords = ClassTotalRecords ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-total-records"] ?? "badge badge-dark";
-            
+            ClassTotalRecords = ClassTotalRecords ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-total-records"] ?? (RenderMode == RenderMode.Bootstrap ? "badge badge-dark" : "badge bg-dark");
+
             ClassPageLink = ClassPageLink ?? Configuration[$"lazziya:pagingTagHelper:{_settingsJson}:class-page-link"] ?? "";
 
             FixUrlPath = FixUrlPath == null ?
@@ -652,7 +657,7 @@ namespace LazZiya.TagHelpers
             if (maxDisplayedPages > totalPages)
                 maxDisplayedPages = totalPages;
 
-            if(totalPages == 1)
+            if (totalPages == 1)
             {
                 _start = _end = 1;
             }
@@ -714,7 +719,11 @@ namespace LazZiya.TagHelpers
             {
                 liTag.MergeAttribute("area-label", textSr);
                 aTag.InnerHtml.AppendHtml($"<span area-hidden=\"true\">{text}</span>");
-                aTag.InnerHtml.AppendHtml($"<span class=\"sr-only\">{textSr}</span>");
+
+                if (RenderMode == RenderMode.Bootstrap5)
+                    aTag.InnerHtml.AppendHtml($"<span class=\"visually-hidden-focusable\">{textSr}</span>");
+                else
+                    aTag.InnerHtml.AppendHtml($"<span class=\"sr-only\">{textSr}</span>");
             }
 
             if (PageNo == targetPageNo)
@@ -754,7 +763,11 @@ namespace LazZiya.TagHelpers
             dropDownBtn.AddCssClass("btn btn-light dropdown-toggle");
             dropDownBtn.Attributes.Add("type", "button");
             dropDownBtn.Attributes.Add("id", "pagingDropDownMenuBtn");
-            dropDownBtn.Attributes.Add("data-toggle", "dropdown");
+
+            if (RenderMode == RenderMode.Bootstrap5)
+                dropDownBtn.Attributes.Add("data-bs-toggle", "dropdown");
+            else
+                dropDownBtn.Attributes.Add("data-toggle", "dropdown");
             dropDownBtn.Attributes.Add("aria-haspopup", "true");
             dropDownBtn.Attributes.Add("aria-expanded", "false");
 
@@ -838,12 +851,12 @@ namespace LazZiya.TagHelpers
             qDic.Remove("X-Requested-With");
             qDic.Remove("_");
 
-            if(!qDic.ContainsKey(QueryStringKeyPageNo))
+            if (!qDic.ContainsKey(QueryStringKeyPageNo))
                 qDic.Add(QueryStringKeyPageNo, "{0}");
             else
                 qDic[QueryStringKeyPageNo] = "{0}";
 
-            if(!qDic.ContainsKey(QueryStringKeyPageSize))
+            if (!qDic.ContainsKey(QueryStringKeyPageSize))
                 qDic.Add(QueryStringKeyPageSize, "{1}");
             else
                 qDic[QueryStringKeyPageSize] = "{1}";
