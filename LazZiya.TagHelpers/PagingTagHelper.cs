@@ -844,28 +844,29 @@ namespace LazZiya.TagHelpers
                 ? $"{QueryStringKeyPageNo}=1&{QueryStringKeyPageSize}={PageSize}".Split('&').ToList()
                 : queryString.TrimStart('?').Split('&').ToList();
 
-            var qDic = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
-            urlTemplate.ForEach(x => qDic.Add(x.Split('=')[0], x.Split('=')[1]));
+            var qDic = new List<Tuple<string, object>>
+            {
+                new Tuple<string, object>(QueryStringKeyPageNo, "{0}"),
+                new Tuple<string, object>(QueryStringKeyPageSize, "{1}")
+            };
 
-            // Remove xml request parameters from url list
-            qDic.Remove("X-Requested-With");
-            qDic.Remove("_");
+            var excludedKeys = new List<string> { "X-Requested-With", "_", QueryStringKeyPageNo, QueryStringKeyPageSize };
+            foreach (var item in urlTemplate)
+            {
+                var key = item.Split('=')[0];
+                var value = item.Split('=')[1];
 
-            if (!qDic.ContainsKey(QueryStringKeyPageNo))
-                qDic.Add(QueryStringKeyPageNo, "{0}");
-            else
-                qDic[QueryStringKeyPageNo] = "{0}";
-
-            if (!qDic.ContainsKey(QueryStringKeyPageSize))
-                qDic.Add(QueryStringKeyPageSize, "{1}");
-            else
-                qDic[QueryStringKeyPageSize] = "{1}";
+                if (!excludedKeys.Contains(key))
+                {
+                    qDic.Add(new Tuple<string, object>(key, value));
+                }
+            }
 
             var path = ViewContext.HttpContext.Request.Path;
-            
+
             return FixUrlPath ?? true
-                ? path + "?" + string.Join("&", qDic.Select(q=>q.Key + "=" + q.Value))
-                : "?" + string.Join("&", qDic.Select(q => q.Key + "=" + q.Value));
+                ? path + "?" + string.Join("&", qDic.Select(q => q.Item1 + "=" + q.Item2))
+                : "?" + string.Join("&", qDic.Select(q => q.Item1 + "=" + q.Item2));
         }
     }
 }
