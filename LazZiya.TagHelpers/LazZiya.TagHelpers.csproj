@@ -12,7 +12,8 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
 		<PackageReleaseNotes>
-			- Fixed Total badges for Bootstrap5 #23 https://github.com/LazZiya/TagHelpers/pull/23
+			- Fixed #22 https://github.com/LazZiya/TagHelpers/issues/22
+			- Merged #23 https://github.com/LazZiya/TagHelpers/pull/23
 			- See all release notes in https://github.com/LazZiya/TagHelpers/releases
 		</PackageReleaseNotes>
 		<VersionPrefix>6.0.1</VersionPrefix>
