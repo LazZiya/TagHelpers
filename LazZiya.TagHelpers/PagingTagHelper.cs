@@ -28,7 +28,7 @@ namespace LazZiya.TagHelpers
         /// e.g. 
         /// <![CDATA[?p={0}&s={1}&q=test]]>
         /// </summary>
-        private string UrlTemplate { get; set; }
+        public string UrlTemplate { get; set; }
 
         /// <summary>
         /// <para>ViewContext property is not required to be passed as parameter, it will be assigned automatically by the tag helper.</para>
@@ -396,7 +396,8 @@ namespace LazZiya.TagHelpers
                     ShowFirstLast = true;
                 }
 
-                UrlTemplate = CreatePagingUrlTemplate();
+                if(string.IsNullOrWhiteSpace(UrlTemplate))
+                    UrlTemplate = CreatePagingUrlTemplate();
 
                 if (ShowFirstLast == true)
                 {

@@ -7,19 +7,20 @@
 		<Company>Ziyad.info</Company>
 		<Description>Collection of tag helpers for ASP.NET Core web applications, like Paging, SelectEnum and LanguageNav dropdown tag helpers for MVC and Razor Pages.</Description>
 		<Copyright>Ziyad.info</Copyright>
-		<PackageProjectUrl>https://docs.ziyad.info/en/LazZiya.TagHelpers/v5.0/index.md</PackageProjectUrl>
+		<PackageProjectUrl>https://docs.ziyad.info/en/LazZiya.TagHelpers/v6.0/index.md</PackageProjectUrl>
 		<PackageIcon>icon.png</PackageIcon>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageTags>asp.net, core, razor, mvc, taghelpers, taghelper,tag,helper,language,culture,dropdown, pagination, select, enum</PackageTags>
 		<PackageReleaseNotes>
-			- Fixed #22 https://github.com/LazZiya/TagHelpers/issues/22
-			- Merged #23 https://github.com/LazZiya/TagHelpers/pull/23
+			- New public param "url-template" use custom url template for the paging buttons.
+			- Fixed #21 https://github.com/LazZiya/TagHelpers/issues/21
+			- Fixed #27 https://github.com/LazZiya/TagHelpers/issues/27
 			- See all release notes in https://github.com/LazZiya/TagHelpers/releases
 		</PackageReleaseNotes>
-		<VersionPrefix>6.0.1</VersionPrefix>
+		<VersionPrefix>6.0.2</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
-		<AssemblyVersion>6.0.0.0</AssemblyVersion>
-		<FileVersion>6.0.0.0</FileVersion>
+		<AssemblyVersion>6.0.2.0</AssemblyVersion>
+		<FileVersion>6.0.2.0</FileVersion>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIconUrl>https://raw.githubusercontent.com/LazZiya/TagHelpers/master/LazZiya.TagHelpers/files/icon.png</PackageIconUrl>
