@@ -4,7 +4,7 @@
 A collection of useful TagHelpers for any ASP.NET Core project.
 
 ## Documentation :
-See all documentation in [DOCS.Ziyad.info][1].
+See all documentation in [DOCS.Ziya.info.tr][1].
 
 ### [Paging TagHelper][1]
 Create a pagination control _styled with bootstrap 4.x_ using simple html tag.
@@ -57,4 +57,4 @@ Add all client side scripts that are required for validating localized inputs li
 ## Live demos:
 http://demo.ziyad.info/en/
 
-[1]:https://docs.ziyad.info
+[1]:https://docs.ziya.info.tr
