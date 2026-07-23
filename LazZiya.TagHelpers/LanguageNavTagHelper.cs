@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 
 namespace LazZiya.TagHelpers
 {
@@ -66,6 +67,11 @@ namespace LazZiya.TagHelpers
         /// false: Show flags in rounded images, 
         /// </summary>
         public bool FlagsSquared { get; set; } = false;
+
+        /// <summary>
+        /// Whether show border or not
+        /// </summary>
+        public bool Border { get; set; } = true;
 
         /// <summary>
         /// required for listing supported cultures. 
@@ -327,12 +333,17 @@ namespace LazZiya.TagHelpers
         private TagBuilder CreateToggle()
         {
             var toggle = new TagBuilder("a");
-            toggle.AddCssClass("btn-sm btn-default border border-secondary dropdown-toggle");
+
+            var cssBuilder = new StringBuilder("btn-sm btn-default border-secondary dropdown-toggle");
+
+            if (Border) cssBuilder.Append(" border");
+            toggle.AddCssClass(cssBuilder.ToString());
+
             toggle.Attributes.Add("id", "dropdownLang");
             toggle.Attributes.Add("href", "#");
             toggle.Attributes.Add("role", "button");
 
-            if(RenderMode == RenderMode.Bootstrap5)
+            if (RenderMode == RenderMode.Bootstrap5)
                 toggle.Attributes.Add("data-bs-toggle", "dropdown");
             else
                 toggle.Attributes.Add("data-toggle", "dropdown");
