@@ -718,8 +718,8 @@ namespace LazZiya.TagHelpers
             }
             else
             {
-                liTag.MergeAttribute("area-label", textSr);
-                aTag.InnerHtml.AppendHtml($"<span area-hidden=\"true\">{text}</span>");
+                liTag.MergeAttribute("aria-label", textSr);
+                aTag.InnerHtml.AppendHtml($"<span aria-hidden=\"true\">{text}</span>");
 
                 if (RenderMode == RenderMode.Bootstrap5)
                     aTag.InnerHtml.AppendHtml($"<span class=\"visually-hidden-focusable\">{textSr}</span>");
